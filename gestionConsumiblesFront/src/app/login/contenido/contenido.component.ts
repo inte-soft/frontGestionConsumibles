@@ -19,9 +19,9 @@ export class ContenidoComponent {
     onLogin(input: any): void {
       this.axiosService.request(
         "POST",
-        "/usuario",
+        "/login",
         {
-          usuario: input.usuario,
+          userName: input.usuario,
           password: input.password
         }
       ).then(response => {

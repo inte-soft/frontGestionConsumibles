@@ -8,7 +8,8 @@ import axios from 'axios';
 export class AxiosService {
   //este es el constructor de la clase
   constructor() {
-    axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.baseURL = "http://localhost:8080";
+    //esta es la configuracion de la peticion del servidor
     axios.defaults.headers.post["Content-Type"] = "application/json";
   }
 // este metodo es para obtener el token de autenticacion
@@ -29,7 +30,7 @@ export class AxiosService {
     let headers = {};
 // este if es para saber si el token de autenticacion es diferente de null
     if (this.getAuthToken() !== null) {
-      headers={"Authentication" : "Bearer " + this.getAuthToken()};
+      headers={"Authorization" : "Bearer " + this.getAuthToken()};
     }
 // este return es para hacer la peticion al servidor
     return axios({
