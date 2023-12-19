@@ -14,14 +14,14 @@ export class AxiosService {
   }
 // este metodo es para obtener el token de autenticacion
   getAuthToken(): string | null {
-    return window.localStorage.getItem("auth_token");
+    return window.sessionStorage.getItem("auth_token");
   }
 // este metodo es para guardar el token de autenticacion
   setAuthToken(token: string): void {
     if (token !== null) {
-      window.localStorage.setItem("auth_token", token);
+      window.sessionStorage.setItem("auth_token", token);
     }else {
-      window.localStorage.removeItem("auth_token");
+      window.sessionStorage.removeItem("auth_token");
     }
   }
   // este metodo es para hacer las peticiones al servidor

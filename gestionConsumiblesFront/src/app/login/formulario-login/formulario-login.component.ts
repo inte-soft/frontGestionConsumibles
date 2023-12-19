@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { AxiosService } from 'src/app/axios.service';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-formulario-login',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class FormularioLoginComponent implements OnInit{
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private axiosService: AxiosService) { }
 
   ngOnInit(){
 
@@ -20,17 +22,25 @@ export class FormularioLoginComponent implements OnInit{
   usuario: string = "";
   password: string = "";
 
-  onLoginTab(): void{
-    this.active = "login";
-  }
+    onLoginTab(): void{
+      this.active = "login";
+    }
+    onSubmitLogin(): void{
 
-  onSubmitLogin(): void{
-
-    this.router.navigate(['/menu']);
-    // este es el evento que se emite para que el componente padre lo escuche
-    this.onSbmitLoginEvent.emit({usuario: this.usuario,
-      password: this.password});
-
-  }
-
+        this.axiosService.request(
+          "POST",
+          "/login",
+          {
+            userName: this.usuario,
+            password: this.password
+          }
+        ).then(response => {
+            this.axiosService.setAuthToken(response.data.token);
+            this.router.navigate(['/menu']);
+        }).catch((error: HttpErrorResponse) => {
+          if(error.status == 404 || error.status == 400){
+            console.log("Usuario o contraseña incorrectos");
+          }
+        });
+      }
 }
