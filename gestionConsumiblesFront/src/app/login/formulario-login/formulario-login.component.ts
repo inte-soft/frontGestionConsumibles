@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AxiosService } from 'src/app/axios.service';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-formulario-login',
@@ -37,10 +36,12 @@ export class FormularioLoginComponent implements OnInit{
         ).then(response => {
             this.axiosService.setAuthToken(response.data.token);
             this.router.navigate(['/menu']);
-        }).catch((error: HttpErrorResponse) => {
-          if(error.status == 404 || error.status == 400){
-            console.log("Usuario o contraseña incorrectos");
+        }).catch((error: any) => {
+          if(error.response.data.message== "Unknown user" || error.response.data.message== "Invalid password"){
+            this.usuario = "";
+            this.password = "";
+            alert("Usuario o contraseña incorrectos");
           }
-        });
-      }
+      });
+    }
 }

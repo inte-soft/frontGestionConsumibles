@@ -1,18 +1,17 @@
 /*estilos de la cabecera del login*/
 .app-logo{
-    height: 80%;
+    height: 90%;
 }
 
 .encabezado{
   background-color: rgb(36, 122, 49);
-  height: 150px;
+  height: 90px;
   padding: 20px;
   color: white;
   text-align: center;
   margin-bottom: 20px;
-  border-radius: 8px;
 }
 
 .app-titulo{
-  font-size: 1.5em;
+  font-size: 1.1em;
 }
