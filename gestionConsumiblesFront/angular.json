@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gestionConsumiblesFront:build:production"
+              "buildTarget": "gestionConsumiblesFront:build:production"
             },
             "development": {
-              "browserTarget": "gestionConsumiblesFront:build:development"
+              "buildTarget": "gestionConsumiblesFront:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gestionConsumiblesFront:build"
+            "buildTarget": "gestionConsumiblesFront:build"
           }
         },
         "test": {
