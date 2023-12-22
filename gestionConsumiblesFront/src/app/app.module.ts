@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './login/header/header.component';
@@ -10,6 +11,9 @@ import { ContenidoComponent } from './login/contenido/contenido.component';
 import { FormularioLoginComponent } from './login/formulario-login/formulario-login.component';
 import { MenuPrincipalComponent } from './menu/menu-principal/menu-principal.component';
 import { BotonesComponent } from './login/botones/botones.component';
+import { GenerarQRComponent } from './generar-qr/generar-qr.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -19,14 +23,20 @@ import { BotonesComponent } from './login/botones/botones.component';
     ContenidoComponent,
     FormularioLoginComponent,
     MenuPrincipalComponent,
-    BotonesComponent
+    BotonesComponent,
+    GenerarQRComponent,
+    
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent
+  ]
 })
 export class AppModule { }
