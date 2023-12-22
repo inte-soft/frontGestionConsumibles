@@ -1,4 +1,6 @@
-<!--crear vista con una tabla principal que tendra 4 columnas(id, nombre apellido y acciones)-->
+<!-- roles.component.html -->
+
+<!-- Tabla principal -->
 <table class="table table-striped">
   <thead>
     <tr>
@@ -11,7 +13,7 @@
   <tbody>
     <tr *ngFor="let user of users">
       <th scope="row">{{user.id}}</th>
-      <td>{{user.firstName}}</td>
+      <td>{{user.name}}</td>
       <td>{{user.lastName}}</td>
       <td>
         <button class="btn btn-primary" (click)="editRol(user.id)">Editar</button>
@@ -19,47 +21,64 @@
       </td>
     </tr>
   </tbody>
+</table>
 
-  <!--codigo para modal que aparece cuando se da click en el boton editar y el llamado por el metodo edit rol-->
-  <class="modal fade" id="editRolModal" tabindex="-1" role="dialog" aria-labelledby="editRolModalLabel" aria-hidden="true">
-    <form>
-      <div class="form-group">
-        <label for="id">Id</label>
-        <input type="text" class="form-control" id="id" placeholder="Id" [(ngModel)]="selectedUser.id" disabled>
+<!-- Modal -->
+<div class="modal" id="editRolModal" tabindex="-1" role="dialog" aria-labelledby="editRolModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editRolModalLabel">Editar Rol</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="form-group">
-        <label for="firstName">Nombre</label>
-        <input type="text" class="form-control" id="firstName" placeholder="Nombre" [(ngModel)]="selectedUser.firstName">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="id">Id</label>
+            <input type="text" class="form-control" id="id" placeholder="Id" [(ngModel)]="selectedUser.id" disabled>
+          </div>
+          <div class="form-group">
+            <label for="firstName">Nombre</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Nombre" [(ngModel)]="selectedUser.name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Apellido</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Apellido" [(ngModel)]="selectedUser.lastName">
+          </div>
+          <div class="form-group">
+            <label for="assignedRoles">Roles Asignados</label>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let assignedRole of selectedUser.rol">
+                  <td>{{ assignedRole.id }}</td>
+                  <td>{{ assignedRole.name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Lista desplegable de roles -->
+          <div class="form-group">
+            <label for="roles">Roles Totales</label>
+            <select class="form-control" id="roles" multiple [(ngModel)]="selectedUser.rol">
+              <option *ngFor="let role of roles" [value]="role.id">
+                {{ role.name }}
+              </option>
+            </select>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="lastName">Apellido</label>
-        <input type="text" class="form-control" id="lastName" placeholder="Apellido" [(ngModel)]="selectedUser.lastName">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
       </div>
-      <div class="form-group">
-        <label for="assignedRoles">Roles Asignados</label>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let assignedRole of selectedUser.roles">
-              <td>{{ assignedRole.id }}</td>
-              <td>{{ assignedRole.name }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- Agrega aquí la lista desplegable de roles -->
-      <div class="form-group">
-        <label for="roles">Roles Totales</label>
-        <select class="form-control" id="roles" multiple [(ngModel)]="selectedUser.selectedRoles">
-          <option *ngFor="let role of roles" [value]="role.id">
-            {{ role.name }}
-          </option>
-        </select>
-      </div>
-    </form>
+    </div>
   </div>
+</div>

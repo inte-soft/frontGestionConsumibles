@@ -3,6 +3,7 @@ import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
 import axios from 'axios';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-roles',
@@ -14,7 +15,7 @@ export class RolesComponent implements OnInit {
   roles: Role[] = [];
   selectedUser: User = new User(0, '', '', []);
 
-  constructor(private modalService: NgbModal) { }
+  constructor(@Inject(NgbModal) private modalService: NgbModal) { }
 
   ngOnInit() {
     axios.get<User[]>('URL_DEL_BACKEND_PARA_USUARIOS')
@@ -32,6 +33,12 @@ export class RolesComponent implements OnInit {
       .catch(error => {
         console.error('Error al obtener roles', error);
       });
+
+      // addusers
+      this.users.push(new User(1, 'Juan', 'Perez', [new Role(1, 'Administrador'), new Role(2, 'Usuario')]));
+      // addroles
+      this.roles.push(new Role(1, 'Administrador'));
+      
   }
 
   editRol(id: number) {
