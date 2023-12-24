@@ -15,10 +15,8 @@ const routes: Routes = [
   { path: 'login', component: FormularioLoginComponent },
   { path: 'menu', component: MenuPrincipalComponent },
   { path: 'roles', component: RolesComponent},
-  { path: '**', component:  PagenotfoundComponent},
-  { path: '', redirectTo: 'generar-qr', pathMatch: 'full'},
   { path: 'generar-qr', component: GenerarQRComponent},
-  { path: '**', redirectTo: 'generar-qr', pathMatch: 'full'},//builder, siempre al final para evitar errores
+  { path: '**', component:  PagenotfoundComponent},
 ];
 
 @NgModule({
