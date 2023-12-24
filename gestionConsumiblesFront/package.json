@@ -10,7 +10,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@angular/animations": "^17.0.7",
     "@angular/common": "^17.0.7",
     "@angular/compiler": "^17.0.7",
@@ -20,23 +19,13 @@
     "@angular/platform-browser-dynamic": "^17.0.7",
     "@angular/router": "^17.0.7",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
-=======
-    "@angular/animations": "^16.2.0",
     "@angular/cdk": "^16.2.12",
-    "@angular/common": "^16.2.0",
-    "@angular/compiler": "^16.2.0",
-    "@angular/core": "^16.2.0",
-    "@angular/forms": "^16.2.0",
     "@angular/material": "^16.2.12",
-    "@angular/platform-browser": "^16.2.0",
-    "@angular/platform-browser-dynamic": "^16.2.0",
-    "@angular/router": "^16.2.0",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@popperjs/core": "^2.11.8",
     "@techiediaries/ngx-qrcode": "^9.1.0",
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
     "axios": "^1.6.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.2",

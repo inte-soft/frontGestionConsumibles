@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap'; // Remove duplicate import
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,14 +12,10 @@ import { ContenidoComponent } from './login/contenido/contenido.component';
 import { FormularioLoginComponent } from './login/formulario-login/formulario-login.component';
 import { MenuPrincipalComponent } from './menu/menu-principal/menu-principal.component';
 import { BotonesComponent } from './login/botones/botones.component';
-<<<<<<< HEAD
 import { RolesComponent } from './userandRoles/roles/roles.component';
 import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
-=======
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
 
 @NgModule({
   declarations: [
@@ -31,26 +26,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormularioLoginComponent,
     MenuPrincipalComponent,
     BotonesComponent,
-<<<<<<< HEAD
     RolesComponent,
-    UsuariosComponent
-=======
+    UsuariosComponent,
     GenerarQRComponent,
     
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
+
   ],
   
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-<<<<<<< HEAD
     NgbModule,
-    NgbModalModule
-=======
+    NgbModalModule,
     BrowserAnimationsModule,
-    
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
   ],
   providers: [],
   bootstrap: [AppComponent

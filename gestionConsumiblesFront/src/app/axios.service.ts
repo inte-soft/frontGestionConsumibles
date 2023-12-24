@@ -8,13 +8,9 @@ import axios from 'axios';
 export class AxiosService {
   //este es el constructor de la clase
   constructor() {
-<<<<<<< HEAD
     axios.defaults.baseURL = "https://backend.solendev.online/";
     //esta es la configuracion de la peticion del servidor
-=======
-    axios.defaults.baseURL = 'http://localhost:8080';
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
-    axios.defaults.headers.post["Content-Type"] = "application/json";
+    axios.defaults.headers.post["Content-Type"] = "application/json"; 
   }
 // este metodo es para obtener el token de autenticacion
   getAuthToken(): string | null {
