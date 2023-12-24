@@ -3,6 +3,8 @@ import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
 import axios from 'axios';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AxiosService } from 'src/app/axios.service';
+import { Area } from 'src/app/models/ara.model';
 
 @Component({
   selector: 'app-roles',
@@ -10,54 +12,36 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-  users: User[] = []; 
+  users: User[] = [];
   roles: Role[] = [];
-  selectedUser: User = new User(0, '', '', []);
+  selectedUser: User = new User(0, '', '', '', [], new Area(0, ''));
   rolesToAdd: Role[] = [];
   actualRoles: Role[] = [];
-  selectedAvailableRole:any;
+  selectedAvailableRole: any;
   selectedAssignedRole: any;
 
-  
 
-  constructor(private modal: NgbModal) { }
+
+  constructor(private modal: NgbModal, private axiosService: AxiosService) { }
 
   ngOnInit() {
-    axios.get<User[]>('user/list')
-      .then(response => {
-        this.users = response.data;
-      })
-      .catch(error => {
-        console.error('Error al obtener usuarios', error);
-      });
+    this.getUsers();
 
-    axios.get<Role[]>('role/list')
-      .then(response => {
-        this.roles = response.data;
-      })
-      .catch(error => {
-        console.error('Error al obtener roles', error);
-      });
+    this.getRoles();
 
-      // addusers
-      this.users.push(new User(1, 'Juan', 'Perez', [new Role(3, 'Almacen'), new Role(2, 'Usuario')]));
-      // addroles
-      this.roles.push(new Role(1, 'Administrador'));
-      this.roles.push(new Role(2, 'Usuario'));
-      this.roles.push(new Role(3, 'Almacen'));
-      
+
   }
 
   editRol(id: number, contenido: any) {
     this.selectedUser = this.users.find(x => x.id == id)!;
-    this.actualRoles = this.selectedUser.rol;
+    this.actualRoles = this.selectedUser.roles;
     this.rolesToAdd = this.roles.filter(
-      x => !this.selectedUser.rol.map(r => r.id).includes(x.id));
+      x => !this.selectedUser.roles.map(r => r.id).includes(x.id));
 
     // Abre el modal utilizando NgbModal
-    this.modal.open(contenido , { size: 'xl', backdrop: 'static'});
+    this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
   }
-closeModal() {
+  closeModal() {
     this.modal.dismissAll();
   }
   moveRoleRight() {
@@ -68,7 +52,7 @@ closeModal() {
         role => role.id !== this.selectedAvailableRole[0]);
     }
   }
-  
+
   moveRoleLeft() {
     if (this.selectedAssignedRole) {
       // Mueve el rol seleccionado de roles asignados a roles disponibles
@@ -79,15 +63,45 @@ closeModal() {
   }
   saveChanges() {
     // codigo para consumir el servicio de actualizar roles
-    this.selectedUser.rol = this.actualRoles;
-    axios.put('user/'+this.selectedUser.id, this.selectedUser)
-    .then(response => {
-      this.closeModal();
-      alert('Roles actualizados correctamente');
+    this.selectedUser.roles = this.actualRoles;
+    this.axiosService.request(
+      "put",
+      "/users/" + this.selectedUser.id,
+      this.selectedUser
+    ).then(response => {
+      alert(response.data.message);
+      this.modal.dismissAll();
     }).catch(error => {
-      alert('Error al actualizar roles/n'+error.response.data.message);
-    
-  });
-}
+      alert('Error al actualizar roles/n' + error.response.data.message);
+
+    });
+  }
+
+  getRoles(){
+    this.axiosService.request(
+      "GET",
+      "/users/roles",
+      null
+    ).then(response => {
+      this.roles = response.data;
+    }).catch(error => {
+      alert('Error al obtener roles ' + error.response.data.message);
+      console.error('Error al obtener roles', error);
+    });
+  }
+
+  getUsers(){
+    this.axiosService.request(
+      "GET",
+      "/users/list",
+      null
+    ).then(response => {
+      this.users = response.data;
+    }).catch(error => {
+      alert('Error al obtener usuarios ' + error.response.data.message);
+      console.error('Error al obtener usuarios', error);
+    });
+  }
+
 }
 
