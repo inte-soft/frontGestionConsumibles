@@ -6,10 +6,10 @@ import { PagenotfoundComponent } from './errores/pagenotfound/pagenotfound.compo
 import { RolesComponent } from './userandRoles/roles/roles.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: FormularioLoginComponent },
   { path: 'menu', component: MenuPrincipalComponent },
-  {path: 'roles', component: RolesComponent},
+  { path: 'roles', component: RolesComponent},
   { path: '**', component:  PagenotfoundComponent},
 ];
 

@@ -8,7 +8,7 @@ import axios from 'axios';
 export class AxiosService {
   //este es el constructor de la clase
   constructor() {
-    axios.defaults.baseURL = "http://localhost:8080";
+    axios.defaults.baseURL = "https://backend.solendev.online/";
     //esta es la configuracion de la peticion del servidor
     axios.defaults.headers.post["Content-Type"] = "application/json";
   }
