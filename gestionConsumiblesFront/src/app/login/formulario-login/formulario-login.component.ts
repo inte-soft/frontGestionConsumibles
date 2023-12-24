@@ -11,6 +11,10 @@ export class FormularioLoginComponent {
   //esto es para que el componente padre pueda escuchar el evento
   constructor(private router: Router, private axiosService: AxiosService) { }
 
+  ngOnInit(): void {
+    window.sessionStorage.removeItem("AUTHORIZATION");
+  }
+
   active: string = "login";
   usuario: string = "";
   password: string = "";

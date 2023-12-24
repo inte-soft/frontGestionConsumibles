@@ -7,14 +7,14 @@ export class User {
   name: string;
   lastName: string;
   password: string;
-  roles: Role[];
+  rol: Role[];
   area: Area;
-  constructor(id: number, name: string, lastName: string, password: string, roles: Role[], area: Area) {
+  constructor(id: number, name: string, lastName: string, password: string, rol: Role[], area: Area) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
     this.password = password;
-    this.roles = roles;
+    this.rol = rol;
     this.area = area;
   }
 }

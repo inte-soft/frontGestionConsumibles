@@ -34,9 +34,10 @@ export class RolesComponent implements OnInit {
 
   editRol(id: number, contenido: any) {
     this.selectedUser = this.users.find(x => x.id == id)!;
-    this.actualRoles = this.selectedUser.roles;
-    this.rolesToAdd = this.roles.filter(
-      x => !this.selectedUser.roles.map(r => r.id).includes(x.id));
+    this.actualRoles = this.selectedUser.rol;
+    this.rolesToAdd = this.roles.filter(role => {
+      return !this.selectedUser.rol.some(userRole => userRole.id === role.id);
+    });
 
     // Abre el modal utilizando NgbModal
     this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
@@ -63,16 +64,17 @@ export class RolesComponent implements OnInit {
   }
   saveChanges() {
     // codigo para consumir el servicio de actualizar roles
-    this.selectedUser.roles = this.actualRoles;
+    this.selectedUser.rol = this.actualRoles;
     this.axiosService.request(
       "put",
-      "/users/" + this.selectedUser.id,
+      "/users/" + this.selectedUser.id + "/roles",
       this.selectedUser
     ).then(response => {
-      alert(response.data.message);
+      alert('Roles actualizados correctamente');
+      this.getUsers();
       this.modal.dismissAll();
     }).catch(error => {
-      alert('Error al actualizar roles/n' + error.response.data.message);
+      alert('Error al actualizar roles ' + error.response.data.message);
 
     });
   }
