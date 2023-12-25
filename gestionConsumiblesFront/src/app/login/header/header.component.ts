@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
 //definimos las variables que vamos a recibir desde el componente padre
-  @Input() pageTitle!: string;
-  @Input() logoSrc!: string;
+@Input() pageTitle!: string;
+@Input() logoSrc!: string;
 }

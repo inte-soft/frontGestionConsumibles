@@ -10,6 +10,10 @@ import { ContenidoComponent } from './login/contenido/contenido.component';
 import { FormularioLoginComponent } from './login/formulario-login/formulario-login.component';
 import { MenuPrincipalComponent } from './menu/menu-principal/menu-principal.component';
 import { BotonesComponent } from './login/botones/botones.component';
+import { RolesComponent } from './userandRoles/roles/roles.component';
+import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
+import { SidebarModule } from 'ng-sidebar';
+import { SidebarComponent } from './menu/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { BotonesComponent } from './login/botones/botones.component';
     ContenidoComponent,
     FormularioLoginComponent,
     MenuPrincipalComponent,
-    BotonesComponent
+    BotonesComponent,
+    RolesComponent,
+    UsuariosComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

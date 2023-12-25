@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit} from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { AxiosService } from 'src/app/axios.service';
 
@@ -8,6 +8,10 @@ import { AxiosService } from 'src/app/axios.service';
   styleUrls: ['./formulario-login.component.css']
 })
 export class FormularioLoginComponent implements OnInit{
+
+  //definimos las variables que vamos a recibir desde el componente padre
+  @Input() pageTitle!: string;
+  @Input() logoSrc!: string;
 
   constructor(private router: Router, private axiosService: AxiosService) { }
 
