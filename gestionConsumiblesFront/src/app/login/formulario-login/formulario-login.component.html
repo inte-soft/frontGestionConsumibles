@@ -18,8 +18,12 @@ display: inline-block; max-width: 300px; box-shadow: 0 0 10px rgb(36, 122, 49);"
 =======
 <div class="row justify-content-center">
   <div class="col-4">
+<<<<<<< HEAD
 >>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
     <form (ngSubmit)="onSubmitLogin()" #formularioLogin="ngForm">
+=======
+    <form  #formularioLogin="ngForm" (ngSubmit)="onSubmitLogin()">
+>>>>>>> 5b5b678f348ee7a3f84c3c8777111ad55279824c
       <div class="form-outline mb-4">
         <input class="form-control" type="usuario" id="loginName" name="login"
         [(ngModel)]="usuario"/>
@@ -30,7 +34,7 @@ display: inline-block; max-width: 300px; box-shadow: 0 0 10px rgb(36, 122, 49);"
         [(ngModel)]="password"/>
         <label for="loginPassword">Contraseña</label>
       </div>
-      <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar Sesión</button>
+      <button type="submit" class="btn btn-primary btn-block mb-4" (click)="onSubmitLogin()" >Iniciar Sesión</button>
     </form>
   </div>
 </div>
