@@ -23,14 +23,6 @@ export class AuthenticationComponent {
     ).then(
       //se alamcena la respueata en la variable data
       (response) => this.data = response.data
-    ).catch(
-      (error) => {
-        if (error.response.status === 401) {
-          this.axiosService.setAuthToken("");
-        } else {
-          this.data = error.response.code;
-        }
-      }
     );
   }
 }

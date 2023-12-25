@@ -8,20 +8,19 @@ import axios from 'axios';
 export class AxiosService {
   //este es el constructor de la clase
   constructor() {
-    axios.defaults.baseURL = "http://localhost:8080";
-    //esta es la configuracion de la peticion del servidor
+    axios.defaults.baseURL = 'http://localhost:8080';
     axios.defaults.headers.post["Content-Type"] = "application/json";
   }
 // este metodo es para obtener el token de autenticacion
   getAuthToken(): string | null {
-    return window.sessionStorage.getItem("auth_token");
+    return window.localStorage.getItem("auth_token");
   }
 // este metodo es para guardar el token de autenticacion
   setAuthToken(token: string): void {
     if (token !== null) {
-      window.sessionStorage.setItem("auth_token", token);
+      window.localStorage.setItem("auth_token", token);
     }else {
-      window.sessionStorage.removeItem("auth_token");
+      window.localStorage.removeItem("auth_token");
     }
   }
   // este metodo es para hacer las peticiones al servidor
@@ -30,7 +29,7 @@ export class AxiosService {
     let headers = {};
 // este if es para saber si el token de autenticacion es diferente de null
     if (this.getAuthToken() !== null) {
-      headers={"Authorization" : "Bearer " + this.getAuthToken()};
+      headers={"Authentication" : "Bearer " + this.getAuthToken()};
     }
 // este return es para hacer la peticion al servidor
     return axios({
