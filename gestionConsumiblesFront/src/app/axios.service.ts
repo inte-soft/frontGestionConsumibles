@@ -8,19 +8,21 @@ import axios from 'axios';
 export class AxiosService {
   //este es el constructor de la clase
   constructor() {
-    axios.defaults.baseURL = 'http://localhost:8080';
-    axios.defaults.headers.post["Content-Type"] = "application/json";
+    //axios.defaults.baseURL = "https://backend.solendev.online/";
+    axios.defaults.baseURL = "http://localhost:8080/";
+    //esta es la configuracion de la peticion del servidor
+    axios.defaults.headers.post["Content-Type"] = "application/json"; 
   }
 // este metodo es para obtener el token de autenticacion
   getAuthToken(): string | null {
-    return window.localStorage.getItem("auth_token");
+    return window.sessionStorage.getItem("AUTHORIZATION");
   }
 // este metodo es para guardar el token de autenticacion
   setAuthToken(token: string): void {
     if (token !== null) {
-      window.localStorage.setItem("auth_token", token);
+      window.sessionStorage.setItem("AUTHORIZATION", token);
     }else {
-      window.localStorage.removeItem("auth_token");
+      window.sessionStorage.removeItem("AUTHORIZATION");
     }
   }
   // este metodo es para hacer las peticiones al servidor
@@ -29,7 +31,7 @@ export class AxiosService {
     let headers = {};
 // este if es para saber si el token de autenticacion es diferente de null
     if (this.getAuthToken() !== null) {
-      headers={"Authentication" : "Bearer " + this.getAuthToken()};
+      headers={"AUTHORIZATION" : "Bearer " + this.getAuthToken()};
     }
 // este return es para hacer la peticion al servidor
     return axios({
