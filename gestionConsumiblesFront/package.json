@@ -29,27 +29,21 @@
     "axios": "^1.6.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.2",
-<<<<<<< HEAD
     "ng-sidebar": "^9.4.3",
-=======
     "jquery": "^3.7.1",
     "ngx-bootstrap": "^11.0.2",
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@angular-devkit/build-angular": "^16.2.2",
     "@angular/cli": "~16.2.2",
     "@angular/compiler-cli": "^16.2.0",
     "@types/bootstrap": "^5.2.10",
-=======
     "@angular-devkit/build-angular": "^17.0.7",
     "@angular/cli": "~17.0.7",
     "@angular/compiler-cli": "^17.0.7",
->>>>>>> 5b5b678f348ee7a3f84c3c8777111ad55279824c
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <!--<div class="row justify-content-center mx-auto my-auto d-flex flex-column"
   style="border: 2px solid rgb(36, 122, 49); border-radius: 10px; max-width: 800px;">
@@ -11,9 +10,10 @@
       <h4 class="text-light font-weight-bold" >syncwors</h4>
     </div>
     <div class="menu">
-      <a routerLink="/usuarios" routerLinkActive="active-link" class=" text-light d-block p-2" ><i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>
+      <!--<a routerLink="/usuarios" routerLinkActive="active-link" class=" text-light d-block p-2" ><i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>-->
+      <button class=" text-light d-block p-2" ><i class="icon ion-md-people mr-2 lead" (click)="openUsers"></i> Usuarios</button>
       <a routerLink="/roles" class=" text-light d-block p-2" ><i class="icon ion-md-settings mr-2 lead"></i> Roles</a>
-      <a href="#" class=" text-light d-block p-2" ><i class="icon ion-md-grid mr-2 lead"></i> Generar QR</a>
+      <a routerLink="/generar-qr" class=" text-light d-block p-2" ><i class="icon ion-md-grid mr-2 lead"></i> Generar QR</a>
     </div>
   </div>
 
@@ -44,12 +44,11 @@
           </div>
         </div>
       </nav>
-=======
-<div class="row justify-content-md-center">
-  <div class="jumbotron jumbotron-fluid">
-      <h1 class="display-4">Bienvenido a la aplicación</h1>
-      <p class="lead">Esta es una aplicación de ejemplo para el curso de Angular</p>
->>>>>>> b5c969eab8a593c9c41eb9843b2cb9dfd481b272
   </div>
 </div>
 
+<div >
+  <!--espacio para incluir componente de usuario-->
+  <app-usuarios *ngIf="mostrarUsuarios"></app-usuarios>
+
+</div>
