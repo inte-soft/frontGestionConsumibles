@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,7 @@ import { MenuPrincipalComponent } from './menu/menu-principal/menu-principal.com
 import { BotonesComponent } from './login/botones/botones.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -33,10 +35,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     
   ],
   providers: [],
-  bootstrap: [AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

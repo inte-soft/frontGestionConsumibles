@@ -9,6 +9,7 @@ import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 const routes: Routes = [
   { path: '', redirectTo: 'generar-qr', pathMatch: 'full'},
   { path: 'generar-qr', component: GenerarQRComponent},
+  { path: 'form/:id', component: GenerarQRComponent},
   { path: '**', redirectTo: 'generar-qr', pathMatch: 'full'},//builder, siempre al final para evitar errores
 ];
 
