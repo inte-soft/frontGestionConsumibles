@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: '**', component:  PagenotfoundComponent},
   { path: '', redirectTo: 'generar-qr', pathMatch: 'full'},
   { path: 'generar-qr', component: GenerarQRComponent},
+<<<<<<< HEAD
   { path: '**', redirectTo: 'generar-qr', pathMatch: 'full'},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: FormularioLoginComponent },
@@ -27,6 +28,10 @@ const routes: Routes = [
   { path: 'roles', component: RolesComponent},
   { path: 'generar-qr', component: GenerarQRComponent},
   { path: '**', component:  PagenotfoundComponent},
+=======
+  { path: 'form/:id', component: GenerarQRComponent},
+  { path: '**', redirectTo: 'generar-qr', pathMatch: 'full'},//builder, siempre al final para evitar errores
+>>>>>>> 8fb82da29b1bcca3dca44f9c2781dab011c780a3
 ];
 
 @NgModule({

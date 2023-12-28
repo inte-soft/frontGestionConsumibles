@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { NgbModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+=======
+import { ReactiveFormsModule } from '@angular/forms';
+
+>>>>>>> 8fb82da29b1bcca3dca44f9c2781dab011c780a3
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +22,7 @@ import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -38,10 +44,14 @@ import { CommonModule } from '@angular/common';
     NgbModule,
     NgbModalModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
     CommonModule
+=======
+    ReactiveFormsModule,
+    
+>>>>>>> 8fb82da29b1bcca3dca44f9c2781dab011c780a3
   ],
   providers: [],
-  bootstrap: [AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
