@@ -38,7 +38,7 @@ export class FormularioLoginComponent implements OnInit{
       {
         userName: this.usuario,
         password: this.password
-      }
+      }, null
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
       this.router.navigate(['/menu']);

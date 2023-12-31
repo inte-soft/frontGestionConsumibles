@@ -1,10 +1,57 @@
+<body>
 <div class="app">
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <router-outlet></router-outlet>
+        <div class="d-flex" >
+          <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
+            <div class="logo">
+              <h4 class="text-light font-weight-bold">syncwors</h4>
+            </div>
+            <div class="menu">
+              <!--<a routerLink="/usuarios" routerLinkActive="active-link" class=" text-light d-block p-2" ><i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>-->
+              <a routerLink="/usuarios" class=" text-light d-block p-2"><i class="icon ion-md-settings mr-2 lead"></i>
+                Usuarios</a>
+              <a routerLink="/roles" class=" text-light d-block p-2"><i class="icon ion-md-settings mr-2 lead"></i>
+                Roles</a>
+              <a routerLink="/generar-qr" class=" text-light d-block p-2"><i class="icon ion-md-grid mr-2 lead"></i>
+                Generar QR</a>
+            </div>
+          </div>
+
+          <div class="w-100 .bg-white" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="!router.url.includes('/login')">
+              <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/imagenes/usuario.png" class="img-fluid rounded-circle avatar mr-2">
+                        Alfredo Sierra
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Salir</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <div class="container">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      
       </div>
     </div>
   </div>
 </div>
-<!--app-generar-qr--><!--app-generar-qr-->
+</body>

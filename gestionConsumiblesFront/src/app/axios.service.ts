@@ -8,8 +8,8 @@ import axios from 'axios';
 export class AxiosService {
   //este es el constructor de la clase
   constructor() {
-    //axios.defaults.baseURL = "https://backend.solendev.online/";
-    axios.defaults.baseURL = "http://localhost:8080/";
+    axios.defaults.baseURL = "https://backend.solendev.online/";
+    //axios.defaults.baseURL = "http://localhost:8080/";
     //esta es la configuracion de la peticion del servidor
     axios.defaults.headers.post["Content-Type"] = "application/json"; 
   }
@@ -26,14 +26,19 @@ export class AxiosService {
     }
   }
   // este metodo es para hacer las peticiones al servidor
-  request(method: string, url: string, data: any): Promise<any> {
-// este es el encabezado de la peticion
-    let headers = {};
-// este if es para saber si el token de autenticacion es diferente de null
+  request(method: string, url: string, data: any, header?: any): Promise<any> {
+    // este es el encabezado de la peticion
+    let headers: any = {};
+    // este if es para saber si el token de autenticacion es diferente de null
     if (this.getAuthToken() !== null) {
-      headers={"AUTHORIZATION" : "Bearer " + this.getAuthToken()};
+      if (header !== null) {
+        headers = {  AUTHORIZATION: "Bearer " + this.getAuthToken(), 'Content-Type': 'multipart/form-data'};
+      } else {
+        headers = {  AUTHORIZATION: "Bearer " + this.getAuthToken() };
+      }
     }
-// este return es para hacer la peticion al servidor
+    
+    // este return es para hacer la peticion al servidor
     return axios({
       method: method,
       url: url,
@@ -41,4 +46,5 @@ export class AxiosService {
       headers: headers
     });
   }
+  
 }

@@ -1,3 +1,4 @@
+
 <!--Titulo-->
 <div class="container mt-4">
     <div class="card">
@@ -17,12 +18,20 @@
           <div class="container-fluid">
             <a class="navbar-brand">
                   <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      10
-                      </button> Registros
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ limit }} Registros
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" (click)="limit = 10">10 Registros</a></li>
+                          <li><a class="dropdown-item" (click)="limit = 20">20 Registros</a></li>
+                          <li><a class="dropdown-item" (click)="limit = 50">50 Registros</a></li>
+                          <li><a class="dropdown-item" (click)="limit = 100">100 Registros</a></li>
+                        </ul>
+                      </div>
                       
                       <a class="button">
-                          <button type="button" class="btn btn-secondary btn-sm ms-5" data-bs-toggle="modal" data-bs-target="#modalCarga"> 
+                          <button type="button" class="btn btn-secondary btn-sm ms-5" (click)="newCharge(contenido1)"> 
                               <i class="fa-solid fa-upload"></i>
                                   Crear código
                           </button>
@@ -38,48 +47,34 @@
       <br>
       <!--Tabla Ots-->
       <table class="table table-bordered table-striped">
-          <thead>
-              <tr>
-              <th scope="col">#</th>
-              <th scope="col">OT</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Acciones</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-              <th scope="row">1</th>
-              <td>2400</td>
-              <td>Clinica Cumi</td>
-              <!--Botones editar,descargar y borrar-->
-              <td>
-                  <i class="fa-solid fa-pen-to-square fa-lg text-success"></i>
-                  <i class="fa-solid fa-download fa-lg text-info ms-3"></i>
-                  <i class="fa-solid fa-trash-can fa-lg text-danger ms-3"></i>
-              </td>
-              <!--Fin botones-->
-              </tr>
-              <tr>
-              <th scope="row">2</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              </tr>
-              <tr>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              </tr>
-          </tbody>
-        </table>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">OT</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let folder of folders; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ folder.ot }}</td>
+            <td>{{ folder.name }}</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square fa-lg text-success" (click)="editFolder(contenido3, folder)" (disable)="loading"></i>
+              <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewQr(contenido2, folder)" (disable)="loading"></i>
+              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)" (disable)="loading"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
 <!--Seccion ModalCarga -->
-<div class="modal fade" id="modalCarga" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<ng-template #contenido1 let-modal tabindex="-1" role="dialog">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button class="btn btn-success btn-sm" (click)="agregarDatos()">
@@ -90,16 +85,16 @@
           <i class="fa-solid fa-circle-minus"></i>
           Quitar archivo
         </button> 
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeModal(contenido1)" aria-label="Close" ></button>
       </div>
       <div class="modal-body" id="element" >
         
         <div class="row g-2">
           <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="OT" aria-label="OT">
+            <input type="text" class="form-control" placeholder="OT" aria-label="OT" [(ngModel)]="ot">
           </div>
           <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción">
+            <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción" [(ngModel)]="nombre">
           </div>
         </div>
         <br/>
@@ -107,49 +102,49 @@
         <div *ngIf="element == true"  >
           <div *ngFor="let formulario of formularios; let i = index">
             <!--Formulario de carga de archivos-->
-          <form  >            
+            <form>
               <div class="row">
                 <div class="col">
                   <div class="input-group" id="form">
-                      <input type="text" aria-label="Nombre archivo" class="form-control" placeholder="Nombre archivo" required>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <input type="file" class="form-control" id="CargaArchivo">
+                    <input type="text" aria-label="Nombre archivo" class="form-control" placeholder="Nombre archivo"  [(ngModel)]="formulario.value.nombreArchivo" [name]="'nombreArchivo' + i">
                   </div>
                 </div>
-                <br>
+                <div class="col">
+                  <input type="file" class="form-control" id="CargaArchivo" [(ngModel)]="formulario.value.archivo" [name]="'archivo' + i" (change)="captureFile($event)">
+                </div>
+              </div>
+              <br>
             </form>
           </div>
         </div>
     
         <div class="modal-footer">
           <div class="d-grid gap-2 col-4 mx-auto">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalQR">
+            <button type="button" class="btn btn-primary" (click)="gererarQR(contenido2)" (disable)="loading">
               <i class="fa-solid fa-box-archive"></i>
-              Generar código
+              {{(loading) ? "Cargando..." : "Generar QR"}}
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
 
 <!-- Seccion ModalQR -->
-<div class="modal fade" id="modalQR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<ng-template #contenido2 let-modal tabindex="-1" role="dialog">
+<div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header"> 
         <div class="d-grid gap-3 h4">Codigo QR de la OT</div><!--Texto del modalQR-->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeModal(contenido2)" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...AQUI VA EL CODIGO QR GENERADO POR EL BACK
+        <img src="{{image}}" alt="">
       </div>
       <div class="modal-footer">
         <div class="d-grid gap-2 col-4 mx-auto">
-          <button type="button" class="btn btn-success">
+          <button type="button" class="btn btn-success" (click)="saveQr(contenido2)">
             <i class="fa-solid fa-download"></i>
             Descargar
           </button>
@@ -157,5 +152,46 @@
       </div>
     </div>
   </div>
-</div>
+
+</ng-template>
+
+<!-- Seccion ModalEditar -->
+<!-- modal donde se mostrara una tabla con los archivos que hay en la carpeta seleccionada -->
+<ng-template #contenido3 let-modal tabindex="-1" role="dialog">
+  <div>
+    <div class="modal-header">
+      <div class="d-grid gap-3 h4">Editar carpeta</div><!--Texto del modalQR-->
+      <button type="button" class="btn-close" (click)="closeModal(contenido3)" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let archive of archives; let i = index">
+            <td>{{ archive.name }}</td>
+            <td>
+              <i class="fa-solid fa-download fa-lg text-info ms-3"></i>
+              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal-footer">
+        <div class="d-grid gap-2 col-4 mx-auto">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="nameFile">
+          <input type="file" class="form-control" id="CargaArchivo"  (change)="captureUniqueFile($event)">
+          <button type="button" class="btn btn-success" (click)="uploadUniqueFile()">
+            <i class="fa-solid fa-download"></i>
+            Cargarr Archivo
+          </button>
+        </div>
+    </div>
+
+  </div>
 

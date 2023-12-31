@@ -67,7 +67,8 @@ export class RolesComponent implements OnInit {
     this.axiosService.request(
       "put",
       "/users/" + this.selectedUser.id + "/roles",
-      this.selectedUser
+      this.selectedUser,
+      null
     ).then(response => {
       alert('Roles actualizados correctamente');
       this.getUsers();
@@ -82,6 +83,7 @@ export class RolesComponent implements OnInit {
     this.axiosService.request(
       "GET",
       "/users/roles",
+      null,
       null
     ).then(response => {
       this.roles = response.data;
@@ -95,6 +97,7 @@ export class RolesComponent implements OnInit {
     this.axiosService.request(
       "GET",
       "/users/list",
+      null,
       null
     ).then(response => {
       this.users = response.data;

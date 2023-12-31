@@ -67,6 +67,7 @@ export class UsuariosComponent implements OnInit {
     this.axiosService.request(
       'GET',
       '/users/list',
+      null,
       null
     ).then((response: any) => {
       this.users = response.data;
@@ -79,6 +80,7 @@ export class UsuariosComponent implements OnInit {
     this.axiosService.request(
       'GET',
       '/users/arealist',
+      null,
       null
     ).then((response: any) => {
       this.areas = response.data;
@@ -92,7 +94,8 @@ export class UsuariosComponent implements OnInit {
       this.axiosService.request(
         'PUT',
         '/users/' + this.selectedUser.id + '/update',
-        this.selectedUser
+        this.selectedUser,
+        null
       ).then((response: any) => {
         this.getUsers();
         console.log(response);
@@ -110,7 +113,8 @@ export class UsuariosComponent implements OnInit {
       this.axiosService.request(
         'POST',
         '/users/register',
-        selectedUser
+        selectedUser,
+        null
       ).then((response: any) => {
         this.getUsers();
         this.modal.dismissAll();
@@ -149,12 +153,14 @@ export class UsuariosComponent implements OnInit {
       this.axiosService.request(
         'POST',
         '/login',
-        userLogin
+        userLogin,
+        null
       ).then((response: any) => {
         if (this.delete) {
           this.axiosService.request(
             'DELETE',
             '/users/' + this.idOperation + '/delete',
+            null,
             null
           ).then((response: any) => {
             this.getUsers();
@@ -184,7 +190,8 @@ export class UsuariosComponent implements OnInit {
       this.axiosService.request(
         'PUT',
         '/users/' + this.idOperation + '/password',
-        { newPassword: newPassword }
+        { newPassword: newPassword },
+        null
       ).then((response: any) => {
         this.getUsers();
         this.modal.dismissAll();
