@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
-=======
+
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
->>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -14,16 +11,12 @@ import { Router, NavigationEnd } from '@angular/router';
 
 export class AppComponent implements OnInit {
   title = 'SYNCWORKS';
-<<<<<<< HEAD
+  isLoggedIn: boolean = false;
+  fullName: string = '';
+
+
 
   constructor(public router: Router) {}
-
-  isLoginPage(): boolean {
-    return this.router.url === '/login';
-=======
-  isLoggedIn: boolean = false;
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
@@ -39,6 +32,9 @@ export class AppComponent implements OnInit {
     } else {
       return true;
     }
->>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7
+  }
+  
+  public infoUserLogged(name: string, lastName: string) {
+    this.fullName = name + ' ' + lastName;
   }
 }

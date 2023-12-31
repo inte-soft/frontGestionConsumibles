@@ -1,61 +1,68 @@
-<<<<<<< HEAD
+<header class="encabezado-menu" *ngIf="!router.url.includes('/login')">
+  <h1 class="navbar-brand text-white font-weight-bold d-flex justify-content-center" style="margin-top: 10px;">
+    SYNCWORKS</h1>
+</header>
 <body>
-<div class="app">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="d-flex" >
-          <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
-            <div class="logo">
-              <h4 class="text-light font-weight-bold">syncwors</h4>
-            </div>
-            <div class="menu">
-              <!--<a routerLink="/usuarios" routerLinkActive="active-link" class=" text-light d-block p-2" ><i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>-->
-              <a routerLink="/usuarios" class=" text-light d-block p-2"><i class="icon ion-md-settings mr-2 lead"></i>
-                Usuarios</a>
-              <a routerLink="/roles" class=" text-light d-block p-2"><i class="icon ion-md-settings mr-2 lead"></i>
-                Roles</a>
-              <a routerLink="/generar-qr" class=" text-light d-block p-2"><i class="icon ion-md-grid mr-2 lead"></i>
-                Generar QR</a>
-            </div>
-          </div>
+  <div class="d-flex">
+    <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
+      <div class="menu" style="margin-top: 20px; width: 180px; margin-left: 15px;">
+        <a class="text-light d-block p-2" data-toggle="collapse" href="#submenu" role="button" aria-expanded="false"
+          aria-controls="submenu">
+          <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
+        border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Administrador
+        </a>
+        <div class="collapse" id="submenu">
+          <a routerLink="/usuarios" routerLinkActive="active-link" class="text-light d-block p-2 ml-3">
+            <i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>
+          <a routerLink="/roles" class="text-light d-block p-2 ml-3"><i class="icon ion-md-settings mr-2 lead"></i>
+            Roles</a>
+        </div>
+      </div>
 
-          <div class="w-100 .bg-white" >
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="!router.url.includes('/login')">
-              <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+      <div class="menu" style="margin-top: 2px; width: 180px; margin-left: 15px;" >
+        <a class="text-light d-block p-2" data-toggle="collapse" href="#submenu1" role="button" aria-expanded="false"
+          aria-controls="submenu1">
+          <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
+        border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Comercial
+        </a>
+        <div class="collapse" id="submenu1">
+          <a routerLink="/generar-qr" class="text-light d-block p-2 ml-3"><i class="icon ion-md-grid mr-2 lead"></i>
+            Generar QR</a>
+          <a routerLink="/generar-qr" class="text-light d-block p-2 ml-3"><i class="icon ion-md-list mr-2 lead"></i>
+            InfoTecn</a>
+        </div>
+      </div>
+    </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/imagenes/usuario.png" class="img-fluid rounded-circle avatar mr-2">
-                        Alfredo Sierra
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Salir</a>
-                      </div>
-                    </li>
-                  </ul>
+    <div class="w-100 .bg-white" >
+      <div *ngIf="!router.url.includes('/login')">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main Navigation">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="assets/imagenes/usuario.png" alt="User Avatar" class="img-fluid rounded-circle avatar mr-1">
+                  {{ fullName}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Salir</a>
                 </div>
-              </div>
-            </nav>
-            <div class="container">
-              <router-outlet></router-outlet>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
-      
+      </nav>
+    </div>
+      <div class="container">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
-</div>
 </body>
-=======
-<router-outlet></router-outlet>
->>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7

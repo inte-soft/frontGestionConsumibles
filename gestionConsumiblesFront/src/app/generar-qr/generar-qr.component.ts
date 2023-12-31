@@ -84,10 +84,6 @@ export class GenerarQRComponent {
     this.newOt.name = this.nombre;
     this.newOt.names = this.formularios.map((formulario) => formulario.value.nombreArchivo);
     this.newOt.files = this.files;
-
-
-
-    console.log(this.newOt);
     this.loading = true;
     const formData = new FormData();
     formData.append('ot', this.newOt.ot);
@@ -107,7 +103,8 @@ export class GenerarQRComponent {
       formData,
       config
     ).then((response: any) => {
-      
+      this.cleanInformation();
+
       this.loading = false;
       this.listFolders();
       // Suponiendo que `response.data` contiene los datos base64 de la imagen
@@ -124,6 +121,15 @@ export class GenerarQRComponent {
       // Lógica para manejar errores
     });
     
+  }
+
+  cleanInformation() {  
+    this.newOt = new NewOt('', '', [], []);
+    this.files = [];
+    this.formularios = [];
+    this.element = false;
+    this.ot = '';
+    this.nombre = '';
   }
 
   newCharge(contenido: any) {
@@ -198,7 +204,7 @@ export class GenerarQRComponent {
       formData,
       config
     ).then((response: any) => {
-      console.log(response);
+      
       this.archives = response.data;
       // Lógica después de una respuesta exitosa
     }).catch((error: any) => {

@@ -37,13 +37,9 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     NgbModule,
     NgbModalModule,
-<<<<<<< HEAD
     BrowserAnimationsModule,
-    CommonModule
-    
-=======
+    CommonModule,
     BrowserAnimationsModule
->>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7
   ],
   providers: [],
   bootstrap: [AppComponent]

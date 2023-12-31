@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { AxiosService } from 'src/app/axios.service';
 import { FormsModule } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-formulario-login',
@@ -14,7 +15,7 @@ export class FormularioLoginComponent implements OnInit{
   @Input() pageTitle!: string;
   @Input() logoSrc!: string;
 
-  constructor(private router: Router, private axiosService: AxiosService) { }
+  constructor(private router: Router, private axiosService: AxiosService, private appComponent: AppComponent) { }
   //esto es para que el componente padre pueda escuchar el evento
     @Output() onLoginTabEvent = new EventEmitter();
   //esto es para que el componente padre pueda escuchar el evento
@@ -40,6 +41,9 @@ export class FormularioLoginComponent implements OnInit{
         password: this.password
       }, null
     ).then(response => {
+      this.appComponent.infoUserLogged(response.data.name, response.data.lastName);
+      console.log(response.data.name+" "+response.data.lastName);
+      console.log(response.data);
       this.axiosService.setAuthToken(response.data.token);
       this.router.navigate(['/menu']);
     }).catch((error: any) => {
