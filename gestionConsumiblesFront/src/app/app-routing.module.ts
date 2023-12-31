@@ -7,24 +7,14 @@ import { RolesComponent } from './userandRoles/roles/roles.component';
 import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 
-
-
 //Renderizamos los componentes, para configurar las rutas
 //con el fin de movernos entre los componentes
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: FormularioLoginComponent },
-  { path: 'menu', component: MenuPrincipalComponent },
-  { path: 'roles', component: RolesComponent},
-  { path: 'usuarios', component: UsuariosComponent},
-  { path: '**', component:  PagenotfoundComponent},
-  { path: '', redirectTo: 'generar-qr', pathMatch: 'full'},
-  { path: 'generar-qr', component: GenerarQRComponent},
-  { path: '**', redirectTo: 'generar-qr', pathMatch: 'full'},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: FormularioLoginComponent },
   { path: 'menu', component: MenuPrincipalComponent },
   { path: 'roles', component: RolesComponent},
+  { path: 'usuarios', component: UsuariosComponent},
   { path: 'generar-qr', component: GenerarQRComponent},
   { path: '**', component:  PagenotfoundComponent},
 ];

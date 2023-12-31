@@ -10,7 +10,6 @@ import { AuthenticationComponent } from './autenticacion/authentication/authenti
 import { FormularioLoginComponent } from './login/formulario-login/formulario-login.component';
 import { MenuPrincipalComponent } from './menu/menu-principal/menu-principal.component';
 import { BotonesComponent } from './login/botones/botones.component';
-import { SidebarComponent } from './menu/sidebar/sidebar.component';
 import { RolesComponent } from './userandRoles/roles/roles.component';
 import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
@@ -27,7 +26,6 @@ import { RouterModule } from '@angular/router'; // Import RouterModule
     BotonesComponent,
     RolesComponent,
     UsuariosComponent,
-    SidebarComponent,
     GenerarQRComponent,
   ],
   imports: [
@@ -36,7 +34,7 @@ import { RouterModule } from '@angular/router'; // Import RouterModule
     FormsModule,
     NgbModule,
     NgbModalModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent

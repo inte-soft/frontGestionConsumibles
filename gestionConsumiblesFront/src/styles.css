@@ -5,27 +5,30 @@
   box-sizing: border-box;
 }
 
-/*estilos del header*/
-.app-logo{
-  height: 90%;
+.encabezado-menu{
+  background-color: rgb(36, 122, 49);
+  box-shadow: 0 0 10px #2551be;
+  background-image: url(./assets/imagenes/logoNuevo.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 8%;
+  height: 90px;
+  height: 60px;
+  width: 100%;
+  padding: 5px;
+  color: white;
+  text-align: center;
+  margin-bottom: 3px;
 }
 
-.encabezado{
-background-color: rgb(36, 122, 49);
-height: 90px;
-padding: 20px;
-color: white;
-text-align: center;
-margin-bottom: 20px;
-}
-
-.app-titulo{
-font-size: 1.1em;
+.active-link{
+  color: rgb(36, 122, 49);
 }
 
 /* Styles for the sidebar menu */
 :root{
-  --primary: #111854;
+  /*--primary: #111854;*/
+  --primary: #2551be;
   --light: #ffffff;
   --grey: #efefef;
 }
