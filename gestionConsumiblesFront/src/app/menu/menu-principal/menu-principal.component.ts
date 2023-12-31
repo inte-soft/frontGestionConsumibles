@@ -8,16 +8,10 @@ import { Router } from '@angular/router';
 })
 export class MenuPrincipalComponent implements OnInit{
 
-  mostrarUsuarios: boolean = false;
-
   constructor(private router: Router) { }
 
   ngOnInit(){
 
-  }
-
-  openUsers(){
-    this.mostrarUsuarios = !this.mostrarUsuarios;
   }
 
 }

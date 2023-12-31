@@ -1,10 +1,13 @@
-<!--deseo crear una tabla con los siguientes datos (id, Nombre, Apellido, Rol, Estado, Acciones)-->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <h3 class="text-center">Usuarios</h3>
+<<<<<<< HEAD
       <button type="button" class="btn btn-primary p-2" (click)="createUser(contenido1)">Crear Usuarios</button>
       <!--llamo al modal-->
+=======
+      <button type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#modalCarga" >Crear Usuarios</button>
+>>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -32,9 +35,14 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Modal para login -->
   <ng-template #contenido2 let-modal tabindex="-1" role="dialog">
     <div class="modal-dialog">
+=======
+  <div class="modal fade" id="modalCarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+>>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7
       <div class="modal-content">
       <h3 class="Login" id="exampleModalLabel">Login</h3>
 

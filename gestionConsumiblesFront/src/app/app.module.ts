@@ -11,7 +11,6 @@ import { AuthenticationComponent } from './autenticacion/authentication/authenti
 import { FormularioLoginComponent } from './login/formulario-login/formulario-login.component';
 import { MenuPrincipalComponent } from './menu/menu-principal/menu-principal.component';
 import { BotonesComponent } from './login/botones/botones.component';
-import { SidebarComponent } from './menu/sidebar/sidebar.component';
 import { RolesComponent } from './userandRoles/roles/roles.component';
 import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
@@ -30,7 +29,6 @@ import { CommonModule } from '@angular/common';
     BotonesComponent,
     RolesComponent,
     UsuariosComponent,
-    SidebarComponent,
     GenerarQRComponent,
   ],
   imports: [
@@ -39,9 +37,13 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     NgbModule,
     NgbModalModule,
+<<<<<<< HEAD
     BrowserAnimationsModule,
     CommonModule
     
+=======
+    BrowserAnimationsModule
+>>>>>>> fc85c95c94f7e4390438f23fb8a34e27bbe79eb7
   ],
   providers: [],
   bootstrap: [AppComponent]
