@@ -1,8 +1,10 @@
+
 <header class="encabezado-menu" *ngIf="!router.url.includes('/login')">
   <h1 class="navbar-brand text-white font-weight-bold d-flex justify-content-center" style="margin-top: 10px;">
     SYNCWORKS</h1>
+    
 </header>
-<body>
+<body class="mat-typography">
   <div class="d-flex">
     <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
       <div class="menu" style="margin-top: 20px; width: 180px; margin-left: 15px;">
@@ -34,7 +36,7 @@
       </div>
     </div>
 
-    <div class="w-100 .bg-white" >
+    <div class="w-100 bg-white" >
       <div *ngIf="!router.url.includes('/login')">
       <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main Navigation">
         <div class="container">
@@ -66,3 +68,4 @@
     </div>
   </div>
 </body>
+
