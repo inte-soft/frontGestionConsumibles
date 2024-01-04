@@ -175,8 +175,8 @@
           <tr *ngFor="let archive of archives; let i = index">
             <td>{{ archive.name }}</td>
             <td>
-              <i class="fa-solid fa-download fa-lg text-info ms-3"></i>
-              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3"></i>
+              <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewFile(archive)"></i>
+              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3" (click)="deleteFile(archive,contenido3)"></i>
             </td>
           </tr>
         </tbody>
@@ -186,9 +186,9 @@
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" id="nombre" [(ngModel)]="nameFile">
           <input type="file" class="form-control" id="CargaArchivo"  (change)="captureUniqueFile($event)">
-          <button type="button" class="btn btn-success" (click)="uploadUniqueFile()">
+          <button type="button" class="btn btn-success" (click)="uploadUniqueFile()" (disable)="loading">
             <i class="fa-solid fa-download"></i>
-            Cargarr Archivo
+            {{(loading) ?  "Cargando...": "Cargar Archivo"}} 
           </button>
         </div>
     </div>

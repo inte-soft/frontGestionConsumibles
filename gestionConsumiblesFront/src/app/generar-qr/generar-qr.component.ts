@@ -70,7 +70,6 @@ export class GenerarQRComponent {
 
   captureFile(event: any) {
     this.files.push(event.target.files[0]);
-    console.log(this.files);
   }
 
 
@@ -88,7 +87,7 @@ export class GenerarQRComponent {
     const formData = new FormData();
     formData.append('ot', this.newOt.ot);
     formData.append('name', this.newOt.name);
-    formData.append('names', JSON.stringify(this.newOt.names));
+    formData.append('names', this.newOt.names.toString());
     this.newOt.files.forEach((file) => {
       formData.append('files', file);
     });
@@ -184,15 +183,16 @@ export class GenerarQRComponent {
     console.log(this.uniqueFile);
   }
   uploadUniqueFile() {
+    this.loading = true;
     this.uniqueFile.idFolder = this.selectedFolder.id;
-    if (this.uniqueFile.file.name === '') {
+    if (this.nameFile === '') {
       alert('Por favor, seleccione un archivo');
       return;
     }
     const formData = new FormData();
     formData.append('file', this.uniqueFile.file);
     formData.append('folderId', this.uniqueFile.idFolder);
-    formData.append('name', this.uniqueFile.file.name);
+    formData.append('name', this.nameFile);
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -204,8 +204,10 @@ export class GenerarQRComponent {
       formData,
       config
     ).then((response: any) => {
-      
+      this.loading = false;
       this.archives = response.data;
+      this.nameFile = '';
+      this.fileu = new File([], '');
       // Lógica después de una respuesta exitosa
     }).catch((error: any) => {
       console.error(error);
@@ -250,4 +252,39 @@ export class GenerarQRComponent {
     }
     );
   }
+
+  viewFile(archive: any) {
+    this.axiosService.request(
+      'GET',
+      '/drive/get-link/' + archive.id,
+      null,
+      null,
+    ).then((response: any) => {
+      console.log(response);
+      window.open(response.data, '_blank');
+    }).catch((error: any) => {
+      console.log(error);
+    }
+    );
+  }
+
+  deleteFile(archive: any, contenido: any) {
+    this.loading = true;
+    this.axiosService.request(
+      'DELETE',
+      '/drive/delete-file/' + archive.id,
+      null,
+      null,
+    ).then((response: any) => {
+      this.loading = false;
+      alert(response.data.data.message);
+      this.modal.dismissAll();
+      this.editFolder(contenido, this.selectedFolder);
+    }).catch((error: any) => {
+      this.loading = false;
+      console.log(error);
+    }
+    );
+  }
+
 }
