@@ -1,6 +1,12 @@
 
 <!-- roles.component.html -->
-
+<div class="container mt-4 mb-3">
+  <div class="card">
+      <div class="card-body text-center">
+          <span class="h3">Roles</span>
+      </div>
+  </div>
+</div>
 
 <!-- Tabla principal -->
 <table class="table table-striped">
@@ -17,9 +23,9 @@
       <th scope="row">{{user.id}}</th>
       <td>{{user.name}}</td>
       <td>{{user.lastName}}</td>
-      <td>
-        <button class="btn btn-primary" (click)="editRol(user.id, contenido)">Editar</button>
-        <button class="btn btn-danger">Eliminar</button>
+      <td class="col-2">
+        <button class="btn btn-primary btn-sm ms-3" (click)="editRol(user.id, contenido)">Editar</button>
+        <button class="btn btn-danger btn-sm ms-3">Eliminar</button>
       </td>
     </tr>
   </tbody>

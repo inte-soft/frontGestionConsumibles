@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { AxiosService } from 'src/app/axios.service';
-import { FormsModule } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -11,15 +10,20 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class FormularioLoginComponent implements OnInit{
 
+  private appComponent: AppComponent;
   //definimos las variables que vamos a recibir desde el componente padre
   @Input() pageTitle!: string;
   @Input() logoSrc!: string;
+  
 
-  constructor(private router: Router, private axiosService: AxiosService, private appComponent: AppComponent) { }
+  constructor(private router: Router, private axiosService: AxiosService, appComponent: AppComponent) {
+    this.appComponent = appComponent;
+   }
   //esto es para que el componente padre pueda escuchar el evento
     @Output() onLoginTabEvent = new EventEmitter();
   //esto es para que el componente padre pueda escuchar el evento
     @Output() onSbmitLoginEvent = new EventEmitter();
+    
 
   ngOnInit(): void {
     window.sessionStorage.removeItem("AUTHORIZATION");
@@ -42,8 +46,7 @@ export class FormularioLoginComponent implements OnInit{
       }, null
     ).then(response => {
       this.appComponent.infoUserLogged(response.data.name, response.data.lastName);
-      console.log(response.data.name+" "+response.data.lastName);
-      console.log(response.data);
+      window.sessionStorage.setItem("FULLNAME", response.data.name + " " + response.data.lastName);
       this.axiosService.setAuthToken(response.data.token);
       this.router.navigate(['/menu']);
     }).catch((error: any) => {
