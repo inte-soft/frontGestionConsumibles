@@ -15,7 +15,6 @@ import { RolesComponent } from './userandRoles/roles/roles.component';
 import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router'; // Import RouterModule
 import { CommonModule } from '@angular/common';
 
 

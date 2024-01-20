@@ -1,11 +1,10 @@
-
 <!--Titulo-->
 <div class="container mt-4">
-    <div class="card">
-        <div class="card-body">
-            <span class="h3">Generar QR- SYNCWORKS</span>
-        </div>
+  <div class="card">
+    <div class="card-body">
+      <span class="h3">Generar QR- SYNCWORKS</span>
     </div>
+  </div>
 </div>
 
 <!--Seccion tablaOts-->
@@ -60,9 +59,12 @@
             <td>{{ folder.ot }}</td>
             <td>{{ folder.name }}</td>
             <td>
-              <i class="fa-solid fa-pen-to-square fa-lg text-success" (click)="editFolder(contenido3, folder)" (disable)="loading"></i>
-              <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewQr(contenido2, folder)" (disable)="loading"></i>
-              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)" (disable)="loading"></i>
+              <i class="fa-solid fa-pen-to-square fa-lg text-success" (click)="editFolder(contenido3, folder)"
+                (disable)="loading"></i>
+              <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewQr(contenido2, folder)"
+                (disable)="loading"></i>
+              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)"
+                (disable)="loading"></i>
             </td>
           </tr>
         </tbody>
@@ -78,45 +80,48 @@
       <div class="modal-header">
         <button class="btn btn-success btn-sm" (click)="agregarDatos()">
           <i class="fa-solid fa-circle-plus"></i>
-            Agregar archivo
+          Agregar archivo
         </button>
         <button class="btn btn-danger btn-sm ms-2" (click)="borrarDatos(0)">
           <i class="fa-solid fa-circle-minus"></i>
           Quitar archivo
-        </button> 
-        <button type="button" class="btn-close" (click)="closeModal(contenido1)" aria-label="Close" ></button>
+        </button>
+        <button type="button" class="btn-close" (click)="closeModal(contenido1)" aria-label="Close"></button>
       </div>
-      <div class="modal-body" id="element" >
-        
+      <div class="modal-body" id="element">
+
         <div class="row g-2">
           <div class="col-sm-4">
             <input type="text" class="form-control" placeholder="OT" aria-label="OT" [(ngModel)]="ot">
           </div>
           <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción" [(ngModel)]="nombre">
+            <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción"
+              [(ngModel)]="nombre">
           </div>
         </div>
-        <br/>
+        <br />
 
-        <div *ngIf="element == true"  >
+        <div *ngIf="element == true">
           <div *ngFor="let formulario of formularios; let i = index">
             <!--Formulario de carga de archivos-->
             <form>
               <div class="row">
                 <div class="col">
                   <div class="input-group" id="form">
-                    <input type="text" aria-label="Nombre archivo" class="form-control" placeholder="Nombre archivo"  [(ngModel)]="formulario.value.nombreArchivo" [name]="'nombreArchivo' + i">
+                    <input type="text" aria-label="Nombre archivo" class="form-control" placeholder="Nombre archivo"
+                      [(ngModel)]="formulario.value.nombreArchivo" [name]="'nombreArchivo' + i">
                   </div>
                 </div>
                 <div class="col">
-                  <input type="file" class="form-control" id="CargaArchivo" [(ngModel)]="formulario.value.archivo" [name]="'archivo' + i" (change)="captureFile($event)">
+                  <input type="file" class="form-control" id="CargaArchivo" [(ngModel)]="formulario.value.archivo"
+                    [name]="'archivo' + i" (change)="captureFile($event)">
                 </div>
               </div>
               <br>
             </form>
           </div>
         </div>
-    
+
         <div class="modal-footer">
           <div class="d-grid gap-2 col-4 mx-auto">
             <button type="button" class="btn btn-primary" (click)="gererarQR(contenido2)" (disable)="loading">
@@ -134,7 +139,7 @@
 <ng-template #contenido2 let-modal tabindex="-1" role="dialog">
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header"> 
+      <div class="modal-header">
         <div class="d-grid gap-3 h4">Codigo QR de la OT</div><!--Texto del modalQR-->
         <button type="button" class="btn-close" (click)="closeModal(contenido2)" aria-label="Close"></button>
       </div>
@@ -184,13 +189,12 @@
         <div class="d-grid gap-2 col-4 mx-auto">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" id="nombre" [(ngModel)]="nameFile">
-          <input type="file" class="form-control" id="CargaArchivo"  (change)="captureUniqueFile($event)">
+          <input type="file" class="form-control" id="CargaArchivo" (change)="captureUniqueFile($event)">
           <button type="button" class="btn btn-success" (click)="uploadUniqueFile()" (disable)="loading">
             <i class="fa-solid fa-download"></i>
-            {{(loading) ?  "Cargando...": "Cargar Archivo"}} 
+            {{(loading) ? "Cargando...": "Cargar Archivo"}}
           </button>
         </div>
+      </div>
+
     </div>
-
-  </div>
-
