@@ -11,32 +11,31 @@
 <!--Seccion tablaOts-->
 <!--Barra de navegacion con botones-->
 <!--Tabla de OTS-->
-<div class="container mt-4">
+<div class="container mt-4 pre-scrollable">
   <div class="card">
     <div class="card-body">
       <nav class="navbar navbar-light bg-light">
           <div class="container-fluid">
             <a class="navbar-brand">
+              <div class="dropdown">
                   <div class="dropdown">
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          {{ limit }} Registros
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" (click)="limit = 10">10 Registros</a></li>
-                          <li><a class="dropdown-item" (click)="limit = 20">20 Registros</a></li>
-                          <li><a class="dropdown-item" (click)="limit = 50">50 Registros</a></li>
-                          <li><a class="dropdown-item" (click)="limit = 100">100 Registros</a></li>
-                        </ul>
-                      </div>
-                      
-                      <a class="button">
-                          <button type="button" class="btn btn-secondary btn-sm ms-5" (click)="newCharge(contenido1)"> 
-                              <i class="fa-solid fa-upload"></i>
-                                  Crear código
-                          </button>
-                      </a>
+                    <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ limit }} Registros
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" (click)="limit = 10">10 Registros</a></li>
+                      <li><a class="dropdown-item" (click)="limit = 20">20 Registros</a></li>
+                      <li><a class="dropdown-item" (click)="limit = 50">50 Registros</a></li>
+                      <li><a class="dropdown-item" (click)="limit = 100">100 Registros</a></li>
+                    </ul>
+                    <a class="button">
+                      <button type="button" class="btn btn-secondary btn-sm ms-3" (click)="newCharge(contenido1)"> 
+                          <i class="fa-solid fa-upload"></i>
+                              Crear código
+                      </button>
+                    </a>
                   </div>
+              </div>
             </a>
             <form class="d-flex">
               <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Search">
@@ -74,7 +73,7 @@
 
 <!--Seccion ModalCarga -->
 <ng-template #contenido1 let-modal tabindex="-1" role="dialog">
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <button class="btn btn-success btn-sm" (click)="agregarDatos()">
@@ -133,7 +132,7 @@
 
 <!-- Seccion ModalQR -->
 <ng-template #contenido2 let-modal tabindex="-1" role="dialog">
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header"> 
         <div class="d-grid gap-3 h4">Codigo QR de la OT</div><!--Texto del modalQR-->

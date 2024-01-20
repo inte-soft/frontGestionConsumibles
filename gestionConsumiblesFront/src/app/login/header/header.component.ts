@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+[x: string]: any;
 //definimos las variables que vamos a recibir desde el componente padre
 @Input() pageTitle!: string;
 @Input() logoSrc!: string;
