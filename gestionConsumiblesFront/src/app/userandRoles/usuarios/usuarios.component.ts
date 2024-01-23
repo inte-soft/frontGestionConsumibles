@@ -22,6 +22,7 @@ export class UsuariosComponent implements OnInit {
   idOperation: number = 0;
   content: any;
   newPassword: string = '';
+  isUsuarioModalVisible = false;
 
   constructor(private axiosService: AxiosService, private modal: NgbModal) { }
 
@@ -36,19 +37,23 @@ export class UsuariosComponent implements OnInit {
     this.modal.dismissAll();
   }
 
-  createUser(contenido: any) {
+  createUser() {
     this.selectedUser = new User(0, '', '', '', '', [], new Area(0, ''));
     this.newUser = true;
     // Abre el modal utilizando NgbModal
-    this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
+    this.isUsuarioModalVisible = true;
 
   }
 
-  editUser(id: number, contenido: any) {
+  closeModalUsuarios() {
+    this.isUsuarioModalVisible = false;
+  }
+
+  editUser(id: number) {
     this.selectedUser = this.users.find(x => x.id == id)!;
     this.newUser = false;
     // Abre el modal utilizando NgbModal
-    this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
+    this.isUsuarioModalVisible = true;
   }
 
   validarUsuario(): boolean {
@@ -137,12 +142,11 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  updatePassword(id: number, contenido2: any, contenido3: any) {
+  updatePassword(id: number, contenido2: any) {
     this.updatePass = true;
     
     if (confirm('¿Está seguro de actualizar la contraseña?')) {
       this.idOperation = id;
-      this.content = contenido3;
 
       this.modal.open(contenido2, { size: 'xl', backdrop: 'static' });
     }

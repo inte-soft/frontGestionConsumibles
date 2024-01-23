@@ -18,6 +18,7 @@ export class RolesComponent implements OnInit {
   actualRoles: Role[] = [];
   selectedAvailableRole: any;
   selectedAssignedRole: any;
+  isRoleModalVisible: boolean = false;
 
 
 

@@ -1,0 +1,54 @@
+<!--deseo crear un modal con bootrap con los siguienetes campos para insertarlos en la tabla usuarios
+  (nombre, apellido, roel este en lista desplegable, acciones y estado) con un boton de enviar a al tabla-->
+  <div class="modal" div class="modal" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+      <h3 class="modal-title" id="exampleModalLabel">Crear Usuario</h3>
+      </div>
+    
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="selectedUser.name" name="nombre" id="nombre">
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="selectedUser.lastName" name="apellido" id="apellido">
+        </div>
+        <div class="form-group" *ngIf="newUser">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="selectedUser.userName" name="username" id="username">
+        </div>
+        <div *ngIf="newUser">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="selectedUser.password" name="password"
+              id="password">
+          </div>
+          <div class="form-group">
+            <label for="password">Confirmar Password</label>
+            <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmpassword"
+              id="confirmpassword">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Area">Area</label>
+          <select class="form-control" [(ngModel)]="selectedUser.area.id" name="area" id="area">
+            <option *ngFor="let area of areas" [value]="area.id" [selected]="area.id === selectedUser.area.id">
+              {{area.name}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="saveNewUser(selectedUser, confirmPassword)"
+        *ngIf="newUser">Crear</button>
+      <button type="button" class="btn btn-primary" (click)="saveRoles()" *ngIf="!newUser">Guardar</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseRolesModal()">Cerrar</button>
+    </div>
+    </div>
+    </div>
+  </div>
+
