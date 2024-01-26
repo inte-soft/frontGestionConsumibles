@@ -1,5 +1,10 @@
 <div class="">
+<<<<<<< HEAD
   <app-header [pageTitle]="'SYNCWORKS'" [logoSrc]="'assets/imagenes/logoNuevo.png'"></app-header>
+=======
+  <app-header [pageTitle]="'Smart DING'">
+  </app-header>
+>>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
   <div class="container-fluid">
     <div class="row">
       <div class="col">
@@ -9,6 +14,7 @@
 </div>
 
 <div id="login" class="row justify-content-center mx-auto my-auto d-flex flex-column"
+<<<<<<< HEAD
   style="border: 2px solid rgb(36, 122, 49); padding: 30px; border-radius: 10px; display: inline-block; max-width: 300px; box-shadow: 0 0 10px rgb(36, 122, 49);">
   <div class="col-12 text-center">
     <img src="assets/imagenes/logoDemco.png" class="img-fluid mb-4" alt="logo Empresa" style="height: 50px; width: 250px;">
@@ -20,6 +26,20 @@
   <div class="col-12">
     <div class="row justify-content-center">
       <div class="col-10">
+=======
+  style="border: 2px solid rgb(36, 122, 49); padding: 30px; border-radius: 10px;
+  display: inline-block; max-width: 300px; box-shadow: 0 0 20px rgb(36, 122, 49);">
+  <!--deseo insertar un logo en este login-->
+  <div class="col-12">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <img src="assets/imagenes/logoDemco.png" class="img-fluid mb-4" alt="logo Empresa" style="height: 50px; width: 250px;">
+      </div>
+    </div>
+  <div class="col-40">
+    <div class="row justify-content-center">
+      <div class="col-20">
+>>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
         <form (ngSubmit)="onSubmitLogin()" #formularioLogin="ngForm">
           <div class="form-outline mb-4">
             <input class="form-control" type="text" id="loginName" name="login" [(ngModel)]="usuario" autocomplete="off"/>
@@ -29,7 +49,7 @@
             <input class="form-control" type="password" id="loginPassword" name="password" [(ngModel)]="password" autocomplete="off"/>
             <label for="loginPassword">Contraseña</label>
           </div>
-          <button type="submit" class="btn btn-primary btn-block mb-1">Iniciar Sesión</button>
+          <button type="submit" class="btn btn-primary btn-block mb-1 btn-1" style="box-shadow: 0 0 20px rgb(36, 122, 49)">Iniciar Sesión</button>
         </form>
       </div>
     </div>

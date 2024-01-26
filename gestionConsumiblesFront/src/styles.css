@@ -8,9 +8,9 @@
 .encabezado-menu{
   background-color: rgb(36, 122, 49);
   box-shadow: 0 0 10px #2551be;
-  background-image: url(./assets/imagenes/logoNuevo.png);
+  background-image: url(./assets/imagenes/Logo_letras_blancas.png);
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: 30px center;
   background-size: 8%;
   height: 90px;
   height: 60px;
@@ -31,6 +31,7 @@
   --primary: #2551be;
   --light: #ffffff;
   --grey: #efefef;
+  --verde: rgb(36, 122, 49)
 }
 
 body{
@@ -42,6 +43,20 @@ body{
 
 a:hover{
   text-decoration: none;
+}
+
+.btn-1:hover{
+  background-color: var(--verde);
+  border: var(--verde);
+}
+
+.btn-2:hover{
+  background-color: var(--verde);
+  border: var(--verde);
+}
+
+label{
+  font-weight: bold;
 }
 
 .bg-primary {
@@ -63,7 +78,3 @@ a:hover{
 .avatar{
   max-width: 35px;
 }
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

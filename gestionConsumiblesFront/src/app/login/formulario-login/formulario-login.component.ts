@@ -14,7 +14,7 @@ export class FormularioLoginComponent implements OnInit{
   //definimos las variables que vamos a recibir desde el componente padre
   @Input() pageTitle!: string;
   @Input() logoSrc!: string;
-  
+
 
   constructor(private router: Router, private axiosService: AxiosService, appComponent: AppComponent) {
     this.appComponent = appComponent;
@@ -23,10 +23,10 @@ export class FormularioLoginComponent implements OnInit{
     @Output() onLoginTabEvent = new EventEmitter();
   //esto es para que el componente padre pueda escuchar el evento
     @Output() onSbmitLoginEvent = new EventEmitter();
-    
+
 
   ngOnInit(): void {
-    window.sessionStorage.removeItem("AUTHORIZATION");
+    window.sessionStorage.clear();
   }
 
   active: string = "login";
@@ -50,12 +50,17 @@ export class FormularioLoginComponent implements OnInit{
       window.sessionStorage.setItem("lastName", response.data.lastName);
       window.sessionStorage.setItem("id", response.data.id);
       this.axiosService.setAuthToken(response.data.token);
+<<<<<<< HEAD
       this.getAvatar();
       // esperar un segundo para que se cargue la imagen
       setTimeout(() => {
         this.appComponent.userAvatarLogged(window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png');
       }, 1000);
       this.appComponent.avatarInfo();
+=======
+      this.appComponent.getroles(response.data.rol);
+      window.sessionStorage.setItem("ROLES", JSON.stringify(response.data.rol));
+>>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
       this.router.navigate(['/menu']);
     }).catch((error: any) => {
       if (error.response.data.message == "Unknown user" || error.response.data.message == "Invalid password") {

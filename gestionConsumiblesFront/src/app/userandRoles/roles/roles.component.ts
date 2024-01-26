@@ -1,5 +1,5 @@
+import { Role } from './../../models/role.model';
 import { Component, OnInit } from '@angular/core';
-import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AxiosService } from 'src/app/axios.service';
@@ -21,16 +21,14 @@ export class RolesComponent implements OnInit {
   isRoleModalVisible: boolean = false;
 
 
-
   constructor(private modal: NgbModal, private axiosService: AxiosService) { }
 
   ngOnInit() {
     this.getUsers();
-
     this.getRoles();
-
-
   }
+
+
 
   editRol(id: number, contenido: any) {
     this.selectedUser = this.users.find(x => x.id == id)!;
@@ -107,6 +105,5 @@ export class RolesComponent implements OnInit {
       console.error('Error al obtener usuarios', error);
     });
   }
-
 }
 
