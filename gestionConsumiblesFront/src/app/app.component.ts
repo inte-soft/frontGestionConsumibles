@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'SYNCWORKS';
   isLoggedIn: boolean = false;
   fullName: string = '';
+  userAvatar = 'assets/imagenes/logoDemco.png';
 
 
 
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = this.checkIfUserIsLoggedIn();
       }
     });
+    this.avatarInfo();
   }
 
   checkIfUserIsLoggedIn(): boolean {
@@ -35,5 +36,14 @@ export class AppComponent implements OnInit {
   
   public infoUserLogged(name: string, lastName: string) {
     this.fullName = name + ' ' + lastName;
+  }
+
+  public userAvatarLogged(avatar: string) {
+    this.userAvatar = avatar;
+  }
+
+  public avatarInfo() {
+    this.userAvatar = window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png';
+    this.fullName = window.sessionStorage.getItem('name') + ' ' + window.sessionStorage.getItem('lastName');
   }
 }

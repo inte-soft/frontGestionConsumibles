@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AxiosService } from 'src/app/axios.service';
 import { User } from 'src/app/models/user.model';
-import { Area } from 'src/app/models/ara.model';
+import { Area } from 'src/app/models/area.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -12,11 +12,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class UsuariosComponent implements OnInit {
 
   users: User[] = [];//variable para almacenar los datos del usuario
-  selectedUser: User = new User(0, '', '', '', '', [], new Area(0, ''));//variable para almacenar los datos del usuario
+  selectedUser: User = new User(0, '', '', '', '', [], new Area(0, ''), '');//variable para almacenar los datos del usuario
   areas: Area[] = [];//variable para almacenar los datos del area
   confirmPassword?: string;
   newUser: boolean = false;
-  userLogin: User = new User(0, '', '', '', '', [], new Area(0, ''));//variable para almacenar los datos del usuario
+  userLogin: User = new User(0, '', '', '', '', [], new Area(0, ''), '');//variable para almacenar los datos del usuario
   delete: boolean = false;
   updatePass: boolean = false;
   idOperation: number = 0;
@@ -38,7 +38,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   createUser() {
-    this.selectedUser = new User(0, '', '', '', '', [], new Area(0, ''));
+    this.selectedUser = new User(0, '', '', '', '', [], new Area(0, ''), '');
     this.newUser = true;
     // Abre el modal utilizando NgbModal
     this.isUsuarioModalVisible = true;
@@ -170,7 +170,7 @@ export class UsuariosComponent implements OnInit {
             this.getUsers();
             this.modal.dismissAll();
             this.delete = false;
-            this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''));
+            this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''), '');
             alert(response.data.data.message);
 
           }).catch((error: any) => {
@@ -178,7 +178,7 @@ export class UsuariosComponent implements OnInit {
           });
         } else if (this.updatePass) {
           this.modal.dismissAll();
-          this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''));
+          this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''), '');
           this.modal.open(this.content, { size: 'xl', backdrop: 'static' });
           
         }

@@ -46,8 +46,16 @@ export class FormularioLoginComponent implements OnInit{
       }, null
     ).then(response => {
       this.appComponent.infoUserLogged(response.data.name, response.data.lastName);
-      window.sessionStorage.setItem("FULLNAME", response.data.name + " " + response.data.lastName);
+      window.sessionStorage.setItem("name", response.data.name);
+      window.sessionStorage.setItem("lastName", response.data.lastName);
+      window.sessionStorage.setItem("id", response.data.id);
       this.axiosService.setAuthToken(response.data.token);
+      this.getAvatar();
+      // esperar un segundo para que se cargue la imagen
+      setTimeout(() => {
+        this.appComponent.userAvatarLogged(window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png');
+      }, 1000);
+      this.appComponent.avatarInfo();
       this.router.navigate(['/menu']);
     }).catch((error: any) => {
       if (error.response.data.message == "Unknown user" || error.response.data.message == "Invalid password") {
@@ -56,5 +64,23 @@ export class FormularioLoginComponent implements OnInit{
         alert("Usuario o contraseña incorrectos");
       }
     });
+
+    
   }
+  getAvatar(){
+    const id = window.sessionStorage.getItem('id');
+    this.axiosService.request(
+      'GET',
+      'http://localhost:8080/users/myuser/'+id+'/photo',
+      {},
+    ).then((response: any) => {
+      const avatar = 'data:image/jpeg;base64,' + response.data.data.message;
+      window.sessionStorage.setItem('avatar', avatar);
+    }).catch((error: any) => {  
+      console.log(error);
+    });
+    
+  }
+
+
 }

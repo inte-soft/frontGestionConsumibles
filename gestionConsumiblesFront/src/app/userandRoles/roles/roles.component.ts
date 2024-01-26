@@ -3,7 +3,7 @@ import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AxiosService } from 'src/app/axios.service';
-import { Area } from 'src/app/models/ara.model';
+import { Area } from 'src/app/models/area.model';
 
 @Component({
   selector: 'app-roles',
@@ -13,7 +13,7 @@ import { Area } from 'src/app/models/ara.model';
 export class RolesComponent implements OnInit {
   users: User[] = [];
   roles: Role[] = [];
-  selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''));
+  selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''), '');
   rolesToAdd: Role[] = [];
   actualRoles: Role[] = [];
   selectedAvailableRole: any;

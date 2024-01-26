@@ -6,6 +6,7 @@ import { PagenotfoundComponent } from './errores/pagenotfound/pagenotfound.compo
 import { RolesComponent } from './userandRoles/roles/roles.component';
 import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 //Renderizamos los componentes, para configurar las rutas
 //con el fin de movernos entre los componentes
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'roles', component: RolesComponent},
   { path: 'usuarios', component: UsuariosComponent},
   { path: 'generar-qr', component: GenerarQRComponent},
+  { path: 'perfil', component: PerfilComponent},
   { path: '**', component:  PagenotfoundComponent},
 ];
 
