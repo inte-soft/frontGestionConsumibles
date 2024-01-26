@@ -1,20 +1,25 @@
+
 <header class="encabezado-menu" *ngIf="!router.url.includes('/login')">
   <h1 class="navbar-brand text-white font-weight-bold d-flex justify-content-center" style="margin-top: 10px;">
-    SYNCWORKS</h1>
-    
+    Smart DING</h1>
 </header>
+
+<!-- este es el menu lateral-->
 <body class="mat-typography">
   <div class="d-flex">
     <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
       <div class="menu" style="margin-top: 20px; width: 180px; margin-left: 15px;">
         <a class="text-light d-block p-2" data-toggle="collapse" href="#submenu" role="button" aria-expanded="false"
-          aria-controls="submenu">
+          aria-controls="submenu" *ngIf="Admin">
+          <!-- este es el administrador-->
           <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
         border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Administrador
         </a>
         <div class="collapse" id="submenu">
-          <a routerLink="/usuarios" routerLinkActive="active-link" class="text-light d-block p-2 ml-3">
+          <!-- este es el del usuario-->
+          <a routerLink="/usuarios" routerLinkActive="active-link" class="text-light d-block p-2 ml-3" >
             <i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>
+            <!-- este es el de los roles-->
           <a routerLink="/roles" class="text-light d-block p-2 ml-3"><i class="icon ion-md-settings mr-2 lead"></i>
             Roles</a>
         </div>
@@ -22,15 +27,18 @@
 
       <div class="menu" style="margin-top: 2px; width: 180px; margin-left: 15px;" >
         <a class="text-light d-block p-2" data-toggle="collapse" href="#submenu1" role="button" aria-expanded="false"
-          aria-controls="submenu1">
+          aria-controls="submenu1" *ngIf="Comercial || Ing || Admin">
+          <!-- este es el de los comerciales-->
           <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
         border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Comercial
         </a>
         <div class="collapse" id="submenu1">
-          <a routerLink="/generar-qr" class="text-light d-block p-2 ml-3"><i class="icon ion-md-grid mr-2 lead"></i>
+          <a routerLink="/generar-qr" class="text-light d-block p-2 ml-3">
+            <i class="icon ion-md-grid mr-2 lead"></i>
             Generar QR</a>
-            <a href="https://developeralsir.github.io/Infotecn-Comercial/" target="_blank" class="text-light d-block p-2 ml-3"><i class="icon ion-md-list mr-2 lead"></i>
-                  InfoTecn</a>
+            <a href="https://developeralsir.github.io/Infotecn-Comercial/"
+            target="_blank" class="text-light d-block p-2 ml-3">
+            <i class="icon ion-md-list mr-2 lead"></i>InfoTecn</a>
         </div>
       </div>
     </div>
@@ -50,7 +58,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <img src="assets/imagenes/usuario.png" alt="User Avatar" class="img-fluid rounded-circle avatar mr-1">
-                  {{fullName}}
+                  {{ fullName}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Salir</a>

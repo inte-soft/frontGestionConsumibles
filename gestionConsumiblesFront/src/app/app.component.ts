@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { User } from './models/user.model';
+import { Role } from './models/role.model';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,12 @@ import { User } from './models/user.model';
 export class AppComponent implements OnInit {
   title = 'SYNCWORKS';
   isLoggedIn: boolean = false;
-  fullName: string = '';
-
-
+  fullName: string = '';//este metodo es para verificar si el usuario tiene un rol
+  Admin = false;
+  Comercial = false;
+  Ing = false;
+  Proyect = false;
+  roles: Role[] = [];
 
   constructor(public router: Router) {}
 
@@ -23,6 +27,27 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = this.checkIfUserIsLoggedIn();
       }
     });
+
+    this.fullName = window.sessionStorage.getItem("FULLNAME") || '';
+    this.roles = JSON.parse(window.sessionStorage.getItem("ROLES") || '{}');
+    this.getroles(this.roles);
+  }
+
+  getroles(roles: Role []) {
+    for (let rol of roles) {
+      if (rol.id == 1) {
+        this.Admin = true;
+      }
+      if (rol.id == 2) {
+        this.Comercial = true;
+      }
+      if (rol.id == 3) {
+        this.Ing = true;
+      }
+      if (rol.id == 4) {
+        this.Proyect = true;
+      }
+    }
   }
 
   checkIfUserIsLoggedIn(): boolean {
@@ -32,7 +57,7 @@ export class AppComponent implements OnInit {
       return true;
     }
   }
-  
+
   public infoUserLogged(name: string, lastName: string) {
     this.fullName = name + ' ' + lastName;
   }

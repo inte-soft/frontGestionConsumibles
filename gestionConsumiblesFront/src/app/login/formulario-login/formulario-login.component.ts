@@ -14,7 +14,7 @@ export class FormularioLoginComponent implements OnInit{
   //definimos las variables que vamos a recibir desde el componente padre
   @Input() pageTitle!: string;
   @Input() logoSrc!: string;
-  
+
 
   constructor(private router: Router, private axiosService: AxiosService, appComponent: AppComponent) {
     this.appComponent = appComponent;
@@ -23,10 +23,10 @@ export class FormularioLoginComponent implements OnInit{
     @Output() onLoginTabEvent = new EventEmitter();
   //esto es para que el componente padre pueda escuchar el evento
     @Output() onSbmitLoginEvent = new EventEmitter();
-    
+
 
   ngOnInit(): void {
-    window.sessionStorage.removeItem("AUTHORIZATION");
+    window.sessionStorage.clear();
   }
 
   active: string = "login";
@@ -48,6 +48,8 @@ export class FormularioLoginComponent implements OnInit{
       this.appComponent.infoUserLogged(response.data.name, response.data.lastName);
       window.sessionStorage.setItem("FULLNAME", response.data.name + " " + response.data.lastName);
       this.axiosService.setAuthToken(response.data.token);
+      this.appComponent.getroles(response.data.rol);
+      window.sessionStorage.setItem("ROLES", JSON.stringify(response.data.rol));
       this.router.navigate(['/menu']);
     }).catch((error: any) => {
       if (error.response.data.message == "Unknown user" || error.response.data.message == "Invalid password") {
