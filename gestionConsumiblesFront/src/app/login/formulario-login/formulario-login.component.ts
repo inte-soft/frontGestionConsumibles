@@ -50,7 +50,7 @@ export class FormularioLoginComponent implements OnInit{
       window.sessionStorage.setItem("lastName", response.data.lastName);
       window.sessionStorage.setItem("id", response.data.id);
       this.appComponent.getroles(response.data.rol);
-      window.sessionStorage.setItem("roles", JSON.stringify(response.data.roles));
+      window.sessionStorage.setItem("roles", JSON.stringify(response.data.rol));
       this.axiosService.setAuthToken(response.data.token);
       this.getAvatar();
       // esperar un segundo para que se cargue la imagen
@@ -67,7 +67,7 @@ export class FormularioLoginComponent implements OnInit{
       }
     });
 
-    
+
   }
   getAvatar(){
     const id = window.sessionStorage.getItem('id');
@@ -78,10 +78,10 @@ export class FormularioLoginComponent implements OnInit{
     ).then((response: any) => {
       const avatar = 'data:image/jpeg;base64,' + response.data.data.message;
       window.sessionStorage.setItem('avatar', avatar);
-    }).catch((error: any) => {  
+    }).catch((error: any) => {
       console.log(error);
     });
-    
+
   }
 
 

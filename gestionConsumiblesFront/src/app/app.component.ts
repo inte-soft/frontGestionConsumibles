@@ -29,12 +29,14 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.fullName = window.sessionStorage.getItem("FULLNAME") || '';
+
     this.roles = JSON.parse(window.sessionStorage.getItem("roles") || '{}');
     this.getroles(this.roles);
+    this.avatarInfo();
   }
 
   getroles(roles: Role []) {
+
     for (let rol of roles) {
       if (rol.id == 1) {
         this.Admin = true;
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
         this.Proyect = true;
       }
     }
+    this.fullName = window.sessionStorage.getItem("name") || '' + ' ' + window.sessionStorage.getItem("lastName") || '';
   }
 
   checkIfUserIsLoggedIn(): boolean {
@@ -68,9 +71,9 @@ export class AppComponent implements OnInit {
   }
 
   public avatarInfo() {
-    this.userAvatar = window.sessionStorage.getItem('avatar') || '';
-    this.fullName = window.sessionStorage.getItem('FULLNAME') || '';
+    this.userAvatar = window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png';
+    this.fullName = window.sessionStorage.getItem("name") + ' ' + window.sessionStorage.getItem("lastName") || '';
   }
 
- 
+
 }
