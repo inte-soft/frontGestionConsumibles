@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div class="container mt-4 mb-3">
   <div class="card">
@@ -17,6 +18,41 @@
   [areas]="areas"
   [selectedUser]="selectedUser"
   ></app-modal-usuarios>
+=======
+<div class="containertitle mt-4 mb-4">
+  <div class="card">
+      <div class="card-body">
+          <span class="h3">Usuarios</span>
+      </div>
+  </div>
+</div>
+
+
+<div class="container mt-4 pre-scrollable">
+  <div class="card">
+    <div class="card-body">
+      <nav class="navbar navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser()">Crear Usuarios</button>
+                </div>
+              </div>
+            </a>
+          </div>
+      </nav>
+      
+      <app-modal-usuarios
+        (onSaveUser)="saveNewUser($event.selectedUser, $event.confirmPassword)"
+        [isOpen]="isUsuarioModalVisible"
+        (onCloseUsuarios)="closeModalUsuarios()"
+        [areas]="areas"
+        [selectedUser]="selectedUser">
+      </app-modal-usuarios>
+
+      <!--tabla de usuarios-->
+>>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -35,8 +71,13 @@
             <td>{{user.area.name}}</td>
             <td class="col-3">
               <button class="btn btn-primary btn-sm" (click)="editUser(user.id)">Editar</button>
+<<<<<<< HEAD
               <button class="btn btn-danger btn-sm ms-3" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
               <button class="btn btn-warning btn-sm ms-3" (click)="updatePassword(user.id, contenido2)">Password</button>
+=======
+              <button class="btn btn-danger btn-sm ms-2" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
+              <button class="btn btn-success btn-sm ms-2" (click)="updatePassword(user.id, contenido2)">Password</button>
+>>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
             </td>
           </tr>
         </tbody>
@@ -46,35 +87,40 @@
 </div>
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
 <ng-template #contenido2 let-modal tabindex="-1" role="dialog">
+
   <div class="modal-dialog">
     <div class="modal-content">
-    <h3 class="Login" id="exampleModalLabel">Login</h3>
+      <div class="modal-header">
+        <h3 class="Login" id="exampleModalLabel">Login</h3>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="userLogin.userName" name="username" id="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="userLogin.password" name="passwordlogin"
+              id="passwordlogin">
+          </div>
+        </form>
 
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" [(ngModel)]="userLogin.userName" name="username" id="username">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" [(ngModel)]="userLogin.password" name="passwordlogin"
-            id="passwordlogin">
-        </div>
-      </form>
-
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="login(userLogin, confirmPassword)">Login</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cerrar</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="login(userLogin, confirmPassword)">Login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cerrar</button>
+      </div>
     </div>
   </div>
-</div>
-</ng-template>
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -155,3 +201,6 @@
   </div>
 </ng-template>
 >>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
+=======
+</ng-template>
+>>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1

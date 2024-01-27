@@ -38,7 +38,11 @@ export class UsuariosComponent implements OnInit {
   }
 
   createUser() {
+<<<<<<< HEAD
     this.selectedUser = new User(0, '', '', '', '', [], new Area(0, ''), '');
+=======
+    this.selectedUser = new User(0, '', '', '', '', [], new Area(0, ''));
+>>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
     this.newUser = true;
     // Abre el modal utilizando NgbModal
     this.isUsuarioModalVisible = true;
