@@ -1,41 +1,43 @@
-<div class="containertitle mt-4 mb-4">
+<!-- Contenedor del título -->
+<div class="container title mt-4 mb-4">
   <div class="card">
-      <div class="card-body">
-          <span class="h3">Usuarios</span>
-      </div>
+    <div class="card-body">
+      <span class="h3">Usuarios</span>
+    </div>
   </div>
 </div>
 
+<!-- Botón de Crear Usuarios -->
+<nav class="navbar navbar-light mt-3">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser()">Crear Usuarios</button>
+        </div>
+      </div>
+    </a>
+  </div>
+</nav>
 
-<div class="container mt-4 pre-scrollable">
+<!-- Modal de Usuarios -->
+<app-modal-usuarios
+  (onSaveUser)="saveNewUser($event.selectedUser, $event.confirmPassword)"
+  [isOpen]="isUsuarioModalVisible"
+  (onCloseUsuarios)="closeModalUsuarios()"
+  [areas]="areas"
+  [selectedUser]="selectedUser"
+  [newUser]="newUser"
+  (updateUsers)="save($event.selectedUser)"
+  [updatePass]="updatePass"
+  (updatePasswords)="modifyPass($event.selectedUser, $event.confirmPassword)">
+</app-modal-usuarios>
+
+<!-- Tabla de Usuarios -->
+<div class="container mt-4">
   <div class="card">
     <div class="card-body">
-      <nav class="navbar navbar-light">
-          <div class="container-fluid">
-            <a class="navbar-brand">
-              <div class="row">
-                <div class="col-md-12">
-                  <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser()">Crear Usuarios</button>
-                </div>
-              </div>
-            </a>
-          </div>
-      </nav>
-      
-      <app-modal-usuarios
-        (onSaveUser)="saveNewUser($event.selectedUser, $event.confirmPassword)"
-        [isOpen]="isUsuarioModalVisible"
-        (onCloseUsuarios)="closeModalUsuarios()"
-        [areas]="areas"
-        [selectedUser]="selectedUser"
-        [newUser]="newUser"
-        (updateUsers)="save($event.selectedUser)"
-        [updatePass]="updatePass"
-        (updatePasswords)="modifyPass($event.selectedUser, $event.confirmPassword)">
-      </app-modal-usuarios>
-
-      <!--tabla de usuarios-->
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped mt-3">
         <thead>
           <tr>
             <th>Id</th>
@@ -62,5 +64,3 @@
     </div>
   </div>
 </div>
-
-

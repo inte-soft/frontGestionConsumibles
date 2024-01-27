@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NgbModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,9 +14,12 @@ import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
+import { ModalUsuariosComponent } from './modales/modal-usuarios/modal-usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { ModalRolesComponent } from './modal-roles/modal-roles.component';
+import { ModalRolesComponent } from './modales/modal-roles/modal-roles.component';
+import { ModalQrvariosComponent } from './modales/modal-qrvarios/modal-qrvarios.component';
+import { ModalQrimageComponent } from './modales/modal-qrimage/modal-qrimage.component';
+import { ModalFoldereditComponent } from './modales/modal-folderedit/modal-folderedit.component';
 
 
 @NgModule({
@@ -33,13 +35,14 @@ import { ModalRolesComponent } from './modal-roles/modal-roles.component';
     ModalUsuariosComponent,
     PerfilComponent,
     ModalRolesComponent,
+    ModalQrvariosComponent,
+    ModalQrimageComponent,
+    ModalFoldereditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule,
-    NgbModalModule,
     BrowserAnimationsModule,
     CommonModule,
     BrowserAnimationsModule

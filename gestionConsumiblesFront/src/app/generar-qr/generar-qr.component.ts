@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Folder } from '../models/folder.model';
 import { AxiosService } from '../axios.service';
 import { NewOt } from '../models/newot.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UploadFile } from '../models/uploadfile.model';
 import { Archive } from '../models/archive.model';
 
@@ -15,7 +14,7 @@ import { Archive } from '../models/archive.model';
 })
 export class GenerarQRComponent {
 
-  constructor(private fb: FormBuilder, axios: AxiosService, private modal: NgbModal) { }
+  constructor(private fb: FormBuilder, axios: AxiosService) { }
   folders: Folder[] = [];
   selectedFolder: Folder = new Folder('', 0, '');
   axiosService: AxiosService = new AxiosService();
@@ -31,6 +30,9 @@ export class GenerarQRComponent {
   fileu: File = new File([], '');
   archives: Archive[] = [];
   uniqueFile: UploadFile = new UploadFile('', '', new File([], ''));
+  modalOpen = false;
+  modalOpenQRb = false;
+  modalFolderEdit = false;
 
   element = false;
   formularios: FormGroup[] = [];
@@ -72,17 +74,24 @@ export class GenerarQRComponent {
     this.files.push(event.target.files[0]);
   }
 
+  openModalQR() {
+    this.modalOpenQRb = true;
+  }
 
-  gererarQR(contenido: any) {
+  closeModalQR() {
+    this.modalOpenQRb = false;
+  }
 
-    if (this.ot === '' || this.nombre === '' || this.files.length === 0) {
+  generarQR(files: File[], ot: string, descripcion: string, names: string[]) {
+    
+    if (ot === '' || descripcion === '' || files.length === 0) {
       alert('Por favor, complete todos los campos');
       return;
     }
-    this.newOt.ot = this.ot;
-    this.newOt.name = this.nombre;
-    this.newOt.names = this.formularios.map((formulario) => formulario.value.nombreArchivo);
-    this.newOt.files = this.files;
+    this.newOt.ot = ot;
+    this.newOt.name = descripcion;
+    this.newOt.names = names;
+    this.newOt.files = files;
     this.loading = true;
     const formData = new FormData();
     formData.append('ot', this.newOt.ot);
@@ -111,9 +120,8 @@ export class GenerarQRComponent {
 
       // Asigna directamente los datos base64 al atributo `src` de la imagen
       this.image = imageData;
-
-      this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
-      // Lógica después de una respuesta exitosa
+      this.closeModalQRVarios();
+      this.openModalQR();
     }).catch((error: any) => {
       this.loading = false;
       console.error(error);
@@ -131,13 +139,13 @@ export class GenerarQRComponent {
     this.nombre = '';
   }
 
-  newCharge(contenido: any) {
-    this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
+  newCharge() {
+    this.cleanInformation();
+    this.modalOpen = true;
   }
 
-  closeModal(contenido: any) {
-    this.modal.dismissAll();
-    this.archives = [];
+  closeModalQRVarios() {
+    this.modalOpen = false;
   }
 
   saveQr(contenido: any) {
@@ -157,10 +165,18 @@ export class GenerarQRComponent {
 
     // Es una buena práctica revocar la URL del objeto después de su uso para liberar memoria
     window.URL.revokeObjectURL(url);
-    this.modal.dismissAll();
   }
 
-  editFolder(contenido: any, folder: Folder) {
+  openModalFolderEdit() {
+    this.modalFolderEdit = true;
+    
+  }
+
+  closeModalFolderEdit() {
+    this.modalFolderEdit = false;
+  }
+
+  editFolder( folder: Folder) {
     this.loading = true;
     this.selectedFolder = folder;
     this.axiosService.request(
@@ -170,8 +186,8 @@ export class GenerarQRComponent {
       null,
     ).then((response: any) => {
       this.archives = response.data;
-      this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
       this.loading = false;
+      this.openModalFolderEdit();
     }).catch((error: any) => {
       console.log(error);
       this.loading = false;
@@ -180,19 +196,20 @@ export class GenerarQRComponent {
 
   captureUniqueFile(event: any) {
     this.uniqueFile.file = event.target.files[0];
-    console.log(this.uniqueFile);
   }
-  uploadUniqueFile() {
+  uploadUniqueFile(uniqueFile: UploadFile) {
     this.loading = true;
-    this.uniqueFile.idFolder = this.selectedFolder.id;
-    if (this.nameFile === '') {
+    this.uniqueFile.file = uniqueFile.file;
+    this.uniqueFile.name = uniqueFile.name;
+    this.uniqueFile.idFolder = uniqueFile.idFolder;
+    if (this.uniqueFile.name === '' || this.uniqueFile.file === null) {
       alert('Por favor, seleccione un archivo');
       return;
     }
     const formData = new FormData();
     formData.append('file', this.uniqueFile.file);
     formData.append('folderId', this.uniqueFile.idFolder);
-    formData.append('name', this.nameFile);
+    formData.append('name', this.uniqueFile.name);
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -208,6 +225,7 @@ export class GenerarQRComponent {
       this.archives = response.data;
       this.nameFile = '';
       this.fileu = new File([], '');
+      this.uniqueFile = new UploadFile('', '', new File([], ''));
       // Lógica después de una respuesta exitosa
     }).catch((error: any) => {
       console.error(error);
@@ -215,7 +233,7 @@ export class GenerarQRComponent {
     });
   }
 
-  viewQr(contenido: any, folder: any) {
+  viewQr( folder: any) {
     this.loading = true;
     const formData = new FormData();
     formData.append('folderId', this.selectedFolder.id);
@@ -227,7 +245,6 @@ export class GenerarQRComponent {
     ).then((response: any) => {
       this.loading = false;
       this.image = response.data;
-      this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
     }).catch((error: any) => {
       console.log(error);
       this.loading = false;
@@ -268,7 +285,7 @@ export class GenerarQRComponent {
     );
   }
 
-  deleteFile(archive: any, contenido: any) {
+  deleteFile(archive: any) {
     this.loading = true;
     this.axiosService.request(
       'DELETE',
@@ -278,8 +295,7 @@ export class GenerarQRComponent {
     ).then((response: any) => {
       this.loading = false;
       alert(response.data.data.message);
-      this.modal.dismissAll();
-      this.editFolder(contenido, this.selectedFolder);
+      this.editFolder( this.selectedFolder);
     }).catch((error: any) => {
       this.loading = false;
       console.log(error);

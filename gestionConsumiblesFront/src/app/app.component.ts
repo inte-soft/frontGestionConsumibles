@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
   Proyect = false;
   roles: Role[] = [];
   userAvatar: string = '';
+  adminMenuOpen = false;
+  comercialMenuOpen = false;
 
   constructor(public router: Router) {}
 
@@ -74,6 +76,7 @@ export class AppComponent implements OnInit {
     this.userAvatar = window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png';
     this.fullName = window.sessionStorage.getItem("name") + ' ' + window.sessionStorage.getItem("lastName") || '';
   }
+
 
 
 }

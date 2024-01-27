@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AxiosService } from 'src/app/axios.service';
 import { User } from 'src/app/models/user.model';
 import { Area } from 'src/app/models/area.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-usuarios',
@@ -24,7 +23,7 @@ export class UsuariosComponent implements OnInit {
   newPassword: string = '';
   isUsuarioModalVisible = false;
 
-  constructor(private axiosService: AxiosService, private modal: NgbModal) { }
+  constructor(private axiosService: AxiosService) { }
 
   ngOnInit() {
     // Carga los usuarios del LocalStorage al iniciar el componente
@@ -33,9 +32,7 @@ export class UsuariosComponent implements OnInit {
 
   }
 
-  cancel() {
-    this.modal.dismissAll();
-  }
+
 
   createUser() {
     this.selectedUser = new User(0, '', '', '', '', [], new Area(0, ''), '');
@@ -136,10 +133,25 @@ export class UsuariosComponent implements OnInit {
   deleteUser(id: number) {
     this.delete = true;
     
-    if (confirm('¿Está seguro de eliminar el usuario?')) {
+    if (confirm('Para poder eliminar el usuario debe quitarle todos los roles           ¿Está seguro de eliminar el usuario?')) {
       this.idOperation = id;
+      this.axiosService.request(
+        'DELETE',
+        '/users/' + this.idOperation + '/delete',
+        null,
+        null
+      ).then((response: any) => {
+        this.getUsers();
+        this.delete = false;
+        this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''), '');
+        alert(response.data.data.message);
+
+      }).catch((error: any) => {
+        console.log(error);
+      });
+    } 
       
-    }
+    
   }
 
   updatePassword(id: number) {
@@ -149,43 +161,6 @@ export class UsuariosComponent implements OnInit {
       this.updatePass = true;
       this.isUsuarioModalVisible = true;
     }
-  }
-
-  login(userLogin: User, confirmPassword: any) {
-    if (userLogin.userName !== '' && userLogin.password !== '') {
-      this.axiosService.request(
-        'POST',
-        '/login',
-        userLogin,
-        null
-      ).then((response: any) => {
-        if (this.delete) {
-          this.axiosService.request(
-            'DELETE',
-            '/users/' + this.idOperation + '/delete',
-            null,
-            null
-          ).then((response: any) => {
-            this.getUsers();
-            this.modal.dismissAll();
-            this.delete = false;
-            this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''), '');
-            alert(response.data.data.message);
-
-          }).catch((error: any) => {
-            console.log(error);
-          });
-        } else if (this.updatePass) {
-          this.modal.dismissAll();
-          this.userLogin = new User(0, '', '', '', '', [], new Area(0, ''), '');
-          this.modal.open(this.content, { size: 'xl', backdrop: 'static' });
-          
-        }
-      }).catch((error: any) => {
-        alert('Usuario o contraseña incorrectos');
-      });
-    }
-    
   }
 
   modifyPass(selectedUser: User, confirmPassword: string) {

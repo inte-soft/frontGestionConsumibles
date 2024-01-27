@@ -1,4 +1,4 @@
-<!--Titulo-->
+<!-- Título -->
 <div class="container mt-4">
   <div class="card">
     <div class="card-body">
@@ -7,43 +7,39 @@
   </div>
 </div>
 
-<!--Seccion tablaOts-->
-<!--Barra de navegacion con botones-->
-<!--Tabla de OTS-->
-<div class="container mt-4 pre-scrollable">
+<!-- Sección tablaOts -->
+<!-- Barra de navegación con botones -->
+<!-- Tabla de OTS -->
+<div class="container mt-4">
   <div class="card">
     <div class="card-body">
       <nav class="navbar navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand">
-              <div class="dropdown">
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ limit }} Registros
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" (click)="limit = 10">10 Registros</a></li>
-                      <li><a class="dropdown-item" (click)="limit = 20">20 Registros</a></li>
-                      <li><a class="dropdown-item" (click)="limit = 50">50 Registros</a></li>
-                      <li><a class="dropdown-item" (click)="limit = 100">100 Registros</a></li>
-                    </ul>
-                    <a class="button">
-                      <button type="button" class="btn btn-secondary btn-sm ms-3" (click)="newCharge(contenido1)"> 
-                          <i class="fa-solid fa-upload"></i>
-                              Crear código
-                      </button>
-                    </a>
-                  </div>
-              </div>
-            </a>
-            <form class="d-flex">
-              <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Search">
-              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-            </form>
+        <div class="container-fluid">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ limit }} Registros
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" (click)="limit = 10">10 Registros</a></li>
+              <li><a class="dropdown-item" (click)="limit = 20">20 Registros</a></li>
+              <li><a class="dropdown-item" (click)="limit = 50">50 Registros</a></li>
+              <li><a class="dropdown-item" (click)="limit = 100">100 Registros</a></li>
+            </ul>
           </div>
-        </nav>
+          <a class="button">
+            <button type="button" class="btn btn-secondary btn-sm ms-3" (click)="newCharge()"> 
+              <i class="fas fa-upload"></i>
+              Crear código
+            </button>
+          </a>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+          </form>
+        </div>
+      </nav>
       <br>
-      <!--Tabla Ots-->
+      <!-- Tabla Ots -->
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -59,12 +55,9 @@
             <td>{{ folder.ot }}</td>
             <td>{{ folder.name }}</td>
             <td>
-              <i class="fa-solid fa-pen-to-square fa-lg text-success" (click)="editFolder(contenido3, folder)"
-                (disable)="loading"></i>
-              <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewQr(contenido2, folder)"
-                (disable)="loading"></i>
-              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)"
-                (disable)="loading"></i>
+              <i class="fas fa-pen-to-square fa-lg text-success" (click)="editFolder(folder)" [attr.disabled]="loading ? true : null"></i>
+              <i class="fas fa-download fa-lg text-info ms-3" (click)="viewQr(folder)" [attr.disabled]="loading ? true : null"></i>
+              <i class="fas fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)" [attr.disabled]="loading ? true : null"></i>
             </td>
           </tr>
         </tbody>
@@ -73,128 +66,32 @@
   </div>
 </div>
 
-<!--Seccion ModalCarga -->
-<ng-template #contenido1 let-modal tabindex="-1" role="dialog">
-<div class="modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="btn btn-success btn-sm" (click)="agregarDatos()">
-          <i class="fa-solid fa-circle-plus"></i>
-          Agregar archivo
-        </button>
-        <button class="btn btn-danger btn-sm ms-2" (click)="borrarDatos(0)">
-          <i class="fa-solid fa-circle-minus"></i>
-          Quitar archivo
-        </button>
-        <button type="button" class="btn-close" (click)="closeModal(contenido1)" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="element">
+<app-modal-qrvarios 
+  [isOpen]="modalOpen"
+  [files]="files"
+  [fileu]="fileu"
+  [ot]="ot"
+  [nombre]="nombre"
+  [loading]="loading"
+  (onCloseModal)="closeModalQRVarios()"
+  (onSaveQr)="generarQR($event.files,$event.ot, $event.descripcion, $event.names)"
+  (onAddFile)="agregarDatos()">
+</app-modal-qrvarios>
 
-        <div class="row g-2">
-          <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="OT" aria-label="OT" [(ngModel)]="ot">
-          </div>
-          <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción"
-              [(ngModel)]="nombre">
-          </div>
-        </div>
-        <br />
+<app-modal-qrimage
+  [isOpenQr]="modalOpenQRb"
+  [image]="image"
+  (onCloseModalQR)="closeModalQR()">
+</app-modal-qrimage>
 
-        <div *ngIf="element == true">
-          <div *ngFor="let formulario of formularios; let i = index">
-            <!--Formulario de carga de archivos-->
-            <form>
-              <div class="row">
-                <div class="col">
-                  <div class="input-group" id="form">
-                    <input type="text" aria-label="Nombre archivo" class="form-control" placeholder="Nombre archivo"
-                      [(ngModel)]="formulario.value.nombreArchivo" [name]="'nombreArchivo' + i">
-                  </div>
-                </div>
-                <div class="col">
-                  <input type="file" class="form-control" id="CargaArchivo" [(ngModel)]="formulario.value.archivo"
-                    [name]="'archivo' + i" (change)="captureFile($event)">
-                </div>
-              </div>
-              <br>
-            </form>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <div class="d-grid gap-2 col-4 mx-auto">
-            <button type="button" class="btn btn-primary" (click)="gererarQR(contenido2)" (disable)="loading">
-              <i class="fa-solid fa-box-archive"></i>
-              {{(loading) ? "Cargando..." : "Generar QR"}}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-
-<!-- Seccion ModalQR -->
-<ng-template #contenido2 let-modal tabindex="-1" role="dialog">
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="d-grid gap-3 h4">Codigo QR de la OT</div><!--Texto del modalQR-->
-        <button type="button" class="btn-close" (click)="closeModal(contenido2)" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img src="{{image}}" alt="">
-      </div>
-      <div class="modal-footer">
-        <div class="d-grid gap-2 col-4 mx-auto">
-          <button type="button" class="btn btn-success" (click)="saveQr(contenido2)">
-            <i class="fa-solid fa-download"></i>
-            Descargar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</ng-template>
-
-<!-- Seccion ModalEditar -->
-<!-- modal donde se mostrara una tabla con los archivos que hay en la carpeta seleccionada -->
-<ng-template #contenido3 let-modal tabindex="-1" role="dialog">
-  <div>
-    <div class="modal-header">
-      <div class="d-grid gap-3 h4">Editar carpeta</div><!--Texto del modalQR-->
-      <button type="button" class="btn-close" (click)="closeModal(contenido3)" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let archive of archives; let i = index">
-            <td>{{ archive.name }}</td>
-            <td>
-              <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewFile(archive)"></i>
-              <i class="fa-solid fa-trash-can fa-lg text-danger ms-3" (click)="deleteFile(archive,contenido3)"></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="modal-footer">
-        <div class="d-grid gap-2 col-4 mx-auto">
-          <label for="nombre">Nombre</label>
-          <input type="text" class="form-control" id="nombre" [(ngModel)]="nameFile">
-          <input type="file" class="form-control" id="CargaArchivo" (change)="captureUniqueFile($event)">
-          <button type="button" class="btn btn-success" (click)="uploadUniqueFile()" (disable)="loading">
-            <i class="fa-solid fa-download"></i>
-            {{(loading) ? "Cargando...": "Cargar Archivo"}}
-          </button>
-        </div>
-      </div>
-
-    </div>
+<app-modal-folderedit
+  [isOpen]="modalFolderEdit"
+  [archives]="archives"
+  [selectedFolder]="selectedFolder"
+  [loading]="loading"
+  [nameFile]="nameFile"
+  (onCloseModalFolderEdit)="closeModalFolderEdit()"
+  (onViewFile)="viewFile($event.archive)"
+  (onDeleteFile)="deleteFile($event.archive)"
+  (onUploadUniqueFile)="uploadUniqueFile($event.uniqueFile)">
+</app-modal-folderedit>

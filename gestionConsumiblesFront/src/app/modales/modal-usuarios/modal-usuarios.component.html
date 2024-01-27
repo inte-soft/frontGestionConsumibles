@@ -1,0 +1,69 @@
+<!--deseo crear un modal con bootrap con los siguienetes campos para insertarlos en la tabla usuarios
+  (nombre, apellido, roel este en lista desplegable, acciones y estado) con un boton de enviar a al tabla-->
+<div class="modal" class="modal modal-backdrop" [style.display]="isOpen ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Crear Usuario</h3>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" [disabled]="!newUser || updatePass" [(ngModel)]="selectedUser.name"
+              name="nombre" id="nombre">
+          </div>
+          <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" [disabled]="!newUser || updatePass"
+              [(ngModel)]="selectedUser.lastName" name="apellido" id="apellido">
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" [disabled]="!newUser || updatePass"
+                [(ngModel)]="selectedUser.userName" name="username" id="username">
+            </div>
+            <div>
+              <div class="form-group" *ngIf="!updatePass">
+                <label for="email">e-mail</label>
+                <input type="email" class="form-control" [(ngModel)]="selectedUser.email" name="email" id="email">
+              </div>
+
+            </div>
+            <div *ngIf="newUser  || updatePass ">
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" [(ngModel)]="selectedUser.password" name="password"
+                  id="password">
+              </div>
+              <div class="form-group">
+                <label for="password">Confirmar Password</label>
+                <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmpassword"
+                  id="confirmpassword">
+              </div>
+            </div>
+            <div class="form-group" *ngIf="!updatePass">
+              <label for="Area">Area</label>
+              <select class="form-control" [(ngModel)]="selectedUser.area.id" name="area" id="area">
+                <option *ngFor="let area of areas" [value]="area.id" [selected]="area.id === selectedUser.area.id">
+                  {{area.name}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveNewUser(selectedUser, confirmPassword)"
+          *ngIf="newUser && !updatePass">Crear</button>
+        <button type="button" class="btn btn-primary" (click)="updateUser(selectedUser)"
+          *ngIf="!newUser  && !updatePass ">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="updatePassword(selectedUser, confirmPassword)"
+          *ngIf=" updatePass ">Actualizar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+          (click)="onCloseRolesModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

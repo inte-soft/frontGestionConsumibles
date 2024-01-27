@@ -1,15 +1,14 @@
-
 <!-- roles.component.html -->
 <div class="container mt-4 mb-3">
   <div class="card">
-      <div class="card-body text-center">
-          <span class="h3">Roles</span>
-      </div>
-  </div>
+    <div class="card-body text-center">
+      <span class="h3">Roles</span>
+    </div>
+  </div>
 </div>
 
 <!-- Tabla principal -->
-<div class="container mt-4 pre-scrollable">
+<div class="container mt-4">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -25,66 +24,21 @@
         <td>{{user.name}}</td>
         <td>{{user.lastName}}</td>
         <td>
-          <button class="btn btn-primary btn-2" (click)="editRol(user.id, contenido)">Editar</button>
-          <!--<button class="btn btn-danger ms-3">Eliminar</button>-->
+          <button class="btn btn-primary" (click)="editRol(user.id)">Editar</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<app-modal-usuarios
-    (onCloseRolesModal)="closeModal()"
-    [selectedUser]="selectedUser">
-</app-modal-usuarios>
-
-<!-- Modal -->
-<ng-template #contenido let-modal tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Editar Rol</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="id">Id:</label>
-            <input type="text" class="form-control" id="id" [(ngModel)]="selectedUser.id" readonly>
-          </div>
-          <div class="form-group">
-            <label for="name">Nombre:</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="selectedUser.name" readonly>
-          </div>
-          <div class="form-group">
-            <label for="lastName">Apellido:</label>
-            <input type="text" class="form-control" id="lastName" [(ngModel)]="selectedUser.lastName" readonly>
-          </div>
-            <div style="display: flex; align-items: center;">
-              <div class="form-group">
-                <div>
-                    <label for="assignedRoles">Roles Asignados:</label>
-                    <select multiple class="form-control" id="assignedRoles" [(ngModel)]="selectedAssignedRole">
-                        <option *ngFor="let role of actualRoles" [value]="role.id">{{role.name}}</option>
-                    </select>
-                </div>
-              </div>
-                <div>
-                    <button class="btn btn-secondary" (click)="moveRoleLeft()">>></button>
-                    <button class="btn btn-secondary" (click)="moveRoleRight()"><<</button>
-                </div>
-                <div class="form-group">
-                <div>
-                    <label for="availableRoles">Roles Disponibles:</label>
-                    <select multiple class="form-control" id="availableRoles" [(ngModel)]="selectedAvailableRole">
-                        <option *ngFor="let role of rolesToAdd" [value]="role.id">{{role.name}}</option>
-                    </select>
-                </div>
-                </div>
-            </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
-            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</ng-template>
+<!-- Modal de Roles -->
+<app-modal-roles
+  [isOpen]="isRoleModalVisible"
+  [areas]="areas"
+  [actualRoles]="actualRoles"
+  [rolesToAdd]="rolesToAdd"
+  (onCloseRolesModal)="closeModal()"
+  [selectedUser]="selectedUser"
+  [roles]="roles"
+  (onSaveChangesModal)="saveChanges()">
+</app-modal-roles>

@@ -1,0 +1,62 @@
+<div class="modal" class="modal modal-backdrop" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="btn btn-success btn-sm" (click)="agregarDatos()">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Agregar archivo
+                </button>
+                <button class="btn btn-danger btn-sm ms-2" (click)="borrarDatos(0)">
+                    <i class="fa-solid fa-circle-minus"></i>
+                    Quitar archivo
+                </button>
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="element">
+
+                <div class="row g-2">
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="OT" aria-label="OT" [(ngModel)]="ot">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción"
+                            [(ngModel)]="nombre">
+                    </div>
+                </div>
+                <br />
+
+                <div *ngIf="element == true">
+                    <div *ngFor="let formulario of formularios; let i = index">
+                        <!--Formulario de carga de archivos-->
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group" id="form">
+                                        <input type="text" aria-label="Nombre archivo" class="form-control"
+                                            placeholder="Nombre archivo" [(ngModel)]="formulario.value.nombreArchivo"
+                                            [name]="'nombreArchivo' + i">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input type="file" class="form-control" id="CargaArchivo"
+                                        [(ngModel)]="formulario.value.archivo" [name]="'archivo' + i"
+                                        (change)="captureFile($event, i)">
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="d-grid gap-2 col-4 mx-auto">
+                        <button type="button" class="btn btn-primary" (click)="gererarQR()" (disable)="loading">
+                            <i class="fa-solid fa-box-archive"></i>
+                            {{(loading) ? "Cargando..." : "Generar QR"}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

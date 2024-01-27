@@ -1,0 +1,41 @@
+<div class="modal" class="modal modal-backdrop" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="d-grid gap-3 h4">Editar carpeta</div><!--Texto del modalQR-->
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped" name="tablaarchivos" aria-label="Tabla de archivos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let archive of archives; let i = index">
+                            <td>{{ archive.name }}</td>
+                            <td>
+                                <i class="fa-solid fa-download fa-lg text-info ms-3" (click)="viewFile(archive)"></i>
+                                <i class="fa-solid fa-trash-can fa-lg text-danger ms-3"
+                                    (click)="deleteFile(archive)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" [(ngModel)]="nameFile">
+                    <input type="file" class="form-control" id="CargaArchivo" (change)="captureUniqueFile($event)">
+                    <button type="button" class="btn btn-success" (click)="uploadUniqueFile()" (disable)="loading">
+                        <i class="fa-solid fa-download"></i>
+                        {{(loading) ? "Cargando...": "Cargar Archivo"}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

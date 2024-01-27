@@ -1,7 +1,6 @@
 import { Role } from './../../models/role.model';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AxiosService } from 'src/app/axios.service';
 import { Area } from 'src/app/models/area.model';
 
@@ -14,55 +13,38 @@ export class RolesComponent implements OnInit {
   users: User[] = [];
   roles: Role[] = [];
   selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''), '');
+  areas: Area[] = [];
   rolesToAdd: Role[] = [];
   actualRoles: Role[] = [];
   selectedAvailableRole: any;
   selectedAssignedRole: any;
-  isRoleModalVisible: boolean = false;
+  isRoleModalVisible = false;
 
 
-  constructor(private modal: NgbModal, private axiosService: AxiosService) { }
+  constructor( private axiosService: AxiosService) { }
 
   ngOnInit() {
     this.getUsers();
     this.getRoles();
   }
 
-
-
-  editRol(id: number, contenido: any) {
+  editRol(id: number) {
     this.selectedUser = this.users.find(x => x.id == id)!;
+    console.log(this.selectedUser);
     this.actualRoles = this.selectedUser.rol;
     this.rolesToAdd = this.roles.filter(role => {
       return !this.selectedUser.rol.some(userRole => userRole.id === role.id);
     });
 
-    // Abre el modal utilizando NgbModal
-    this.modal.open(contenido);
-  }
-  closeModal() {
-    this.modal.dismissAll();
-  }
-  moveRoleRight() {
-    if (this.selectedAvailableRole) {
-      // Mueve el rol seleccionado de roles disponibles a roles asignados
-      this.actualRoles.push(this.roles.filter(x => this.selectedAvailableRole == x.id)[0]);
-      this.rolesToAdd = this.rolesToAdd.filter(
-        role => role.id !== this.selectedAvailableRole[0]);
-    }
+    this.isRoleModalVisible = true;
   }
 
-  moveRoleLeft() {
-    if (this.selectedAssignedRole) {
-      // Mueve el rol seleccionado de roles asignados a roles disponibles
-      this.rolesToAdd.push(this.roles.filter(x => this.selectedAssignedRole == x.id)[0]);
-      this.actualRoles = this.actualRoles.filter(
-        role => role.id !== this.selectedAssignedRole[0]);
-    }
+  closeModal() {
+    this.isRoleModalVisible = false;
   }
+
   saveChanges() {
     // codigo para consumir el servicio de actualizar roles
-    this.selectedUser.rol = this.actualRoles;
     this.axiosService.request(
       "put",
       "/users/" + this.selectedUser.id + "/roles",
@@ -71,7 +53,7 @@ export class RolesComponent implements OnInit {
     ).then(response => {
       alert('Roles actualizados correctamente');
       this.getUsers();
-      this.modal.dismissAll();
+      this.closeModal();
     }).catch(error => {
       alert('Error al actualizar roles ' + error.response.data.message);
 

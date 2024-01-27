@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../models/user.model';
-import { Role } from '../models/role.model';
-import { Area } from '../models/area.model';
+import { User } from '../../models/user.model';
+import { Role } from '../../models/role.model';
+import { Area } from '../../models/area.model';
 
 
 @Component({
