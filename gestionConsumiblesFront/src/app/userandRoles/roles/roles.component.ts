@@ -18,6 +18,7 @@ export class RolesComponent implements OnInit {
   actualRoles: Role[] = [];
   selectedAvailableRole: any;
   selectedAssignedRole: any;
+  isRoleModalVisible: boolean = false;
 
 
 
@@ -39,7 +40,7 @@ export class RolesComponent implements OnInit {
     });
 
     // Abre el modal utilizando NgbModal
-    this.modal.open(contenido, { size: 'xl', backdrop: 'static' });
+    this.modal.open(contenido);
   }
   closeModal() {
     this.modal.dismissAll();

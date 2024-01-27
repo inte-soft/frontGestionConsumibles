@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="containertitle mt-4 mb-4">
   <div class="card">
       <div class="card-body">
@@ -16,52 +15,22 @@
             <a class="navbar-brand">
               <div class="row">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-primary mb-4" (click)="createUser(contenido1)">Crear Usuarios</button>
+                  <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser()">Crear Usuarios</button>
                 </div>
               </div>
             </a>
           </div>
       </nav>
+      
+      <app-modal-usuarios
+        (onSaveUser)="saveNewUser($event.selectedUser, $event.confirmPassword)"
+        [isOpen]="isUsuarioModalVisible"
+        (onCloseUsuarios)="closeModalUsuarios()"
+        [areas]="areas"
+        [selectedUser]="selectedUser">
+      </app-modal-usuarios>
 
-        <!--llamo al modal-->
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Area</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users">
-              <td>{{user.id}}</td>
-              <td>{{user.name}}</td>
-              <td>{{user.lastName}}</td>
-              <td>{{user.area.name}}</td>
-              <td>
-                <button class="btn btn-primary ms-3" (click)="editUser(user.id, contenido1)">Editar</button>
-                <button class="btn btn-danger ms-3" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
-                <button class="btn btn-success ms-3" (click)="updatePassword(user.id, contenido2, contenido3)">Password</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-=======
-
-<div class="container mt-4 mb-3">
-  <div class="card">
-      <div class="card-body text-center">
-          <span class="h3">usuarios</span>
-      </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser(contenido1)">Crear Usuarios</button>
-      <!--llamo al modal-->
+      <!--tabla de usuarios-->
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -79,120 +48,44 @@
             <td>{{user.lastName}}</td>
             <td>{{user.area.name}}</td>
             <td class="col-3">
-              <button class="btn btn-primary btn-sm" (click)="editUser(user.id, contenido1)">Editar</button>
-              <button class="btn btn-danger btn-sm ms-3" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
-              <button class="btn btn-warning btn-sm ms-3" (click)="updatePassword(user.id, contenido2, contenido3)">Password</button>
+              <button class="btn btn-primary btn-sm" (click)="editUser(user.id)">Editar</button>
+              <button class="btn btn-danger btn-sm ms-2" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
+              <button class="btn btn-success btn-sm ms-2" (click)="updatePassword(user.id, contenido2)">Password</button>
             </td>
           </tr>
         </tbody>
       </table>
->>>>>>> 19f4813f129380b539693e3e1c2048458ea85706
     </div>
   </div>
 </div>
 
-<!-- Modal para login -->
+
 <ng-template #contenido2 let-modal tabindex="-1" role="dialog">
+
   <div class="modal-dialog">
     <div class="modal-content">
-    <h3 class="Login" id="exampleModalLabel">Login</h3>
+      <div class="modal-header">
+        <h3 class="Login" id="exampleModalLabel">Login</h3>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="userLogin.userName" name="username" id="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="userLogin.password" name="passwordlogin"
+              id="passwordlogin">
+          </div>
+        </form>
 
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" [(ngModel)]="userLogin.userName" name="username" id="username">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" [(ngModel)]="userLogin.password" name="passwordlogin"
-            id="passwordlogin">
-        </div>
-      </form>
-
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="login(userLogin, confirmPassword)">Login</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cerrar</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="login(userLogin, confirmPassword)">Login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cerrar</button>
+      </div>
     </div>
   </div>
-</div>
-</ng-template>
 
-
-<!--deseo crear un modal con bootrap con los siguienetes campos para insertarlos en la tabla usuarios
-  (nombre, apellido, roel este en lista desplegable, acciones y estado) con un boton de enviar a al tabla-->
-<ng-template #contenido1 let-modal tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <h3 class="modal-title" id="exampleModalLabel">Crear Usuario</h3>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" [(ngModel)]="selectedUser.name" name="nombre" id="nombre">
-      </div>
-      <div class="form-group">
-        <label for="apellido">Apellido</label>
-        <input type="text" class="form-control" [(ngModel)]="selectedUser.lastName" name="apellido" id="apellido">
-      </div>
-      <div class="form-group" *ngIf="newUser">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" [(ngModel)]="selectedUser.userName" name="username" id="username">
-      </div>
-      <div *ngIf="newUser">
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" [(ngModel)]="selectedUser.password" name="password"
-            id="password">
-        </div>
-        <div class="form-group">
-          <label for="password">Confirmar Password</label>
-          <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmpassword"
-            id="confirmpassword">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="Area">Area</label>
-        <select class="form-control" [(ngModel)]="selectedUser.area.id" name="area" id="area">
-          <option *ngFor="let area of areas" [value]="area.id" [selected]="area.id === selectedUser.area.id">
-            {{area.name}}</option>
-        </select>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="saveNewUser(selectedUser, confirmPassword)"
-      *ngIf="newUser">Crear</button>
-    <button type="button" class="btn btn-primary" (click)="save()" *ngIf="!newUser">Guardar</button>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cerrar</button>
-  </div>
-</ng-template>
-
-
-
-<!-- Modal para cambiar password -->
-<ng-template #contenido3 let-modal tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <h3 class="modal-title" id="exampleModalLabel">Cambiar Password</h3>
-    <div class="modal-body">
-    <form>
-    <div >
-      <label for="password">Password</label>
-      <input type="password" class="form-control" [(ngModel)]="newPassword" name="password" id="password">
-    </div>
-    <label for="confirmPassword">Confirmar Password</label>
-    <div>
-      <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword"
-        id="confirmPassword">
-    </div>
-    </form>
-    </div>
-    <div>
-      <button type="button" class="btn btn-primary" (click)="modifyPass(newPassword, confirmPassword)">Crear</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">Cerrar</button>
-    </div>
-    </div>
-  </div>
 </ng-template>

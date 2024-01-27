@@ -9,7 +9,6 @@
 </div>
 
 <!-- Tabla principal -->
-<<<<<<< HEAD
 <div class="container mt-4 pre-scrollable">
   <table class="table table-striped">
     <thead>
@@ -33,29 +32,11 @@
     </tbody>
   </table>
 </div>
-=======
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <th scope="row">{{user.id}}</th>
-      <td>{{user.name}}</td>
-      <td>{{user.lastName}}</td>
-      <td class="col-2">
-        <button class="btn btn-primary btn-sm ms-3" (click)="editRol(user.id, contenido)">Editar</button>
-        <button class="btn btn-danger btn-sm ms-3">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
->>>>>>> 19f4813f129380b539693e3e1c2048458ea85706
+
+<app-modal-usuarios
+    (onCloseRolesModal)="closeModal()"
+    [selectedUser]="selectedUser">
+</app-modal-usuarios>
 
 <!-- Modal -->
 <ng-template #contenido let-modal tabindex="-1" role="dialog">

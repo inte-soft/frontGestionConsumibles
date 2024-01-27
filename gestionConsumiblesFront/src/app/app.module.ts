@@ -16,6 +16,8 @@ import { UsuariosComponent } from './userandRoles/usuarios/usuarios.component';
 import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
+import { ModalRolesComponent } from './modal-roles/modal-roles.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { CommonModule } from '@angular/common';
     RolesComponent,
     UsuariosComponent,
     GenerarQRComponent,
+    ModalUsuariosComponent,
+    ModalRolesComponent,
   ],
   imports: [
     BrowserModule,
