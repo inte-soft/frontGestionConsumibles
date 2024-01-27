@@ -47,11 +47,12 @@ export class UsuariosComponent implements OnInit {
 
   closeModalUsuarios() {
     this.isUsuarioModalVisible = false;
+    this.newUser = false;
+    this.updatePass = false;
   }
 
   editUser(id: number) {
     this.selectedUser = this.users.find(x => x.id == id)!;
-    this.newUser = false;
     // Abre el modal utilizando NgbModal
     this.isUsuarioModalVisible = true;
   }
@@ -94,18 +95,17 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  save() {
+  save(selectedUser: User) {
     if (this.validarUsuario()) {
       this.axiosService.request(
         'PUT',
-        '/users/' + this.selectedUser.id + '/update',
-        this.selectedUser,
+        '/users/' + selectedUser.id + '/update',
+        selectedUser,
         null
       ).then((response: any) => {
         this.getUsers();
-        console.log(response);
         alert(response.data.data.message);
-        this.modal.dismissAll();
+        this.isUsuarioModalVisible = false;
       }).catch((error: any) => {
         console.log(error);
       });
@@ -122,7 +122,8 @@ export class UsuariosComponent implements OnInit {
         null
       ).then((response: any) => {
         this.getUsers();
-        this.modal.dismissAll();
+        this.isUsuarioModalVisible = false;
+        this.newUser = false;
       }).catch((error: any) => {
         console.log(error);
       });
@@ -132,23 +133,21 @@ export class UsuariosComponent implements OnInit {
 
   }
 
-  deleteUser(id: number, contenido2: any) {
+  deleteUser(id: number) {
     this.delete = true;
     
     if (confirm('¿Está seguro de eliminar el usuario?')) {
       this.idOperation = id;
-      this.modal.open(contenido2, { size: 'xl', backdrop: 'static' });
       
     }
   }
 
-  updatePassword(id: number, contenido2: any) {
-    this.updatePass = true;
-    
+  updatePassword(id: number) {
+    this.selectedUser = this.users.find(x => x.id == id)!;
     if (confirm('¿Está seguro de actualizar la contraseña?')) {
       this.idOperation = id;
-
-      this.modal.open(contenido2, { size: 'xl', backdrop: 'static' });
+      this.updatePass = true;
+      this.isUsuarioModalVisible = true;
     }
   }
 
@@ -189,17 +188,18 @@ export class UsuariosComponent implements OnInit {
     
   }
 
-  modifyPass(newPassword: string, confirmPassword: any) {
+  modifyPass(selectedUser: User, confirmPassword: string) {
+    const newPassword = selectedUser.password;
     if (confirmPassword === newPassword) {
       this.axiosService.request(
         'PUT',
-        '/users/' + this.idOperation + '/password',
+        '/users/myuser/' + this.idOperation + '/password',
         { newPassword: newPassword },
         null
       ).then((response: any) => {
         this.getUsers();
-        this.modal.dismissAll();
         this.updatePass = false;
+        this.isUsuarioModalVisible = false;
         this.newPassword = '';
         this.confirmPassword = '';
         alert(response.data.data.message);

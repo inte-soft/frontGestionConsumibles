@@ -17,19 +17,27 @@ export class ModalUsuariosComponent {
   @Input() confirmPassword: string = '';
   @Input() newUser = false;
   @Input() areas: Area[] = [];
+  @Input() updatePass = false;
   @Output() onCloseUsuarios = new EventEmitter<void>();
   @Output() onSaveUser = new EventEmitter<{ selectedUser: User, confirmPassword: string }>();
+  @Output() updateUsers = new EventEmitter<{ selectedUser: User }>();
+  @Output() updatePasswords = new EventEmitter<{ selectedUser: User, confirmPassword: string  }>();
 
   onCloseRolesModal() {
     this.onCloseUsuarios.emit();
+
   }
 
   saveNewUser(selectedUser: User, confirmPassword: any) {
     this.onSaveUser.emit({ selectedUser, confirmPassword });
   }
 
-  saveRoles() {
+  updateUser( selectedUser: User) {
+    this.updateUsers.emit({ selectedUser});
+  }
 
+  updatePassword(selectedUser: User,  confirmPassword: any) { 
+    this.updatePasswords.emit({selectedUser, confirmPassword});
   }
 
 
