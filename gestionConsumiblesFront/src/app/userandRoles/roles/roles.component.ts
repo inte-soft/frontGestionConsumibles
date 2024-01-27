@@ -13,12 +13,13 @@ import { Area } from 'src/app/models/ara.model';
 export class RolesComponent implements OnInit {
   users: User[] = [];
   roles: Role[] = [];
+  areas: Area[] = [];
   selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''));
   rolesToAdd: Role[] = [];
   actualRoles: Role[] = [];
   selectedAvailableRole: any;
   selectedAssignedRole: any;
-  isRoleModalVisible: boolean = false;
+  isRoleModalVisible = false;
 
 
 
@@ -32,19 +33,21 @@ export class RolesComponent implements OnInit {
 
   }
 
-  editRol(id: number, contenido: any) {
+  editRol(id: number) {
     this.selectedUser = this.users.find(x => x.id == id)!;
+    console.log(this.selectedUser);
     this.actualRoles = this.selectedUser.rol;
     this.rolesToAdd = this.roles.filter(role => {
       return !this.selectedUser.rol.some(userRole => userRole.id === role.id);
     });
 
-    // Abre el modal utilizando NgbModal
-    this.modal.open(contenido);
+    this.isRoleModalVisible = true;
   }
+
   closeModal() {
-    this.modal.dismissAll();
+    this.isRoleModalVisible = false;
   }
+
   moveRoleRight() {
     if (this.selectedAvailableRole) {
       // Mueve el rol seleccionado de roles disponibles a roles asignados

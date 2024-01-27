@@ -17,11 +17,11 @@
               <label for="apellido">Apellido</label>
               <input type="text" class="form-control" [(ngModel)]="selectedUser.lastName" name="apellido" id="apellido">
             </div>
-            <div class="form-group" *ngIf="newUser">
+            <div class="form-group">
               <label for="username">Username</label>
               <input type="text" class="form-control" [(ngModel)]="selectedUser.userName" name="username" id="username">
             </div>
-            <div *ngIf="newUser">
+            <div>
               <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" [(ngModel)]="selectedUser.password" name="password"
@@ -43,9 +43,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="saveNewUser(selectedUser, confirmPassword)"
-            *ngIf="newUser">Crear</button>
-          <button type="button" class="btn btn-primary" (click)="saveRoles()" *ngIf="!newUser">Guardar</button>
+          <button type="button" class="btn btn-primary" (click)="saveNewUser(selectedUser, confirmPassword)">Crear</button>
+          <button type="button" class="btn btn-primary" (click)="saveRoles()" >Guardar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseRolesModal()">Cerrar</button>
         </div>
         </div>

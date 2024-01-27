@@ -25,7 +25,7 @@
         <td>{{user.name}}</td>
         <td>{{user.lastName}}</td>
         <td>
-          <button class="btn btn-primary" (click)="editRol(user.id, contenido)">Editar</button>
+          <button class="btn btn-primary" (click)="editRol(user.id)">Editar</button>
           <button class="btn btn-danger ms-3">Eliminar</button>
         </td>
       </tr>
@@ -33,12 +33,17 @@
   </table>
 </div>
 
-<app-modal-usuarios
+<app-modal-roles
+
+    [isOpen]="isRoleModalVisible"
+    [areas]="areas"
+    [actualRoles]="actualRoles"
+    [rolesToAdd]="rolesToAdd"
     (onCloseRolesModal)="closeModal()"
     [selectedUser]="selectedUser">
-</app-modal-usuarios>
+</app-modal-roles>
 
-<!-- Modal -->
+<!-- Modal
 <ng-template #contenido let-modal tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -87,4 +92,4 @@
         </div>
       </div>
     </div>
-</ng-template>
+</ng-template>-->

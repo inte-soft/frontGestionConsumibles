@@ -12,13 +12,20 @@ export class ModalRolesComponent {
   @Input() isOpen = false;
   @Input() users: User[] = [];
   @Input() roles: Role[] = [];
+  @Input() areas: Area[] = [];
   @Input() selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''));
   @Input() rolesToAdd: Role[] = [];
   @Input() actualRoles: Role[] = [];
-  @Input() selectedAvailableRole: any;
-  @Input() selectedAssignedRole: any;
   @Input() isRoleModalVisible: boolean = false;
   @Output() onCloseRolesModal = new EventEmitter<void>();
+
+  selectedAssignedRol: any;
+  selectedAvalibleRol: any;
+
+  ngOnInit(): void {
+
+    
+  }
 
   closeModal() {
     this.onCloseRolesModal.emit();
@@ -29,20 +36,20 @@ export class ModalRolesComponent {
   }
 
   moveRoleLeft() {
-    if (this.selectedAssignedRole) {
-      // Mueve el rol seleccionado de roles asignados a roles disponibles
-      this.rolesToAdd.push(this.roles.filter(x => this.selectedAssignedRole == x.id)[0]);
+    if (this.selectedAssignedRol) {
+      //Mueve el rol seleccionado de roles asignados a roles disponibles
+      this.rolesToAdd.push(this.roles.filter(x => this.selectedAssignedRol == x.id)[0]);
       this.actualRoles = this.actualRoles.filter(
-        role => role.id !== this.selectedAssignedRole[0]);
+        role => role.id !== this.selectedAssignedRol[0]);
     }
   }
 
   moveRoleRight() {
-    if (this.selectedAvailableRole) {
+    if (this. selectedAvalibleRol) {
       // Mueve el rol seleccionado de roles disponibles a roles asignados
-      this.actualRoles.push(this.roles.filter(x => this.selectedAvailableRole == x.id)[0]);
+      this.actualRoles.push(this.roles.filter(x => this. selectedAvalibleRol == x.id)[0]);
       this.rolesToAdd = this.rolesToAdd.filter(
-        role => role.id !== this.selectedAvailableRole[0]);
+        role => role.id !== this. selectedAvalibleRol[0]);
     }
   }
 
