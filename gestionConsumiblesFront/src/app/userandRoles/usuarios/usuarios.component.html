@@ -1,24 +1,11 @@
 <!-- Contenedor del título -->
-<div class="container title mt-4 mb-4">
+<div class="container title mt-2 mb-2">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body text-center">
       <span class="h3">Usuarios</span>
     </div>
   </div>
 </div>
-
-<!-- Botón de Crear Usuarios -->
-<nav class="navbar navbar-light mt-3">
-  <div class="container-fluid">
-    <a class="navbar-brand">
-      <div class="row">
-        <div class="col-md-12">
-          <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser()">Crear Usuarios</button>
-        </div>
-      </div>
-    </a>
-  </div>
-</nav>
 
 <!-- Modal de Usuarios -->
 <app-modal-usuarios
@@ -34,33 +21,41 @@
 </app-modal-usuarios>
 
 <!-- Tabla de Usuarios -->
-<div class="container mt-4">
+<div class="container mt-2">
   <div class="card">
     <div class="card-body">
-      <table class="table table-bordered table-striped mt-3">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Area</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.lastName}}</td>
-            <td>{{user.area.name}}</td>
-            <td class="col-3">
-              <button class="btn btn-primary btn-sm" (click)="editUser(user.id)">Editar</button>
-              <button class="btn btn-danger btn-sm ms-2" (click)="deleteUser(user.id)">Eliminar</button>
-              <button class="btn btn-success btn-sm ms-2" (click)="updatePassword(user.id)">Password</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <nav class="navbar navbar-light">
+        <div class="container-fluid">
+          <a class="button">
+            <button type="button" class="btn btn-primary btn-sm ms-2 mb-3"
+          (click)="createUser()">Crear Usuarios</button>
+          </a>
+        </div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Area</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.area.name}}</td>
+              <td class="col-3">
+                <i class="fas fa-pen-to-square fa-lg text-success" (click)="editUser(user.id)"></i>
+                <i class="fas fa-trash-can fa-lg text-danger ms-3"  (click)="deleteUser(user.id)"></i>
+                <i class="fas fa-key fa-lg text-info ms-3" (click)="updatePassword(user.id)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </nav>
     </div>
   </div>
 </div>

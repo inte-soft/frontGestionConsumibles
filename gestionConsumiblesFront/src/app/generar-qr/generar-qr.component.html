@@ -1,8 +1,8 @@
 <!-- Título -->
 <div class="container mt-4">
   <div class="card">
-    <div class="card-body">
-      <span class="h3">Generar QR- SYNCWORKS</span>
+    <div class="card-body text-center">
+      <span class="h3">Generar QR</span>
     </div>
   </div>
 </div>
@@ -13,10 +13,11 @@
 <div class="container mt-4">
   <div class="card">
     <div class="card-body">
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light">
         <div class="container-fluid">
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle btn-sm"
+            type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               {{ limit }} Registros
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -27,7 +28,7 @@
             </ul>
           </div>
           <a class="button">
-            <button type="button" class="btn btn-secondary btn-sm ms-3" (click)="newCharge()"> 
+            <button type="button" class="btn btn-primary btn-sm ms-3" (click)="newCharge()">
               <i class="fas fa-upload"></i>
               Crear código
             </button>
@@ -54,7 +55,7 @@
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ folder.ot }}</td>
             <td>{{ folder.name }}</td>
-            <td>
+            <td class="col-3">
               <i class="fas fa-pen-to-square fa-lg text-success" (click)="editFolder(folder)" [attr.disabled]="loading ? true : null"></i>
               <i class="fas fa-download fa-lg text-info ms-3" (click)="viewQr(folder)" [attr.disabled]="loading ? true : null"></i>
               <i class="fas fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)" [attr.disabled]="loading ? true : null"></i>
@@ -66,7 +67,7 @@
   </div>
 </div>
 
-<app-modal-qrvarios 
+<app-modal-qrvarios
   [isOpen]="modalOpen"
   [files]="files"
   [fileu]="fileu"
