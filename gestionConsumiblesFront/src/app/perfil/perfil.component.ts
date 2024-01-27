@@ -129,6 +129,7 @@ export class PerfilComponent {
       {}
     ).then(response => {
       this.user = response.data;
+      this.userImage = window.sessionStorage.getItem('avatar');
     }
     ).catch((error: any) => {
       console.log(error);

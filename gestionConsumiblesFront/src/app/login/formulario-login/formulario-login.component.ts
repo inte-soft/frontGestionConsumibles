@@ -73,7 +73,7 @@ export class FormularioLoginComponent implements OnInit{
     const id = window.sessionStorage.getItem('id');
     this.axiosService.request(
       'GET',
-      'http://localhost:8080/users/myuser/'+id+'/photo',
+      'users/myuser/'+id+'/photo',
       {},
     ).then((response: any) => {
       const avatar = 'data:image/jpeg;base64,' + response.data.data.message;
