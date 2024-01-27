@@ -1,12 +1,6 @@
-
 <header class="encabezado-menu" *ngIf="!router.url.includes('/login')">
   <h1 class="navbar-brand text-white font-weight-bold d-flex justify-content-center" style="margin-top: 10px;">
-<<<<<<< HEAD
-    SYNCWORKS
-  </h1>
-=======
     Smart DING</h1>
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
 </header>
 
 <!-- este es el menu lateral-->
@@ -14,28 +8,13 @@
   <div class="d-flex">
     <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
       <div class="menu" style="margin-top: 20px; width: 180px; margin-left: 15px;">
-<<<<<<< HEAD
-        <a class="text-light d-block p-2" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false"
-          aria-controls="submenu">
-=======
         <a class="text-light d-block p-2" data-toggle="collapse" href="#submenu" role="button" aria-expanded="false"
           aria-controls="submenu" *ngIf="Admin">
           <!-- este es el administrador-->
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
           <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
-            border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Administrador
+        border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Administrador
         </a>
         <div class="collapse" id="submenu">
-<<<<<<< HEAD
-          <a routerLink="/usuarios" routerLinkActive="active-link" class="text-light d-block p-2 ml-3">
-            <i class="bi bi-people mr-2 lead"></i> Usuarios</a> <a routerLink="/roles" class="text-light d-block p-2 ml-3"><i class="bi bi-gear mr-2 lead"></i>
-            Roles</a> </div>
-      </div>
-
-      <div class="menu" style="margin-top: 2px; width: 180px; margin-left: 15px;" >
-        <a class="text-light d-block p-2" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false"
-          aria-controls="submenu1">
-=======
           <!-- este es el del usuario-->
           <a routerLink="/usuarios" routerLinkActive="active-link" class="text-light d-block p-2 ml-3" >
             <i class="icon ion-md-people mr-2 lead"></i> Usuarios</a>
@@ -49,58 +28,35 @@
         <a class="text-light d-block p-2" data-toggle="collapse" href="#submenu1" role="button" aria-expanded="false"
           aria-controls="submenu1" *ngIf="Comercial || Ing || Admin">
           <!-- este es el de los comerciales-->
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
           <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
-            border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Comercial
+        border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Comercial
         </a>
         <div class="collapse" id="submenu1">
-<<<<<<< HEAD
-          <a routerLink="/generar-qr" class="text-light d-block p-2 ml-3"><i class="bi bi-grid mr-2 lead"></i>
-            Generar QR</a>
-          <a href="https://developeralsir.github.io/Infotecn-Comercial/" target="_blank" class="text-light d-block p-2 ml-3"><i class="bi bi-list mr-2 lead"></i>
-            InfoTecn</a>
-=======
           <a routerLink="/generar-qr" class="text-light d-block p-2 ml-3">
             <i class="icon ion-md-grid mr-2 lead"></i>
             Generar QR</a>
             <a href="https://developeralsir.github.io/Infotecn-Comercial/"
             target="_blank" class="text-light d-block p-2 ml-3">
             <i class="icon ion-md-list mr-2 lead"></i>InfoTecn</a>
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
         </div>
       </div>
     </div>
 
     <div class="w-100 bg-white" >
       <div *ngIf="!router.url.includes('/login')">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main Navigation">
-          <div class="container-fluid"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main Navigation">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-<<<<<<< HEAD
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto"> <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <img [src]="userAvatar" alt="User Avatar" class="img-fluid rounded-circle avatar mr-1">
-                    {{fullName}}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Salir</a>
-                    <a class="dropdown-item" routerLink="/perfil">Perfil</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-=======
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <img src="assets/imagenes/usuario.png" alt="User Avatar" class="img-fluid rounded-circle avatar mr-1">
+                  <img [src]="userAvatar" alt="User Avatar" class="img-fluid rounded-circle avatar mr-1">
                   {{ fullName}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -108,14 +64,13 @@
                 </div>
               </li>
             </ul>
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
           </div>
-        </nav>
-      </div>
-
+        </div>
+      </nav>
+    </div>
       <div class="container">
         <router-outlet></router-outlet>
       </div>
     </div>
-  </div>
+  </div>
 </body>

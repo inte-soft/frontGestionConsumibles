@@ -49,18 +49,15 @@ export class FormularioLoginComponent implements OnInit{
       window.sessionStorage.setItem("name", response.data.name);
       window.sessionStorage.setItem("lastName", response.data.lastName);
       window.sessionStorage.setItem("id", response.data.id);
+      this.appComponent.getroles(response.data.rol);
+      window.sessionStorage.setItem("roles", JSON.stringify(response.data.roles));
       this.axiosService.setAuthToken(response.data.token);
-<<<<<<< HEAD
       this.getAvatar();
       // esperar un segundo para que se cargue la imagen
       setTimeout(() => {
         this.appComponent.userAvatarLogged(window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png');
       }, 1000);
       this.appComponent.avatarInfo();
-=======
-      this.appComponent.getroles(response.data.rol);
-      window.sessionStorage.setItem("ROLES", JSON.stringify(response.data.rol));
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
       this.router.navigate(['/menu']);
     }).catch((error: any) => {
       if (error.response.data.message == "Unknown user" || error.response.data.message == "Invalid password") {

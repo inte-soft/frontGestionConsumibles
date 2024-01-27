@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-<<<<<<< HEAD
-=======
 import { User } from './models/user.model';
 import { Role } from './models/role.model';
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
 
 @Component({
   selector: 'app-root',
@@ -15,19 +12,13 @@ import { Role } from './models/role.model';
 export class AppComponent implements OnInit {
   title = 'SYNCWORKS';
   isLoggedIn: boolean = false;
-<<<<<<< HEAD
-  fullName: string = '';
-  userAvatar = 'assets/imagenes/logoDemco.png';
-
-
-=======
   fullName: string = '';//este metodo es para verificar si el usuario tiene un rol
   Admin = false;
   Comercial = false;
   Ing = false;
   Proyect = false;
   roles: Role[] = [];
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
+  userAvatar: string = '';
 
   constructor(public router: Router) {}
 
@@ -37,12 +28,9 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = this.checkIfUserIsLoggedIn();
       }
     });
-<<<<<<< HEAD
-    this.avatarInfo();
-=======
 
     this.fullName = window.sessionStorage.getItem("FULLNAME") || '';
-    this.roles = JSON.parse(window.sessionStorage.getItem("ROLES") || '{}');
+    this.roles = JSON.parse(window.sessionStorage.getItem("roles") || '{}');
     this.getroles(this.roles);
   }
 
@@ -61,7 +49,6 @@ export class AppComponent implements OnInit {
         this.Proyect = true;
       }
     }
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
   }
 
   checkIfUserIsLoggedIn(): boolean {
@@ -73,15 +60,17 @@ export class AppComponent implements OnInit {
   }
 
   public infoUserLogged(name: string, lastName: string) {
-    this.fullName = name + ' ' + lastName;
-  }
+    this.fullName = name + ' ' + lastName;
+  }
 
   public userAvatarLogged(avatar: string) {
     this.userAvatar = avatar;
   }
 
   public avatarInfo() {
-    this.userAvatar = window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png';
-    this.fullName = window.sessionStorage.getItem('name') + ' ' + window.sessionStorage.getItem('lastName');
+    this.userAvatar = window.sessionStorage.getItem('avatar') || '';
+    this.fullName = window.sessionStorage.getItem('FULLNAME') || '';
   }
+
+ 
 }

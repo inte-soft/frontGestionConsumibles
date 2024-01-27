@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <div class="container mt-4 mb-3">
   <div class="card">
@@ -42,57 +41,6 @@
           </tr>
         </tbody>
       </table>
-=======
-<div class="containertitle mt-4 mb-4">
-  <div class="card">
-      <div class="card-body">
-          <span class="h3">Usuarios</span>
-      </div>
-  </div>
-</div>
-
-
-<div class="container mt-4 pre-scrollable">
-  <div class="card">
-    <div class="card-body">
-      <nav class="navbar navbar-light">
-          <div class="container-fluid">
-            <a class="navbar-brand">
-              <div class="row">
-                <div class="col-md-12">
-                  <button type="button" class="btn btn-primary mb-4" (click)="createUser(contenido1)">Crear Usuarios</button>
-                </div>
-              </div>
-            </a>
-          </div>
-      </nav>
-
-        <!--llamo al modal-->
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Area</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users">
-              <td>{{user.id}}</td>
-              <td>{{user.name}}</td>
-              <td>{{user.lastName}}</td>
-              <td>{{user.area.name}}</td>
-              <td>
-                <button class="btn btn-primary ms-3" (click)="editUser(user.id, contenido1)">Editar</button>
-                <button class="btn btn-danger ms-3" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
-                <button class="btn btn-success ms-3" (click)="updatePassword(user.id, contenido2, contenido3)">Password</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
     </div>
   </div>
 </div>
