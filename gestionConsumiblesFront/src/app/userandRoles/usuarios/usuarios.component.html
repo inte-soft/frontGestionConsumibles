@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-
-<div class="container mt-4 mb-3">
-  <div class="card">
-      <div class="card-body text-center">
-          <span class="h3">usuarios</span>
-      </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-primary p-2 mb-3" (click)="createUser()">Crear Usuarios</button>
-      <app-modal-usuarios
-  (onSaveUser)="saveNewUser($event.selectedUser, $event.confirmPassword)"
-  [isOpen]="isUsuarioModalVisible"
-  (onCloseUsuarios)="closeModalUsuarios()"
-  [areas]="areas"
-  [selectedUser]="selectedUser"
-  ></app-modal-usuarios>
-=======
 <div class="containertitle mt-4 mb-4">
   <div class="card">
       <div class="card-body">
@@ -52,7 +31,6 @@
       </app-modal-usuarios>
 
       <!--tabla de usuarios-->
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -71,13 +49,8 @@
             <td>{{user.area.name}}</td>
             <td class="col-3">
               <button class="btn btn-primary btn-sm" (click)="editUser(user.id)">Editar</button>
-<<<<<<< HEAD
-              <button class="btn btn-danger btn-sm ms-3" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
-              <button class="btn btn-warning btn-sm ms-3" (click)="updatePassword(user.id, contenido2)">Password</button>
-=======
               <button class="btn btn-danger btn-sm ms-2" (click)="deleteUser(user.id, contenido2)">Eliminar</button>
               <button class="btn btn-success btn-sm ms-2" (click)="updatePassword(user.id, contenido2)">Password</button>
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
             </td>
           </tr>
         </tbody>
@@ -87,11 +60,6 @@
 </div>
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
 <ng-template #contenido2 let-modal tabindex="-1" role="dialog">
 
   <div class="modal-dialog">
@@ -120,10 +88,6 @@
     </div>
   </div>
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
 <!--deseo crear un modal con bootrap con los siguienetes campos para insertarlos en la tabla usuarios
   (nombre, apellido, roel este en lista desplegable, acciones y estado) con un boton de enviar a al tabla-->
 <ng-template #contenido1 let-modal tabindex="-1" role="dialog">
@@ -200,7 +164,5 @@
     </div>
   </div>
 </ng-template>
->>>>>>> 81224b0a223508fc29e249ed8852bf65c0320c8c
-=======
 </ng-template>
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
+

@@ -1,11 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user.model';
 import { Role } from '../models/role.model';
-<<<<<<< HEAD
 import { Area } from '../models/area.model';
-=======
-import { Area } from '../models/ara.model';
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
 
 
 @Component({
@@ -15,11 +11,7 @@ import { Area } from '../models/ara.model';
 })
 export class ModalUsuariosComponent {
   @Input() isOpen = false;
-<<<<<<< HEAD
   @Input() selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''), '');
-=======
-  @Input() selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''));;
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
   @Input() rolesToAdd: Role[] = [];
   @Input() actualRoles: Role[]= [];
   @Input() confirmPassword: string = '';
@@ -41,8 +33,4 @@ export class ModalUsuariosComponent {
   }
 
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1

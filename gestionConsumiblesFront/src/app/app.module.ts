@@ -16,11 +16,8 @@ import { GenerarQRComponent } from './generar-qr/generar-qr.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ModalUsuariosComponent } from './modal-usuarios/modal-usuarios.component';
-<<<<<<< HEAD
 import { PerfilComponent } from './perfil/perfil.component';
-=======
 import { ModalRolesComponent } from './modal-roles/modal-roles.component';
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
 
 
 @NgModule({
@@ -34,11 +31,8 @@ import { ModalRolesComponent } from './modal-roles/modal-roles.component';
     UsuariosComponent,
     GenerarQRComponent,
     ModalUsuariosComponent,
-<<<<<<< HEAD
-    PerfilComponent
-=======
+    PerfilComponent,
     ModalRolesComponent,
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
   ],
   imports: [
     BrowserModule,

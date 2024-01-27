@@ -19,10 +19,6 @@ export class RolesComponent implements OnInit {
   selectedAvailableRole: any;
   selectedAssignedRole: any;
   isRoleModalVisible: boolean = false;
-<<<<<<< HEAD
-=======
-
->>>>>>> 355a03692ec1fb07f9379c8a63a3e92d667e3cd1
 
 
   constructor(private modal: NgbModal, private axiosService: AxiosService) { }

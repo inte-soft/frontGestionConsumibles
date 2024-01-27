@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user.model';
 import { Role } from '../models/role.model';
-import { Area } from '../models/ara.model';
+import { Area } from '../models/area.model';
 
 @Component({
   selector: 'app-modal-roles',
@@ -12,7 +12,7 @@ export class ModalRolesComponent {
   @Input() isOpen = false;
   @Input() users: User[] = [];
   @Input() roles: Role[] = [];
-  @Input() selectedUser: User = new User(0, '','', '', '', [], new Area(0, ''));
+  @Input() selectedUser: User = new User(0, '','', '', '', [], new Area(0, '') , '');
   @Input() rolesToAdd: Role[] = [];
   @Input() actualRoles: Role[] = [];
   @Input() selectedAvailableRole: any;
