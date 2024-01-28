@@ -20,10 +20,19 @@
   (updatePasswords)="modifyPass($event.selectedUser, $event.confirmPassword)">
 </app-modal-usuarios>
 
+<style type="text/css">
+  #global {
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ddd;
+    overflow-y: scroll;
+  }
+</style>
+
 <!-- Tabla de Usuarios -->
-<div class="container mt-2 ">
-  <div class="card pre-scrollable">
-    <div class="card-body" style="box-shadow: 0 0 20px rgb(36, 122, 49);">
+<div class="container mt-2">
+  <div class="card">
+    <div class="card-body" id="global" style="box-shadow: 0 0 20px rgb(36, 122, 49);">
       <nav class="navbar navbar-light">
         <div class="container-fluid">
           <a class="button">
