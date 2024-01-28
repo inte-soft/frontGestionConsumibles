@@ -33,9 +33,11 @@ export class GenerarQRComponent {
   modalOpen = false;
   modalOpenQRb = false;
   modalFolderEdit = false;
-
+  searchTerm = '';
   element = false;
   formularios: FormGroup[] = [];
+  filter: any;
+  
   ngOnInit() {
    this.listFolders();
   }
@@ -303,4 +305,9 @@ export class GenerarQRComponent {
     );
   }
 
+  //funcion para buscar los elementos de la tabla con el boton buscar
+  search(){
+  
+  }
+  
 }

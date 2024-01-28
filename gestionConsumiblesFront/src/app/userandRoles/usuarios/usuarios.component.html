@@ -1,7 +1,7 @@
 <!-- Contenedor del título -->
-<div class="container title mt-2 mb-2">
+<div class="container title mt-2 mb-2 ">
   <div class="card">
-    <div class="card-body text-center">
+    <div class="card-body text-center" style="box-shadow: 0 0 10px rgb(36, 122, 49);">
       <span class="h3">Usuarios</span>
     </div>
   </div>
@@ -21,13 +21,13 @@
 </app-modal-usuarios>
 
 <!-- Tabla de Usuarios -->
-<div class="container mt-2">
-  <div class="card">
-    <div class="card-body">
+<div class="container mt-2 ">
+  <div class="card pre-scrollable">
+    <div class="card-body" style="box-shadow: 0 0 20px rgb(36, 122, 49);">
       <nav class="navbar navbar-light">
         <div class="container-fluid">
           <a class="button">
-            <button type="button" class="btn btn-primary btn-sm ms-2 mb-3"
+            <button type="button" class="btn btn-primary btn-md mb-3"
           (click)="createUser()">Crear Usuarios</button>
           </a>
         </div>

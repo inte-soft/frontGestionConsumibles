@@ -8,7 +8,7 @@
 <!-- Menú lateral -->
 <body>
   <div class="d-flex">
-    <div id="sidebar-container" class="bg-primary" *ngIf="!router.url.includes('/login')">
+    <div id="sidebar-container scr" class="bg-primary" *ngIf="!router.url.includes('/login')">
       <div class="menu" style="margin-top: 20px; width: 180px; margin-left: 15px;">
         <a class="text-light d-block p-2" (click)="adminMenuOpen = !adminMenuOpen" *ngIf="Admin">
           <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div class="menu" style="margin-top: 2px; width: 180px; margin-left: 15px;">
+      <div class="menu" style="margin-top: 2px; width: 180px; height: 480px; margin-left: 15px;">
         <a class="text-light d-block p-2" (click)="comercialMenuOpen = !comercialMenuOpen" *ngIf="Comercial || Ing || Admin">
           <span style="display: inline-block; transform: rotate(-45deg); border: solid white;
             border-width: 0 2px 2px 0; padding: 3px; margin-right: 8px;"></span>Comercial
@@ -44,31 +44,29 @@
     <div class="w-100 bg-white">
       <div *ngIf="!router.url.includes('/login')">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+          <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img [src]="userAvatar" alt="User Avatar" class="img-fluid rounded-circle avatar me-2">
                     {{ fullName}}
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/perfil">Perfil</a>
-                    <a class="dropdown-item" href="#">Salir</a>
-                  </div>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+                    <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
+                    <li><a class="dropdown-item" href="#">Salir</a></li>
+                  </ul>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
-      <div class="container" >
+      <div>
         <router-outlet></router-outlet>
       </div>
     </div>

@@ -4,7 +4,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Crear Usuario</h3>
+        <h3 class="modal-title" id="exampleModalLabel">Editar Usuario</h3>
       </div>
 
       <div class="modal-body">
@@ -55,13 +55,13 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="saveNewUser(selectedUser, confirmPassword)"
+        <button type="button" class="btn btn-success" (click)="saveNewUser(selectedUser, confirmPassword)"
           *ngIf="newUser && !updatePass">Crear</button>
-        <button type="button" class="btn btn-primary" (click)="updateUser(selectedUser)"
+        <button type="button" class="btn btn-success" (click)="updateUser(selectedUser)"
           *ngIf="!newUser  && !updatePass ">Guardar</button>
-        <button type="button" class="btn btn-primary" (click)="updatePassword(selectedUser, confirmPassword)"
+        <button type="button" class="btn btn-success" (click)="updatePassword(selectedUser, confirmPassword)"
           *ngIf=" updatePass ">Actualizar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+        <button type="button" class="btn btn-dark" data-dismiss="modal"
           (click)="onCloseRolesModal()">Cerrar</button>
       </div>
     </div>

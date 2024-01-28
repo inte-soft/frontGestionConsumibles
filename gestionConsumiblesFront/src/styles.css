@@ -78,3 +78,7 @@ label{
 .avatar{
   max-width: 35px;
 }
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}

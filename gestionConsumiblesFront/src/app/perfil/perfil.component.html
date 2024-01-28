@@ -1,7 +1,7 @@
 <!--pagina donde se vera el la informacion del empleado, la imagen y permitira cambiar el password y la imagen del usuario-->
-<div class="flex-container" style="display: flex;">
-    <div class="col-md-4">
-        <div class="card">
+<div class="flex-container ml-5" style="display: flex;">
+    <div class="col-md-4 ms-5">
+        <div class="card" style="box-shadow: 0 0 20px rgb(86, 156, 243);">
             <div class="card-header card-header-primary">
                 <h4 class="card-title">Mi Perfil</h4>
                 <p class="card-category">Informacion del empleado</p>
@@ -33,28 +33,31 @@
                         <h4 class="text-center" *ngFor="let rol of user?.rol">{{rol.name}}</h4>
                     </div>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-primary" (click)="openChangePassword()">Change
-                        Password</button>
+                <div class="card-body">
+                    <div class="card ma-5">
+                        <button type="button" class="btn btn-primary" (click)="openChangePassword()">Change Password</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4" *ngIf="changePassWord">
-        <div class="card">
-            <div class="card-header card header-primary">
-                <h4 class="card-title">Cambiar Password</h4>
+    <div class="col-md-4 ms-3" *ngIf="changePassWord">
+        <div class="card" style="box-shadow: 0 0 20px rgb(96, 238, 110);">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title mb-3">Cambiar Password</h4>
                 <p class="card-category">Ingrese su nuevo password</p>
-
-                <label for="password">New Password</label>
-                <input type="password" class="form-control" [(ngModel)]="newPassword" name="newPassword" required>
-                <label for="password">Confirm Password</label>
-                <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword"
-                    required>
             </div>
             <div class="card-body">
-                <button type="button" class="btn btn-primary" (click)="changePassword(newPassword,confirmPassword)">Change
-                    Password</button>
+                <label for="password">New Password</label>
+                <input type="password" class="form-control mb-4" [(ngModel)]="newPassword" name="newPassword" required>
+                <label for="password">Confirm Password</label>
+                <input type="password" class="form-control mb-3" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <button type="button" class="btn btn-primary" (click)="changePassword(newPassword,confirmPassword)">Change
+                        Password</button>
+                </div>
             </div>
         </div>
     </div>
@@ -69,6 +72,5 @@
             <div>
                 <button type="button" class="btn btn-primary" (click)="changeImageAvatar()">Change Image</button>
             </div>
-
     </div>
 </div>
