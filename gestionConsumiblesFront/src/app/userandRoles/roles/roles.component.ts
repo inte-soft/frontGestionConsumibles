@@ -47,7 +47,7 @@ export class RolesComponent implements OnInit {
     // codigo para consumir el servicio de actualizar roles
     this.axiosService.request(
       "put",
-      "/users/" + this.selectedUser.id + "/roles",
+      "/users/admin/" + this.selectedUser.id + "/roles",
       this.selectedUser,
       null
     ).then(response => {
@@ -63,7 +63,7 @@ export class RolesComponent implements OnInit {
   getRoles(){
     this.axiosService.request(
       "GET",
-      "/users/roles",
+      "/users/admin/roles",
       null,
       null
     ).then(response => {
@@ -77,7 +77,7 @@ export class RolesComponent implements OnInit {
   getUsers(){
     this.axiosService.request(
       "GET",
-      "/users/list",
+      "/users/admin/list",
       null,
       null
     ).then(response => {

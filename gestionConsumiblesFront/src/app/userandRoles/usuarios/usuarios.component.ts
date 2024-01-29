@@ -69,7 +69,7 @@ export class UsuariosComponent implements OnInit {
   getUsers() {
     this.axiosService.request(
       'GET',
-      '/users/list',
+      '/users/admin/list',
       null,
       null
     ).then((response: any) => {
@@ -82,7 +82,7 @@ export class UsuariosComponent implements OnInit {
   getAreas() {
     this.axiosService.request(
       'GET',
-      '/users/arealist',
+      '/users/admin/arealist',
       null,
       null
     ).then((response: any) => {
@@ -96,7 +96,7 @@ export class UsuariosComponent implements OnInit {
     if (this.validarUsuario()) {
       this.axiosService.request(
         'PUT',
-        '/users/' + selectedUser.id + '/update',
+        '/users/admin/' + selectedUser.id + '/update',
         selectedUser,
         null
       ).then((response: any) => {
@@ -114,7 +114,7 @@ export class UsuariosComponent implements OnInit {
     if (this.validarUsuario() && confirmPassword === selectedUser.password) {
       this.axiosService.request(
         'POST',
-        '/users/register',
+        '/users/admin/register',
         selectedUser,
         null
       ).then((response: any) => {
@@ -137,7 +137,7 @@ export class UsuariosComponent implements OnInit {
       this.idOperation = id;
       this.axiosService.request(
         'DELETE',
-        '/users/' + this.idOperation + '/delete',
+        '/users/admin/' + this.idOperation + '/delete',
         null,
         null
       ).then((response: any) => {
