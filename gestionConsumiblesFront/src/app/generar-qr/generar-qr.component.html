@@ -82,7 +82,9 @@
 <app-modal-qrimage
   [isOpenQr]="modalOpenQRb"
   [image]="image"
-  (onCloseModalQR)="closeModalQR()">
+  (onCloseModalQR)="closeModalQR()"
+  (onSaveQr)="saveQr()"
+  >
 </app-modal-qrimage>
 
 <app-modal-folderedit

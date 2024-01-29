@@ -12,9 +12,11 @@ export class ModalQrimageComponent {
   @Input() isOpenQr = false;
   @Input() image: any = null;
   @Output() onCloseModalQR = new EventEmitter<void>();
+  @Output() onSaveQr = new EventEmitter<void>();
 
 
   saveQr() {
+    this.onSaveQr.emit();
   }
 
   closeModal() {

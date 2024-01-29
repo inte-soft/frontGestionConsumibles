@@ -150,7 +150,7 @@ export class GenerarQRComponent {
     this.modalOpen = false;
   }
 
-  saveQr(contenido: any) {
+  saveQr() {
     const base64String = this.image;
     const byteCharacters = atob(base64String.replace(/^data:image\/(png|jpeg);base64,/, ''));
     const byteNumbers = new Array(byteCharacters.length);
@@ -247,6 +247,7 @@ export class GenerarQRComponent {
     ).then((response: any) => {
       this.loading = false;
       this.image = response.data;
+      this.openModalQR();
     }).catch((error: any) => {
       console.log(error);
       this.loading = false;
