@@ -55,12 +55,20 @@ export class ModalQrvariosComponent {
   }
 
   captureFile(event: any, index: number) {
-    this.files[index] = event.target.files[0];
-    this.names[index] = this.formularios[index].value.nombreArchivo;
-    this.formularios[index].patchValue({
-      archivo: this.files[index]
-    });
-    return (this.element = true);
+    if (this.formularios[index].value.nombreArchivo == '') {
+      alert('Debe ingresar un nombre para el archivo');
+    } else {
+      this.files[index] = event.target.files[0];
+      this.names[index] = this.formularios[index].value.nombreArchivo;
+      this.formularios[index].patchValue({
+        archivo: this.files[index]
+      });
+
+      return (this.element = true);
+    }
+    
+    // Agregar declaración de retorno al final de la función
+    return null;
   }
   
   gererarQR() {

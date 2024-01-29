@@ -47,10 +47,10 @@ export class AppComponent implements OnInit {
         this.Comercial = true;
       }
       if (rol.id == 3) {
-        this.Ing = true;
+        this.Proyect = true;
       }
       if (rol.id == 4) {
-        this.Proyect = true;
+        this.Ing = true;
       }
     }
     this.fullName = window.sessionStorage.getItem("name") || '' + ' ' + window.sessionStorage.getItem("lastName") || '';
