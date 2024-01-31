@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   getroles(roles: Role []) {
 
-    for (let rol of roles) {
+    for (let rol of Array.from(roles)){
       if (rol.id == 1) {
         this.Admin = true;
       }
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       }
     }
     this.fullName = window.sessionStorage.getItem("name") || '' + ' ' + window.sessionStorage.getItem("lastName") || '';
-  }
+  } 
 
   checkIfUserIsLoggedIn(): boolean {
     if (localStorage.getItem('token') == null) {
