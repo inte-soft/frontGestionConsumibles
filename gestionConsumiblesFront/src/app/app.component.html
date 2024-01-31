@@ -7,7 +7,7 @@
 
 <!-- Menú lateral -->
 <body>
-  <div class="d-flex">
+  <div class="d-flex" style="overflow: auto; max-height: 100vh;">
     <div id="sidebar-container scr" class="bg-primary" *ngIf="!router.url.includes('/login')">
       <div class="menu" style="margin-top: 20px; width: auto; margin-left: 15px;">
         <a class="text-light d-block p-2" (click)="adminMenuOpen = !adminMenuOpen" *ngIf="Admin">
@@ -66,7 +66,7 @@
           </div>
         </nav>
       </div>
-      <div>
+      <div class="navbar-collapse">
         <router-outlet></router-outlet>
       </div>
     </div>

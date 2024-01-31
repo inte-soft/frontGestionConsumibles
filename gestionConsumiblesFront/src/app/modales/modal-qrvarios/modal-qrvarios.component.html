@@ -5,8 +5,8 @@
                 <button class="btn btn-success btn-sm" (click)="agregarDatos()">
                     <i class="fa-solid fa-circle-plus"></i>
                     Agregar archivo
-                </button>
-                <button class="btn btn-danger btn-sm ms-2" (click)="borrarDatos(0)">
+                </button> 
+                <button class="btn btn-danger btn-sm ms-2" (click)="borrarDatos()">
                     <i class="fa-solid fa-circle-minus"></i>
                     Quitar archivo
                 </button>
@@ -26,7 +26,7 @@
                 <br />
 
                 <div *ngIf="element == true">
-                    <div *ngFor="let formulario of formularios; let i = index">
+                    <div *ngFor="let formulario of formularios; let i = index ">
                         <!--Formulario de carga de archivos-->
                         <form>
                             <div class="row">
