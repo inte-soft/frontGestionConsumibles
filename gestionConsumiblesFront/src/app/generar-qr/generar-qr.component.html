@@ -44,7 +44,7 @@
             </button>
           </a>
           <form class="d-flex form-group">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Buscar" [(ngModel)]="searchText" aria-label="Search" name="search">
             <button class="btn btn-outline-secondary" type="submit" (click)="search()">Buscar</button>
           </form>
         </div>
@@ -84,9 +84,11 @@
   [ot]="ot"
   [nombre]="nombre"
   [loading]="loading"
+  [image]="image"
   (onCloseModal)="closeModalQRVarios()"
-  (onSaveQr)="generarQR($event.files,$event.ot, $event.descripcion, $event.names)"
-  (onAddFile)="agregarDatos()">
+  (onSaveQr)="generarQR($event.image)"
+  (onAddFile)="agregarDatos()"
+  >
 </app-modal-qrvarios>
 
 <app-modal-qrimage
