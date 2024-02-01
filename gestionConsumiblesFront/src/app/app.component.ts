@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   adminMenuOpen = false;
   comercialMenuOpen = false;
 
+
   constructor(public router: Router) {}
 
   ngOnInit() {
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit {
       }
     }
     this.fullName = window.sessionStorage.getItem("name") || '' + ' ' + window.sessionStorage.getItem("lastName") || '';
-  } 
+  }
 
   checkIfUserIsLoggedIn(): boolean {
     if (localStorage.getItem('token') == null) {

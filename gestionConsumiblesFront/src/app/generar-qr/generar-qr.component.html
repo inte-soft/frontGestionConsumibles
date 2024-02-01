@@ -67,8 +67,8 @@
             <td>{{ folder.name }}</td>
             <td class="col-3">
               <i class="fas fa-pen-to-square fa-lg text-success" (click)="editFolder(folder)" [attr.disabled]="loading ? true : null"></i>
-              <i class="fas fa-download fa-lg text-info ms-3" (click)="viewQr(folder)" [attr.disabled]="loading ? true : null"></i>
-              <i class="fas fa-trash-can fa-lg text-danger ms-3" (click)="deleteFolder(folder)" [attr.disabled]="loading ? true : null"></i>
+              <i class="fas fa-download fa-lg text-info ms-3"  (click)="viewQr(folder)" [attr.disabled]="loading ? true : null"></i>
+              <i class="fas fa-trash-can fa-lg text-danger ms-3" *ngIf="rol !== 'Ing'"  (click)="deleteFolder(folder)" [attr.disabled]="loading ? true : null"></i>
             </td>
           </tr>
         </tbody>

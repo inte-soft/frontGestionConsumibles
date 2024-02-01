@@ -35,15 +35,15 @@ export class GenerarQRComponent {
   element = false;
   formularios: FormGroup[] = [];
   filter: any;
-  
+
+  rol: string = 'Ing';
+
   constructor(private fb: FormBuilder, axios: AxiosService) { }
 
   ngOnInit() {
-    
+
    this.search();
   }
-
-  
 
   listFolders() {
     this.axiosService.request(
@@ -96,7 +96,7 @@ export class GenerarQRComponent {
   }
 
 
-  cleanInformation() {  
+  cleanInformation() {
     this.newOt = new NewOt('', '', [], []);
     this.files = [];
     this.formularios = [];
@@ -135,7 +135,7 @@ export class GenerarQRComponent {
 
   openModalFolderEdit() {
     this.modalFolderEdit = true;
-    
+
   }
 
   closeModalFolderEdit() {
@@ -218,7 +218,7 @@ export class GenerarQRComponent {
     }
     );
   }
-  
+
   deleteFolder(folder: any) {
     this.loading = true;
     this.axiosService.request(
@@ -290,5 +290,5 @@ export class GenerarQRComponent {
       this.listFolders();
     }
   }
-  
+
 }
