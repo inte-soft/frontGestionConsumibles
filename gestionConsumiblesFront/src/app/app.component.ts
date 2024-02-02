@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   adminMenuOpen = false;
   comercialMenuOpen = false;
 
+
   constructor(public router: Router) {}
 
   ngOnInit() {
@@ -30,12 +31,10 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = this.checkIfUserIsLoggedIn();
       }
     });
-
-
     this.roles = JSON.parse(window.sessionStorage.getItem("roles") || '{}');
     this.getroles(this.roles);
     this.avatarInfo();
-  }
+  } 
 
   getroles(roles: Role []) {
 
@@ -54,7 +53,7 @@ export class AppComponent implements OnInit {
       }
     }
     this.fullName = window.sessionStorage.getItem("name") || '' + ' ' + window.sessionStorage.getItem("lastName") || '';
-  } 
+  }
 
   checkIfUserIsLoggedIn(): boolean {
     if (localStorage.getItem('token') == null) {
@@ -77,6 +76,16 @@ export class AppComponent implements OnInit {
     this.fullName = window.sessionStorage.getItem("name") + ' ' + window.sessionStorage.getItem("lastName") || '';
   }
 
+  cerrarSesion(){
+    //Limpiar lo relacionado a la sesion del localstorage
+    localStorage.removeItem('token');
+    sessionStorage.clear();
 
+    // Navegar a la ruta deseada
+    this.router.navigate(['/login']).then(() => {
+      // Recargar la página después de la navegación
+      location.reload();
+    });
+  }
 
 }

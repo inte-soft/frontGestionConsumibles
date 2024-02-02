@@ -1,4 +1,5 @@
 export class Area {
+    [x: string]: any;
     id: number;
     name: string;
     constructor(id: number, name: string) {

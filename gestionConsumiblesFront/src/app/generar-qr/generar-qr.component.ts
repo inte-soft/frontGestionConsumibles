@@ -1,4 +1,4 @@
-import { Component, Output} from '@angular/core';
+import { Component,} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Folder } from '../models/folder.model';
 import { AxiosService } from '../axios.service';
@@ -6,15 +6,13 @@ import { NewOt } from '../models/newot.model';
 import { UploadFile } from '../models/uploadfile.model';
 import { Archive } from '../models/archive.model';
 
-
 @Component({
   selector: 'app-generar-qr',
   templateUrl: './generar-qr.component.html',
   styleUrls: ['./generar-qr.component.css']
 })
 export class GenerarQRComponent {
-
-  constructor(private fb: FormBuilder, axios: AxiosService) { }
+  searchText: string = '';
   folders: Folder[] = [];
   selectedFolder: Folder = new Folder('', 0, '');
   axiosService: AxiosService = new AxiosService();
@@ -37,9 +35,14 @@ export class GenerarQRComponent {
   element = false;
   formularios: FormGroup[] = [];
   filter: any;
-  
+
+  rol: string = 'Ing';
+
+  constructor(private fb: FormBuilder, axios: AxiosService) { }
+
   ngOnInit() {
-   this.listFolders();
+
+   this.search();
   }
 
   listFolders() {
@@ -84,55 +87,16 @@ export class GenerarQRComponent {
     this.modalOpenQRb = false;
   }
 
-  generarQR(files: File[], ot: string, descripcion: string, names: string[]) {
-    
-    if (ot === '' || descripcion === '' || files.length === 0) {
-      alert('Por favor, complete todos los campos');
-      return;
-    }
-    this.newOt.ot = ot;
-    this.newOt.name = descripcion;
-    this.newOt.names = names;
-    this.newOt.files = files;
-    this.loading = true;
-    const formData = new FormData();
-    formData.append('ot', this.newOt.ot);
-    formData.append('name', this.newOt.name);
-    formData.append('names', this.newOt.names.toString());
-    this.newOt.files.forEach((file) => {
-      formData.append('files', file);
-    });
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    };
-    this.axiosService.request(
-      'POST',
-      '/drive/upload-ot',
-      formData,
-      config
-    ).then((response: any) => {
-      this.cleanInformation();
-
-      this.loading = false;
-      this.listFolders();
-      // Suponiendo que `response.data` contiene los datos base64 de la imagen
-      const imageData = response.data;
-
-      // Asigna directamente los datos base64 al atributo `src` de la imagen
-      this.image = imageData;
-      this.closeModalQRVarios();
-      this.openModalQR();
-    }).catch((error: any) => {
-      this.loading = false;
-      console.error(error);
-      // Lógica para manejar errores
-    });
-    
+  generarQR(image: any) {
+    this.image = image;
+    this.closeModalQRVarios();
+    this.openModalQR();
+    this.cleanInformation();
+    this.listFolders();
   }
 
-  cleanInformation() {  
+
+  cleanInformation() {
     this.newOt = new NewOt('', '', [], []);
     this.files = [];
     this.formularios = [];
@@ -171,7 +135,7 @@ export class GenerarQRComponent {
 
   openModalFolderEdit() {
     this.modalFolderEdit = true;
-    
+
   }
 
   closeModalFolderEdit() {
@@ -254,7 +218,7 @@ export class GenerarQRComponent {
     }
     );
   }
-  
+
   deleteFolder(folder: any) {
     this.loading = true;
     this.axiosService.request(
@@ -280,7 +244,6 @@ export class GenerarQRComponent {
       null,
       null,
     ).then((response: any) => {
-      console.log(response);
       window.open(response.data, '_blank');
     }).catch((error: any) => {
       console.log(error);
@@ -308,7 +271,24 @@ export class GenerarQRComponent {
 
   //funcion para buscar los elementos de la tabla con el boton buscar
   search(){
-  
+    if(this.searchText != ''){
+      this.axiosService.request(
+        'GET',
+        'drive/folder/search/' + this.searchText,
+        null,
+        null,
+      ).then((response: any) => {
+        this.folders = response.data;
+        if(this.folders.length == 0){
+          alert('No se encontraron resultados');
+        }
+      }).catch((error: any) => {
+        console.log(error);
+      });
+
+    }else{
+      this.listFolders();
+    }
   }
-  
+
 }

@@ -56,7 +56,7 @@ export class UsuariosComponent implements OnInit {
 
   validarUsuario(): boolean {
     const { name, lastName, area } = this.selectedUser;
-    if (!name || name.trim() === '' || !lastName || lastName.trim() === '' || !area) {
+    if (!name || name.trim() === '' || !lastName || lastName.trim() === '') {
       alert('Por favor, complete todos los campos');
       return false;
     }
