@@ -22,7 +22,7 @@
                           [(ngModel)]="nombre">
                   </div>
               </div>
-              <!--Campos fijos del modal generar QR-->
+              <!--Campos fijos del modal generar QR
               <div class="row">
                 <div class="col-sm-4 mb-2">
                   <label style="color: black;" for="planosElectricos">Planos Eléctricos</label>
@@ -57,9 +57,9 @@
                 <div class="col mb-2">
                   <input type="file" class="form-control" id="certificadosProducto" (change)="captureFile($event, 3)">
                 </div>
-              </div>
+              </div>-->
 
-              <!--<div *ngIf="element == true">
+              <div *ngIf="element == true">
                   <div *ngFor="let formulario of formularios; let i = index ">
                       Formulario de carga de archivos
                       <form>
@@ -68,7 +68,7 @@
                                   <div class="input-group" id="form">
                                       <input type="text" aria-label="Nombre archivo" class="form-control"
                                           placeholder="Nombre archivo" [(ngModel)]="formulario.value.nombreArchivo"
-                                          [name]="'nombreArchivo' + i">
+                                          [name]="'nombreArchivo' + i" enable="false">
                                   </div>
                               </div>
                               <div class="col">
@@ -80,7 +80,7 @@
                           <br>
                       </form>
                   </div>
-              </div>-->
+              </div>
 
               <div class="modal-footer">
                   <div class="d-grid gap-2 col-4 mx-auto">

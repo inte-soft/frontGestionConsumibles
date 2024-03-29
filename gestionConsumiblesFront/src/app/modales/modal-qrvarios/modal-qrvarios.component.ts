@@ -41,10 +41,14 @@ export class ModalQrvariosComponent {
     this.axiosService = axiosService;
 
   }
-  agregarDatos() {
+
+  ngOnInit() {
+    this.agregarDatos('PLANOS ELECTRICOS');
+  }
+  agregarDatos(nombre: string) {
 
     const nuevoFormulario = this.fb.group({
-      nombreArchivo: [''], // Agrega un campo para el nombre del archivo en el formulario
+      nombreArchivo: [nombre], // Agrega un campo para el nombre del archivo en el formulario
       archivo: [''] // Agrega un campo para el archivo en el formulario
     });
 
@@ -65,7 +69,7 @@ export class ModalQrvariosComponent {
   }
 
   captureFile(event: any, index: any) {
-    if (this.formularios[index]?.value.nombreArchivo == '') {
+    if (this.formularios[index]?.value.archivo == '') {
       alert('Debe ingresar un nombre para el archivo');
       // Verifica si formularios[index] está definido antes de intentar acceder a la propiedad value
       if (this.formularios[index]) {
@@ -75,6 +79,12 @@ export class ModalQrvariosComponent {
       this.files[index] = event.target.files[0];
     }
   }
+
+  /*captureFile(event: any, index: any) {
+    console.log('Archivo capturado:', event.target.files[0]);
+    this.files[index] = event.target.files[0];
+    console.log('this.files:', this.files);
+  }*/
 
   gererarQR() {
     if (this.ot == '') {
@@ -100,7 +110,6 @@ export class ModalQrvariosComponent {
 
     this.newOt.ot = this.ot;
     this.newOt.name = this.nombre;
-    this.newOt.names = this.names;
     this.newOt.files = this.files;
     this.loading = true;
 
