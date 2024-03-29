@@ -85,13 +85,13 @@ export class ModalQrvariosComponent {
       return;
     }
 
-    for (let i = 0; i < this.formularios.length; i++) {
+    /*for (let i = 0; i < this.formularios.length; i++) {
       if (this.formularios[i].value.nombreArchivo == '') {
         alert('Debe ingresar un nombre para el archivo');
         return;
       }
       this.names[i] = this.formularios[i].value.nombreArchivo;
-    }
+    }*/
 
     if (this.ot === '' || this.nombre === '') {
       alert('Por favor, complete todos los campos');
