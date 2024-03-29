@@ -1,21 +1,22 @@
 <div class="modal" class="modal modal-backdrop" [style.display]="isOpenQr ? 'block' : 'none'">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="d-grid gap-2 h4">Codigo QR de la OT</div><!--Texto del modalQR-->
-                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="{{image}}"alt="">
-            </div>
-            <div class="modal-footer">
-                <div class="d-grid gap-2 col-4 mx-auto">
-                    <button type="button" class="btn btn-success" (click)="saveQr()">
-                        <i class="fa-solid fa-download"></i>
-                        Descargar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <div class="d-grid gap-2 h4">“¡Sé verde con Smart DING! Adopta la tecnología QR para tus proyectos y <br>
+                haz una diferencia en la protección de nuestro medio ambiente”</div><!--Texto del modalQR-->
+              <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <img src="{{image}}"alt="">
+          </div>
+          <div class="modal-footer">
+              <div class="d-grid gap-2 col-4 mx-auto">
+                  <button type="button" class="btn btn-success" (click)="saveQr()">
+                      <i class="fa-solid fa-download"></i>
+                      Descargar
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

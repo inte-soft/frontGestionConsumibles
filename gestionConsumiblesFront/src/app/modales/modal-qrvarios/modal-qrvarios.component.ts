@@ -65,14 +65,15 @@ export class ModalQrvariosComponent {
   }
 
   captureFile(event: any, index: any) {
-    if (this.formularios[index].value.nombreArchivo == '') {
+    if (this.formularios[index]?.value.nombreArchivo == '') {
       alert('Debe ingresar un nombre para el archivo');
-      this.formularios[index].value.archivo = '';
+      // Verifica si formularios[index] está definido antes de intentar acceder a la propiedad value
+      if (this.formularios[index]) {
+        this.formularios[index].value.archivo = '';
+      }
     } else {
       this.files[index] = event.target.files[0];
-
     }
-
   }
 
   gererarQR() {
@@ -80,26 +81,29 @@ export class ModalQrvariosComponent {
       alert('Debe ingresar una OT');
       return;
     } else if (this.nombre == '') {
-      alert('Debe ingresar una descripcion');
+      alert('Debe ingresar una descripción');
       return;
     }
-    this.formularios.forEach((form, index) => {
-      if (form.value.nombreArchivo == '') {
+
+    for (let i = 0; i < this.formularios.length; i++) {
+      if (this.formularios[i].value.nombreArchivo == '') {
         alert('Debe ingresar un nombre para el archivo');
         return;
       }
-      this.names[index] = form.value.nombreArchivo;
+      this.names[i] = this.formularios[i].value.nombreArchivo;
     }
-    );
-    if (this.ot === '' || this.nombre === '' || this.files.length === 0) {
+
+    if (this.ot === '' || this.nombre === '') {
       alert('Por favor, complete todos los campos');
       return;
     }
+
     this.newOt.ot = this.ot;
     this.newOt.name = this.nombre;
     this.newOt.names = this.names;
     this.newOt.files = this.files;
     this.loading = true;
+
     const formData = new FormData();
     formData.append('ot', this.newOt.ot);
     formData.append('name', this.newOt.name);
@@ -107,18 +111,19 @@ export class ModalQrvariosComponent {
     this.newOt.files.forEach((file) => {
       formData.append('files', file);
     });
+
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     };
+
     this.axiosService.request(
       'POST',
       '/drive/upload-ot',
       formData,
       config
     ).then((response: any) => {
-
       this.loading = false;
       // Suponiendo que `response.data` contiene los datos base64 de la imagen
       const imageData = response.data;
@@ -130,14 +135,12 @@ export class ModalQrvariosComponent {
       this.nombre = '';
       this.onSaveQr.emit({ image: this.image });
       this.closeModal();
-    // Asigna directamente los datos base64 al atributo `src` de la imagen
-    
-  }).catch((error: any) => {
-    this.loading = false;
-    console.error(error);
-  });
-    
-
+      // Asigna directamente los datos base64 al atributo `src` de la imagen
+    }).catch((error: any) => {
+      this.loading = false;
+      console.error(error);
+    });
   }
+
 
 }
