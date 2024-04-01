@@ -5,11 +5,11 @@
               <!--<button class="btn btn-success btn-sm" (click)="agregarDatos()">
                   <i class="fa-solid fa-circle-plus"></i>
                   Agregar archivo
-              </button>-->
+              </button>
               <button class="btn btn-danger btn-sm ms-2" (click)="borrarDatos()">
                   <i class="fa-solid fa-circle-minus"></i>
                   Quitar archivo
-              </button>
+              </button>-->
               <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="element">
@@ -61,14 +61,14 @@
 
               <div *ngIf="element == true">
                   <div *ngFor="let formulario of formularios; let i = index ">
-                      Formulario de carga de archivos
+                      <!--Formulario de carga de archivos-->
                       <form>
                           <div class="row">
                               <div class="col">
                                   <div class="input-group" id="form">
                                       <input type="text" aria-label="Nombre archivo" class="form-control"
                                           placeholder="Nombre archivo" [(ngModel)]="formulario.value.nombreArchivo"
-                                          [name]="'nombreArchivo' + i" enable="false">
+                                          [name]="'nombreArchivo' + i" readonly disabled>
                                   </div>
                               </div>
                               <div class="col">

@@ -44,11 +44,15 @@ export class ModalQrvariosComponent {
 
   ngOnInit() {
     this.agregarDatos('PLANOS ELECTRICOS');
+    this.agregarDatos('PLANOS MECANICOS');
+    this.agregarDatos('PROTOCOLOS DE PRUEBAS');
+    this.agregarDatos('CERTIFICADOS');
   }
-  agregarDatos(nombre: string) {
+
+  agregarDatos(Nombre: string) {
 
     const nuevoFormulario = this.fb.group({
-      nombreArchivo: [nombre], // Agrega un campo para el nombre del archivo en el formulario
+      nombreArchivo: [Nombre], // Agrega un campo para el nombre del archivo en el formulario
       archivo: [''] // Agrega un campo para el archivo en el formulario
     });
 
@@ -69,50 +73,52 @@ export class ModalQrvariosComponent {
   }
 
   captureFile(event: any, index: any) {
-    if (this.formularios[index]?.value.archivo == '') {
+    if (this.formularios[index].value.nombreArchivo == '') {
       alert('Debe ingresar un nombre para el archivo');
-      // Verifica si formularios[index] está definido antes de intentar acceder a la propiedad value
-      if (this.formularios[index]) {
-        this.formularios[index].value.archivo = '';
-      }
+      this.formularios[index].value.archivo = '';
     } else {
       this.files[index] = event.target.files[0];
-    }
-  }
 
-  /*captureFile(event: any, index: any) {
-    console.log('Archivo capturado:', event.target.files[0]);
-    this.files[index] = event.target.files[0];
-    console.log('this.files:', this.files);
-  }*/
+    }
+
+  }
 
   gererarQR() {
     if (this.ot == '') {
       alert('Debe ingresar una OT');
       return;
     } else if (this.nombre == '') {
-      alert('Debe ingresar una descripción');
+      alert('Debe ingresar una descripcion');
       return;
     }
-
-    /*for (let i = 0; i < this.formularios.length; i++) {
-      if (this.formularios[i].value.nombreArchivo == '') {
-        alert('Debe ingresar un nombre para el archivo');
-        return;
+    for (let index = this.formularios.length - 1; index >= 0; index--) {
+      const form = this.formularios[index];
+      if (this.files[index] === undefined) {
+          // Eliminar el formulario, archivo y nombre asociado
+          this.formularios.splice(index, 1);
+          this.files.splice(index, 1);
+          this.names.splice(index, 1);
+      } else {
+          // Actualizar el nombre asociado
+          this.names[index] = form.value.nombreArchivo;
       }
-      this.names[i] = this.formularios[i].value.nombreArchivo;
-    }*/
+    }
 
-    if (this.ot === '' || this.nombre === '') {
+    if (this.names.length === 0) {
+      this.ngOnInit();
       alert('Por favor, complete todos los campos');
       return;
     }
 
+    if (this.ot === '' || this.nombre === '' || this.files.length === 0) {
+      alert('Por favor, complete todos los campos');
+      return;
+    }
     this.newOt.ot = this.ot;
     this.newOt.name = this.nombre;
+    this.newOt.names = this.names;
     this.newOt.files = this.files;
     this.loading = true;
-
     const formData = new FormData();
     formData.append('ot', this.newOt.ot);
     formData.append('name', this.newOt.name);
@@ -120,19 +126,18 @@ export class ModalQrvariosComponent {
     this.newOt.files.forEach((file) => {
       formData.append('files', file);
     });
-
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     };
-
     this.axiosService.request(
       'POST',
       '/drive/upload-ot',
       formData,
       config
     ).then((response: any) => {
+
       this.loading = false;
       // Suponiendo que `response.data` contiene los datos base64 de la imagen
       const imageData = response.data;
@@ -144,12 +149,14 @@ export class ModalQrvariosComponent {
       this.nombre = '';
       this.onSaveQr.emit({ image: this.image });
       this.closeModal();
-      // Asigna directamente los datos base64 al atributo `src` de la imagen
-    }).catch((error: any) => {
-      this.loading = false;
-      console.error(error);
-    });
-  }
+    // Asigna directamente los datos base64 al atributo `src` de la imagen
 
+  }).catch((error: any) => {
+    this.loading = false;
+    console.error(error);
+  });
+
+
+  }
 
 }

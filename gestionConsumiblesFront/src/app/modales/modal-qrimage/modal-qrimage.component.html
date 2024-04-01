@@ -2,19 +2,26 @@
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
           <div class="modal-header">
-              <div class="d-grid gap-2 h4">“¡Sé verde con Smart DING! Adopta la tecnología QR para tus proyectos y <br>
-                haz una diferencia en la protección de nuestro medio ambiente”</div><!--Texto del modalQR-->
+              <div class="d-grid gap-2 h4"></div><!--Texto del modalQR-->
               <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <img src="{{image}}"alt="">
+            <div style="position: relative;">
+              <h5 class="text-center text-success"><strong>{{titulo}}</strong></h5>
+              <img #imgCelular class="img-thumbnail" crossorigin="anonymous" src="assets/imagenes/ContornoCelular.jpg" alt="Celular" style="width: 400px; height: auto;">
+              <img #imgQr class="img-thumbnail" crossorigin="anonymous" src="{{image}}" alt="imagen QR" style="position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); max-width:39%; height: auto;">
+              <h6 class="text-center text-success"> <strong>{{eslogan1}}</strong></h6>
+              <h6 class="text-center text-success"> <strong>{{eslogan2}}</strong></h6>
+              <img #imgDemco class="img-thumbnail" src="assets/imagenes/logoDemco.png" alt="Logo Demco" class="float-right" style="max-width: 15%; height:15%">
+              <canvas #miCanvas width="640" height="550" style="display: none;" class="img-thumbnail"></canvas>
+            </div>
           </div>
           <div class="modal-footer">
               <div class="d-grid gap-2 col-4 mx-auto">
-                  <button type="button" class="btn btn-success" (click)="saveQr()">
+                  <a id="download" type="button" class="btn btn-outline-success" (click)="saveQr()">
                       <i class="fa-solid fa-download"></i>
                       Descargar
-                  </button>
+                  </a>
               </div>
           </div>
       </div>

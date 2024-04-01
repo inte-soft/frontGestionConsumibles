@@ -27,9 +27,15 @@
             </div>
             <div class="modal-footer">
                 <div class="d-grid gap-2">
-                    <div class="row g-2">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" [(ngModel)]="nameFile">
+                    <div *ngIf="opciones.length" class="row g-2">
+                      <div  class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
+                        </div>
+                        <select [(ngModel)]="option" class="custom-select" id="inputGroupSelect01">
+                          <option *ngFor="let opcion of opciones" [value]="opcion">{{ opcion }}</option>
+                        </select>
+                      </div>
                         <input type="file" class="form-control" id="CargaArchivo" (change)="captureUniqueFile($event)">
                         <button type="button" class="btn btn-success" (click)="uploadUniqueFile()" (disable)="loading">
                             <i class="fa-solid fa-download"></i>
