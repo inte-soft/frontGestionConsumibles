@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="text-center image-container">
                     <img [src]="userImage" alt="User Avatar" width="150" height="150" class=" rounded-circle  mr-1">
-                    <button class="edit-button" (click)="changeImage()">
+                    <button name="avatar" class="edit-button" (click)="changeImage()">
                         <i class="fa fa-pencil"></i>
                     </button>
                 </div>
@@ -67,7 +67,7 @@
             <div class="card-header card header-primary">
                 <h4 class="card-title">Cambiar Imagen</h4>
                 <p class="card-category">Seleccione una imagen con extension .png o .jpg</p>
-                <input type="file" id="CargaArchivo" v [(ngModel)]="photo" (change)="captureFile($event)" accept=".png" >
+                <input name="avatar" type="file" id="CargaArchivo" (change)="captureFile($event)" accept=".png" >
             </div>
             <div>
                 <button type="button" class="btn btn-primary" (click)="changeImageAvatar()">Change Image</button>

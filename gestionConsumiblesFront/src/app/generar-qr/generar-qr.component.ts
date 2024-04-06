@@ -85,6 +85,7 @@ export class GenerarQRComponent {
 
   closeModalQR() {
     this.modalOpenQRb = false;
+    this.ngOnInit();
   }
 
   generarQR(image: any) {
