@@ -86,7 +86,8 @@
   [loading]="loading"
   [image]="image"
   (onCloseModal)="closeModalQRVarios()"
-  (onAddFile)="agregarDatos()">
+  (onAddFile)="agregarDatos()"
+  (onSaveQr)="openModalImage($event)">
 </app-modal-qrvarios>
 
 <app-modal-qrimage

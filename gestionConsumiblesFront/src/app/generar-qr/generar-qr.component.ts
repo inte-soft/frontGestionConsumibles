@@ -114,6 +114,11 @@ export class GenerarQRComponent {
     this.modalOpen = false;
   }
 
+  openModalImage(event: {image: any}) {
+    this.image = event.image;
+    this.modalOpenQRb = true;
+  }
+
   saveQr() {
     const base64String = this.image;
     const byteCharacters = atob(base64String.replace(/^data:image\/(png|jpeg);base64,/, ''));
