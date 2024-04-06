@@ -56,7 +56,7 @@ export class FormularioLoginComponent implements OnInit{
       // esperar un segundo para que se cargue la imagen
       setTimeout(() => {
         this.appComponent.userAvatarLogged(window.sessionStorage.getItem('avatar') ?? 'assets/imagenes/logoDemco.png');
-      }, 1000);
+      }, 1400);
       this.appComponent.avatarInfo();
       this.router.navigate(['/menu']);
     }).catch((error: any) => {

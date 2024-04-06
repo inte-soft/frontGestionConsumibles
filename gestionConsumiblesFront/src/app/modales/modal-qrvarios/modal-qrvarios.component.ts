@@ -53,7 +53,7 @@ export class ModalQrvariosComponent {
 
     const nuevoFormulario = this.fb.group({
       nombreArchivo: [Nombre], // Agrega un campo para el nombre del archivo en el formulario
-      archivo: [''] // Agrega un campo para el archivo en el formulario
+      //archivo: [''] // Agrega un campo para el archivo en el formulario
     });
 
 
